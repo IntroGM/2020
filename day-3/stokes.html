@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>FD for Stokes equation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Solution strategy for the channel flow" href="channel.html" />
+    <link rel="prev" title="Testing your code and benchmarking" href="benchmarking.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../day-2/fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="active">
+    <a href="">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-3/stokes.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-3/stokes.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#channel-flow" class="nav-link">Channel flow</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#do" class="nav-link">Do</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="fd-for-stokes-equation">
+<h1>FD for Stokes equation<a class="headerlink" href="#fd-for-stokes-equation" title="Permalink to this headline">¶</a></h1>
+<p>The finite differences method can be applied to the equations of momentum and continuity (the Stokes equation) to study the flow of a fluid.</p>
+<p>The equation for conservation of momentum is</p>
+<div class="math notranslate nohighlight">
+\[ \nabla \cdot \underline{\underline{\sigma}} + \underline{f} = \underline{0} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\underline{\underline{\sigma}} = \eta(\nabla\underline{v}+(\nabla\underline{v})^T) - P\underline{\underline{I}}\)</span> is the stress tensor and <span class="math notranslate nohighlight">\(\underline{f}\)</span> are the body forces.</p>
+<p>This can be written, in two dimensions, separately in x- and y-directions as</p>
+<div class="math notranslate nohighlight">
+\[\eta\left(\frac{\partial^2 v_x}{\partial x^2} + \frac{\partial^2 v_x}{\partial y^2}\right) - \frac{\partial P}{\partial x} = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\eta\left(\frac{\partial^2 v_y}{\partial x^2} + \frac{\partial^2 v_y}{\partial y^2}\right) - \frac{\partial P}{\partial y} + \rho g = 0\]</div>
+<p>The continuity equation, conservation of mass, or the assumption of incompressibility, is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial v_x}{\partial x} + \frac{\partial v_y}{\partial y} = 0\]</div>
+<p>These three equations are readily discretized using finite differences. Note that there are no time derivatives, but instead two spatial derivatives, in <span class="math notranslate nohighlight">\(x\)</span> and in <span class="math notranslate nohighlight">\(y\)</span>-direction.</p>
+<div class="section" id="channel-flow">
+<h2>Channel flow<a class="headerlink" href="#channel-flow" title="Permalink to this headline">¶</a></h2>
+<p>We will apply the Stokes equation to the case of orogenic channel flow. The mid- and lower crust in the internal parts of large orogenies might be partially molten due to the increased temperatures by thickened crust and increased radiogenic heating. These parts of the crust might be flowing, due to the pressure gradients imposed by the mountains, towards the thinner crust surrounding the orogeny.</p>
+<p><img alt="Orogenic channel flow (Godin et al. 2006)" src="../_images/channel1.png" /></p>
+<p><em>Orogenic channel flow (Godin et al. 2006). Pressure gradients drive flow to right, underthrusting plate imposes shearing flow towards left.</em></p>
+<p>We want to construct a one-dimensional model of this flow, by considering the horizontal velocities at different depths within the channel, and assuming that there is no vertical flow.</p>
+<p>Since <span class="math notranslate nohighlight">\(v_y=0\)</span> everywhere, we can disregard the second momentum equation (y-direction). In the continuity equation <span class="math notranslate nohighlight">\(\frac{\partial v_y}{\partial y}=0\)</span> leading to <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial x}=0\)</span>. Thus, the first momentum equation becomes</p>
+<div class="math notranslate nohighlight">
+\[\eta\frac{\partial^2 v_x}{\partial y^2} - \frac{\partial P}{\partial x} = 0\]</div>
+<p>The value of the pressure gradient can be calculated based on the estimated lithostatic pressure difference between the channel under thick orogenic crust and the surrounding region: If we consider the extra topography by the mountain range to be <span class="math notranslate nohighlight">\(h=4000~\mathrm{m}\)</span>, and their horizontal extent to be <span class="math notranslate nohighlight">\(d=500~\mathrm{km}\)</span>, we get
+<span class="math notranslate nohighlight">\($\frac{\partial P}{\partial x}\approx \frac{h \rho g}{d} = 219~\mathrm{Pa~m^{-1}} $\)</span></p>
+<p>The second derivative of the velocity in respect to <span class="math notranslate nohighlight">\(y\)</span> can be discretized using central difference, leading to: ???</p>
+<div class="section" id="do">
+<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Discretize the second velocity derivative and write the whole momentum equation in x-direction</p></li>
+<li><p>Sketch a grid with five grid points. Mark the surface and bottom grid points that will be assigned a velocity value by the boundary conditions.</p></li>
+<li><p>Looking at the figure above, what kind of B.C. are needed?</p></li>
+<li><p>How would you use your discretized equation to calculate <span class="math notranslate nohighlight">\(v_1\)</span>, the first velocity value after the uppermost grid point?</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-3"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="benchmarking.html" title="previous page">Testing your code and benchmarking</a>
+    <a class='right-next' id="next-link" href="channel.html" title="next page">Solution strategy for the channel flow</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

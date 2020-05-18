@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction to finite differences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Finite differences for heat equation" href="fdheat.html" />
+    <link rel="prev" title="Conditional statements" href="../day-1/conditional-statements.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="active">
+    <a href="">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-2/fdbasics.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-2/fdbasics.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#taylor-series-approach-accuracy" class="nav-link">Taylor series approach; accuracy</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#approximating-derivatives" class="nav-link">Approximating derivatives</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#do" class="nav-link">Do</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">Do</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#calculating-the-error" class="nav-link">Calculating the error</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">Do</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#applying-finite-differences-to-a-physical-problem" class="nav-link">Applying finite differences to a physical problem</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">Do</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction-to-finite-differences">
+<h1>Introduction to finite differences<a class="headerlink" href="#introduction-to-finite-differences" title="Permalink to this headline">¶</a></h1>
+<p>The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables in differential equations to small but finite differences, thus enabling solution of these equations by means of numerical calculations in a computer. This might be necessary if the equations at hand are too complicated to be solved analytically, or if the geometry of the problem setup is too complex.</p>
+<p>The starting point for the finite differences method is the definition of a derivative:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} = \lim_{\Delta x \rightarrow 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+= \lim_{\Delta x \rightarrow 0} \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}\]</div>
+<p>However, computers can only handle numbers of finite value, not infinitesimally
+small values such as <span class="math notranslate nohighlight">\(\Delta x\)</span> at the limit used in the definition. Thus,
+the derivative is approximated by dropping out the limit:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+\approx \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta x\)</span> is <em>sufficiently small</em>. If we could choose arbitrary
+small values of <span class="math notranslate nohighlight">\(\Delta x\)</span>, we would reach the exact value of the
+derivative, but in reality we are always limited by the numerical accuracy
+of the computers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>53
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first approximation above is called the <em>forward difference</em>, second the <em>backward difference</em>.
+One can define also the <em>central difference</em> approximation:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{ f(x_0 + \Delta x) - f(x_0 - \Delta x)}{2\Delta x}\]</div>
+<p>Other approximations exist, too.</p>
+<div class="section" id="taylor-series-approach-accuracy">
+<h2>Taylor series approach; accuracy<a class="headerlink" href="#taylor-series-approach-accuracy" title="Permalink to this headline">¶</a></h2>
+<p>Taylor’s Theorem states that function <span class="math notranslate nohighlight">\(f\)</span> can be presented with following series in the vicinity of <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = f(a) + \frac{df}{dx}\frac{(x-a)}{1!} + \frac{d^2f}{dx^2}\frac{(x-a)^2}{2!} + \frac{d^3f}{dx^3}\frac{(x-a)^3}{3!} + \ldots \]</div>
+<p>Finite differences approximation is based on truncating the series, typically after the second term, leading to</p>
+<div class="math notranslate nohighlight">
+\[ \frac{f(x) - f(a)}{x-a} = \frac{df}{dx} + \mathcal{O}((x-a)^2) \]</div>
+<p><span class="math notranslate nohighlight">\(\mathcal{O}\)</span> represents the <em>truncation error</em>, and shows that if <span class="math notranslate nohighlight">\(x-a\)</span> (i.e. <span class="math notranslate nohighlight">\(\Delta x\)</span>) is halved, the error is dropped to one-fourth. This applies to central difference. Forward and backward differences are <em>first-order accurate</em>.</p>
+</div>
+<div class="section" id="approximating-derivatives">
+<h2>Approximating derivatives<a class="headerlink" href="#approximating-derivatives" title="Permalink to this headline">¶</a></h2>
+<p>Let’s define a known function <span class="math notranslate nohighlight">\(f(x)=\sin(2x)+2\cos(x)\)</span> and plot it on range <span class="math notranslate nohighlight">\(x=[-2,2]\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fdbasics_4_0.png" src="../_images/fdbasics_4_0.png" />
+</div>
+</div>
+<p>From maths we know that <span class="math notranslate nohighlight">\(\frac{df}{dx} = 2\cos(2x) - 2\sin(x)\)</span>. Let’s define this as a python function and plot it, together with <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<div class="section" id="do">
+<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Define function <code class="docutils literal notranslate"><span class="pre">dfdx</span></code> that returns the analytically calculated derivative of <span class="math notranslate nohighlight">\(f\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Define function `dfdx` here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;df/dx&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">66</span><span class="n">ae1592d5b9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;df/dx&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;dfdx&#39; is not defined
+</pre></div>
+</div>
+<img alt="../_images/fdbasics_7_1.png" src="../_images/fdbasics_7_1.png" />
+</div>
+</div>
+<p>To calculate <span class="math notranslate nohighlight">\(\frac{df}{dx}\)</span> numerically, using finite differences, we can define a function that computes the derivative of a given function <span class="math notranslate nohighlight">\(g\)</span> at given position <span class="math notranslate nohighlight">\(x_0\)</span>, using <em>step size</em> <span class="math notranslate nohighlight">\(dx\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dfdx_fd</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">dx</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x0</span><span class="o">+</span><span class="n">dx</span><span class="p">)</span><span class="o">-</span><span class="n">g</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span><span class="o">/</span><span class="n">dx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot this on top of the analytical solution.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dfdx&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx_fd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dfdx_fd&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">d3d84f977c1a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dfdx&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx_fd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dfdx_fd&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;dfdx&#39; is not defined
+</pre></div>
+</div>
+<img alt="../_images/fdbasics_11_1.png" src="../_images/fdbasics_11_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Vary the third parameter <code class="docutils literal notranslate"><span class="pre">dx</span></code> of the last plot. Change it from 0.3 to larger and smaller values. What happens?</p></li>
+<li><p>Modify the definition of <code class="docutils literal notranslate"><span class="pre">dfdx_fd</span></code> to a) backward difference, b) central difference form. How does the derivative approximation change?</p></li>
+</ul>
+</div>
+<div class="section" id="calculating-the-error">
+<h3>Calculating the error<a class="headerlink" href="#calculating-the-error" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dfdx_fd</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">dx</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x0</span><span class="o">+</span><span class="n">dx</span><span class="p">)</span><span class="o">-</span><span class="n">g</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span><span class="o">/</span><span class="n">dx</span>
+
+<span class="k">def</span> <span class="nf">err</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">dfdx_fd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="n">err</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;err * 100&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fdbasics_14_0.png" src="../_images/fdbasics_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Do<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Compare error to the function itself. When is the error (its absolute value) largest?</p></li>
+<li><p>Choose another function <span class="math notranslate nohighlight">\(f\)</span> and modify definitions of <code class="docutils literal notranslate"><span class="pre">f</span></code> and its analytically solved derivative <code class="docutils literal notranslate"><span class="pre">dfdx</span></code> above accordingly. What kind of function gives the smallest error?</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">dfdx_fd</span></code> and implement backward or central difference approximation. How does the error change?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="applying-finite-differences-to-a-physical-problem">
+<h2>Applying finite differences to a physical problem<a class="headerlink" href="#applying-finite-differences-to-a-physical-problem" title="Permalink to this headline">¶</a></h2>
+<p>If we know the analytical form of <span class="math notranslate nohighlight">\(f\)</span>, there is often little interest in approximating its derivative numerically. Instead, derivative approximations are used indirectly to approximate the values of <span class="math notranslate nohighlight">\(f\)</span> itself. Let’s see how this works in a simple example of a falling sphere.</p>
+<p>Consider a solid sphere in a viscous fluid, with <span class="math notranslate nohighlight">\(\rho_\mathrm{sphere} &gt; \rho_\mathrm{fluid}\)</span>. The gravity pulls the sphere downwards, causing a buoyancy force
+<span class="math notranslate nohighlight">\(F_\mathrm{b} = V\Delta\rho g = V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g\)</span>. The viscous fluids resists the movement of the sphere downwards. The drag caused is given by the Stokes’s law, <span class="math notranslate nohighlight">\(F_\mathrm{d} = -6\pi\eta R v\)</span>. The sum of forces acting on the ball is then
+<span class="math notranslate nohighlight">\(\sum F = m_\mathrm{sphere} a = V\rho_\mathrm{sphere} a = F_\mathrm{d} + F_\mathrm{b} = -6\pi\eta R v + V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g\)</span>.</p>
+<p>Simplifying, and noting that <span class="math notranslate nohighlight">\(V = \frac{4}{3}\pi R^3\)</span> and acceleration <span class="math notranslate nohighlight">\(a=\frac{dv}{dt}\)</span>, gives
+<span class="math notranslate nohighlight">\($\frac{dv}{dt} = -\frac{9 \eta v}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g}{\rho_\mathrm{sphere}}\)</span>$</p>
+<p>When the sphere has reached its terminal velocity, acceleration is zero, so <span class="math notranslate nohighlight">\(dv/dt = 0 \Rightarrow v = \frac{2}{9}\frac{\Delta \rho R^2 g}{\eta}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vel_term_stokes</span><span class="p">(</span><span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">9.0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">rhosphere</span><span class="o">-</span><span class="n">rhofluid</span><span class="p">)</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="mf">9.81</span> <span class="o">/</span> <span class="n">viscosity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A marble with radius of 2 cm in honey:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vel_term_stokes</span><span class="p">(</span><span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0052320000000000005
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically. To apply finite differences, we replace all derivatives with their finite approximations at time <span class="math notranslate nohighlight">\(t_0\)</span>. In this case,
+<span class="math notranslate nohighlight">\($\frac{dv}{dt}\Big\rvert_{t=t_0} \approx \frac{v(t_0+\Delta t) - v(t_0)}{\Delta t}\)</span>$</p>
+<p>Inserting this into the previous formula gives <span class="math notranslate nohighlight">\(\frac{v(t_0+\Delta t) - v(t_0)}{\Delta t} = -\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\)</span>. Note that on the right hand side <span class="math notranslate nohighlight">\(v\)</span> has been replaced by <span class="math notranslate nohighlight">\(v(t_0)\)</span>.</p>
+<p>In other words, if we know velocity at some time <span class="math notranslate nohighlight">\(t_0\)</span> (i.e. <span class="math notranslate nohighlight">\(v(t_0)\)</span>), we can calculate the velocity after time <span class="math notranslate nohighlight">\(\Delta t\)</span> has elapsed:</p>
+<div class="math notranslate nohighlight">
+\[v(t_0 + \Delta t) = \left(-\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 \pi R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\right) \Delta t + v(t_0)\]</div>
+<p>Let’s write this as a python function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vel_next</span><span class="p">(</span><span class="n">vel_prev</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="o">*</span><span class="n">viscosity</span><span class="o">*</span><span class="n">vel_prev</span> <span class="o">/</span> <span class="p">(</span><span class="n">rhosphere</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">rhosphere</span><span class="o">-</span><span class="n">rhofluid</span><span class="p">)</span><span class="o">*</span><span class="mf">9.81</span><span class="o">/</span><span class="n">rhosphere</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="n">vel_prev</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v4</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v5</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v4</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v6</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v5</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v7</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v6</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">v5</span><span class="p">,</span> <span class="n">v6</span><span class="p">,</span> <span class="n">v7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.0005255357142857143,
+ 0.000998283242984694,
+ 0.0014235449708098922,
+ 0.0018060906768669342,
+ 0.002150211032985211,
+ 0.0024597657283326785,
+ 0.0027382267600849766)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can automate the calculation of the steps:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span>   <span class="c1"># time step size</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="mf">0.0</span>      <span class="c1"># initial condition</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">50</span>      <span class="c1"># num of tsteps to calculate</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>   <span class="c1"># stores calculated velocities</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>   <span class="c1"># stores total time in seconds</span>
+
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v0</span>
+<span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="p">):</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="n">vel_next</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">it</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">it</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity at time &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot; s is &quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fdbasics_29_0.png" src="../_images/fdbasics_29_0.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Velocity at time  0.0049  s is  0.005202758993971469
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Do<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use the code above to investigate what happens if the ball is being dropped from an elevation just slightly above the surface of the fluid. How do you need to modify the code?</p></li>
+<li><p>Take the finite differences approximation of the equation and replace <span class="math notranslate nohighlight">\(v(t_0)\)</span> on the right hand side by <span class="math notranslate nohighlight">\(v(t_0 + \Delta t)\)</span>. Rearrange the equation so that you have an expression for <span class="math notranslate nohighlight">\(v(t_0 + \Delta t) = \ldots\)</span>.</p></li>
+<li><p>Implement a function <code class="docutils literal notranslate"><span class="pre">vel_next_implicit</span></code>, similar to <code class="docutils literal notranslate"><span class="pre">vel_next</span></code> that calculates the velocity at next time step, but uses this modified expression.</p></li>
+<li><p>Copy and modify the code above so that you create a storage for both velocity values calculated using <code class="docutils literal notranslate"><span class="pre">vel_next</span></code> and <code class="docutils literal notranslate"><span class="pre">vel_next_implicit</span></code>, and plot the outcome on top of each other. Vary the value of <code class="docutils literal notranslate"><span class="pre">dt</span></code> and see what happens.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement `vel_next_implicit` here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first approximation (<code class="docutils literal notranslate"><span class="pre">vel_next</span></code>) is the forward difference approximation. <code class="docutils literal notranslate"><span class="pre">vel_next_implicit</span></code> is the backward difference approximation. When applied to functions of time, these are also called <em>explicit</em> and <em>implicit</em> approximations.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-2"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../day-1/conditional-statements.html" title="previous page">Conditional statements</a>
+    <a class='right-next' id="next-link" href="fdheat.html" title="next page">Finite differences for heat equation</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

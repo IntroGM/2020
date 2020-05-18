@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Course overview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Processes and concepts" href="physical-processes.html" />
+    <link rel="prev" title="Past versions of this course" href="../course-info/previous-years.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="active">
+    <a href="">Course overview</a>
+  </li>
+  <li class="">
+    <a href="physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../day-2/fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-1/course-overview.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-1/course-overview.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#let-s-get-to-know-one-another" class="nav-link">Let’s get to know one another</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#who-are-we" class="nav-link">Who are we?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#who-are-you" class="nav-link">Who are you?</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#practical-matters" class="nav-link">Practical matters</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#where-are-we" class="nav-link">Where are we?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#toilets" class="nav-link">Toilets</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#coffee-tea" class="nav-link">Coffee/tea</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#lunch" class="nav-link">Lunch</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#computer-stuff-and-course-website" class="nav-link">Computer stuff and course website</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#computers-in-this-classroom" class="nav-link">Computers in this classroom</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#software" class="nav-link">Software</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#course-website" class="nav-link">Course website</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-goals-and-learning-objectives" class="nav-link">Course goals and learning objectives</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#course-goals" class="nav-link">Course goals</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#learning-objectives" class="nav-link">Learning objectives</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#working-methods" class="nav-link">Working methods</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#schedule" class="nav-link">Schedule</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#day-1" class="nav-link">Day 1</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#day-2" class="nav-link">Day 2</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#day-3" class="nav-link">Day 3</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#day-4" class="nav-link">Day 4</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#day-5" class="nav-link">Day 5</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#any-questions" class="nav-link">Any questions?</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="course-overview">
+<h1>Course overview<a class="headerlink" href="#course-overview" title="Permalink to this headline">¶</a></h1>
+<p>Lars Kaislaniemi and David Whipp</p>
+<p>14-18 May 2018</p>
+<div class="section" id="let-s-get-to-know-one-another">
+<h2>Let’s get to know one another<a class="headerlink" href="#let-s-get-to-know-one-another" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="who-are-we">
+<h3>Who are we?<a class="headerlink" href="#who-are-we" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Dave Whipp, Associate professor</p>
+<ul>
+<li><p>Geodynamics of convergent orogens</p></li>
+<li><p>Geomorphology</p></li>
+</ul>
+</li>
+<li><p>Lars Kaislaniemi, Postdoctoral researcher</p>
+<ul>
+<li><p>Geodynamics of the Bolivian Andes</p></li>
+<li><p>Mantle dynamics and geochemistry</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="who-are-you">
+<h3>Who are you?<a class="headerlink" href="#who-are-you" title="Permalink to this headline">¶</a></h3>
+<p>
+<img src="img/mystery-person.png" alt="Mystery person" style="float:left;" height="300px">
+<ul style="width: 50%;">
+  <li>Name</li>
+  <li>Home university & program</li>
+  <li>Status (Ph.D., MSc, etc.)</li>
+  <li>Thesis topic</li>
+  <li>Experience with coding and/or modelling</li>
+</ul>
+</p></div>
+</div>
+<div class="section" id="practical-matters">
+<h2>Practical matters<a class="headerlink" href="#practical-matters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="where-are-we">
+<h3>Where are we?<a class="headerlink" href="#where-are-we" title="Permalink to this headline">¶</a></h3>
+<p><img alt="D211" src="../_images/D211.png" /></p>
+</div>
+<div class="section" id="toilets">
+<h3>Toilets<a class="headerlink" href="#toilets" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Toilets" src="../_images/toilets.png" /></p>
+</div>
+<div class="section" id="coffee-tea">
+<h3>Coffee/tea<a class="headerlink" href="#coffee-tea" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Coffee/tea" src="../_images/coffee.png" /></p>
+</div>
+<div class="section" id="lunch">
+<h3>Lunch<a class="headerlink" href="#lunch" title="Permalink to this headline">¶</a></h3>
+<p>
+  <img src="img/lunch.png" alt="Mystery person" style="float:left;" height="500px">
+  <ul style="width: 50%;">
+    <li>You can get a <b>full hot lunch</b> at the Chemicum, Excatum, or Dynamicum (pricier, but a bit better).</li>
+    <li>The Unicafe (coffee / tea spot) also has <b>sandwiches / paninis</b></li>
+  </ul>
+</p></div>
+</div>
+<div class="section" id="computer-stuff-and-course-website">
+<h2>Computer stuff and course website<a class="headerlink" href="#computer-stuff-and-course-website" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="computers-in-this-classroom">
+<h3>Computers in this classroom<a class="headerlink" href="#computers-in-this-classroom" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>It’s best if you use your own computer for this course</p></li>
+<li><p>Computers in this classroom can also be used, but require a University of Helsinki IT account</p></li>
+</ul>
+</div>
+<div class="section" id="software">
+<h3>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>All software used in this course is freely available</p></li>
+<li><p>A list of software available for download is provided on the course website (next slide)</p></li>
+</ul>
+</div>
+<div class="section" id="course-website">
+<h3>Course website<a class="headerlink" href="#course-website" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>All course materials will be posted to the course website: <a class="reference external" href="https://introgm.github.io">https://introgm.github.io</a></p>
+<ul>
+<li><p>This page will provide links to lecture slides, scripts used for the course, and other materials</p></li>
+<li><p>We will be updating the page as we go.</p></li>
+</ul>
+</li>
+<li><p>The materials are freely available for use by anyone, subject to the license, so feel free to share with your friends/colleagues!</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="course-goals-and-learning-objectives">
+<h2>Course goals and learning objectives<a class="headerlink" href="#course-goals-and-learning-objectives" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="course-goals">
+<h3>Course goals<a class="headerlink" href="#course-goals" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Understand the fundamental physical equations solved in numerical geodynamic models, how they work, and how they affect numerical experiments</p></li>
+<li><p>Learn how to convert the main equations used to model lithospheric deformation into simple programs</p></li>
+<li><p>Develop a background understanding of geodynamics that allows you to properly understand the behavior of geodynamic numerical models</p></li>
+</ul>
+</div>
+<div class="section" id="learning-objectives">
+<h3>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h3>
+<p>At the end of this course, students should be able to:</p>
+<ul class="simple">
+<li><p>Solve partial differential equations using the finite-difference method</p></li>
+<li><p>Differentiate between and implement various boundary and initial conditions in numerical models</p></li>
+<li><p>Create their own 1D geodynamic models and know how to use modern 3D numerical geodynamic modelling software to simulate common physical processes in the Earth (heat transfer, rock deformation, etc.)</p></li>
+</ul>
+</div>
+<div class="section" id="working-methods">
+<h3>Working methods<a class="headerlink" href="#working-methods" title="Permalink to this headline">¶</a></h3>
+<p align="left">The course involves a combination of lectures and computer-based exercises</p>
+<ul class="simple">
+<li><p>We will try to keep lectures to a minimum, but we do need to present some material you will need to complete the computer exercises</p></li>
+<li><p>For the computer exercises, you should work together with the others in the course and we will discuss your solutions after you have completed each exercise</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="schedule">
+<h2>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">¶</a></h2>
+<p style = "font-size:24px">***Subject to change - Last updated 15.5.2018***</p>
+<p style = "font-size:24px">***Press space to view each day***</p><div class="section" id="day-1">
+<h3>Day 1<a class="headerlink" href="#day-1" title="Permalink to this headline">¶</a></h3>
+<p style = "font-size:24px">
+09:30-10:00 - Course overview and introductions<br/>
+10:00-10:50 - Key physical processes/concepts<br/><br/>
+<p>10:50-11:05 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>11:05-11:45 - Key physical processes/concepts (ctd.)<br/>
+11:45-12:15 - Solving equations<br/>
+12:15-12:30 - <em>Computer setup/introduction</em> (optional)<br/><br/></p>
+<p>12:30-13:30 - <em><strong>Lunch</strong></em><br/><br/></p>
+<p>13:30-14:50 - Python/computing essentials<br/><br/></p>
+<p>14:50-15:05 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>15:05-16:30 - Python/computing essentials (ctd.)</p>
+</p></div>
+<div class="section" id="day-2">
+<h3>Day 2<a class="headerlink" href="#day-2" title="Permalink to this headline">¶</a></h3>
+<p style = "font-size:24px">
+09:30-10:50 - The finite difference method, part I<br/><br/>
+<p>10:50-11:05 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>11:05-12:30 - The finite difference method, part I (ctd.)<br/><br/></p>
+<p>12:30-13:30 - <em><strong>Lunch</strong></em><br/><br/></p>
+<p>13:30-15:00 - Heat conduction and advection in 1D<br/><br/></p>
+<p>15:00-15:15 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>15:15-16:30 - Heat conduction and advection in 1D (ctd.)</p>
+</p></div>
+<div class="section" id="day-3">
+<h3>Day 3<a class="headerlink" href="#day-3" title="Permalink to this headline">¶</a></h3>
+<p style = "font-size:24px">
+09:30-10:50 - Testing your code and benchmarking<br/><br/>
+<p>10:50-11:05 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>11:05-12:30 - Solving the momentum and continuity equations <br/><br/></p>
+<p>12:30-13:30 - <em><strong>Lunch</strong></em><br/><br/></p>
+<p>13:30-15:00 - Solving the momentum and continuity equations (ctd.)<br/><br/></p>
+<p>15:00-15:15 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>15:15-16:30 - Free working time</p>
+</p></div>
+<div class="section" id="day-4">
+<h3>Day 4<a class="headerlink" href="#day-4" title="Permalink to this headline">¶</a></h3>
+<p style = "font-size:24px">
+09:30-10:50 - Introduction to DOUAR<br/><br/>
+<p>10:50-11:05 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>11:05-12:30 - Cluster computing<br/><br/></p>
+<p>12:30-13:30 - <em><strong>Lunch</strong></em><br/><br/></p>
+<p>13:30-15:00 - Running a DOUAR model<br/><br/></p>
+<p>15:00-15:15 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>15:15-16:30 - 3D visualization with ParaView</p>
+</p></div>
+<div class="section" id="day-5">
+<h3>Day 5<a class="headerlink" href="#day-5" title="Permalink to this headline">¶</a></h3>
+<p style = "font-size:24px">
+09:30-10:50 - Modifying the DOUAR models and re-running experiments<br/><br/>
+<p>10:50-11:05 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>11:05-12:30 - Modifying the DOUAR models and re-running experiments (ctd.)<br/><br/></p>
+<p>12:30-13:30 - <em><strong>Lunch</strong></em><br/><br/></p>
+<p>13:30-13:45 - Course project description<br/>
+13:45-15:00 - Free time for experimentation with DOUAR<br/><br/></p>
+<p>15:00-15:15 - <em><strong>Coffee/tea break</strong></em><br/><br/></p>
+<p>15:15-16:30 - Free time for experimentation with DOUAR (ctd.)</p>
+</p></div>
+</div>
+<div class="section" id="any-questions">
+<h2>Any questions?<a class="headerlink" href="#any-questions" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-1"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../course-info/previous-years.html" title="previous page">Past versions of this course</a>
+    <a class='right-next' id="next-link" href="physical-processes.html" title="next page">Processes and concepts</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

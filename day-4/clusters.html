@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cluster computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Putting it all together" href="putting-it-together.html" />
+    <link rel="prev" title="Solution strategy for the channel flow" href="../day-3/channel.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../day-2/fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="active">
+    <a href="">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-4/clusters.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-4/clusters.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#performance-of-geodynamic-models" class="nav-link">Performance of geodynamic models</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#do" class="nav-link">Do</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#performance-of-parallel-programs" class="nav-link">Performance of parallel programs</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">Do</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#parallel-performance-results" class="nav-link">Parallel performance results</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cluster-computing">
+<h1>Cluster computing<a class="headerlink" href="#cluster-computing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="performance-of-geodynamic-models">
+<h2>Performance of geodynamic models<a class="headerlink" href="#performance-of-geodynamic-models" title="Permalink to this headline">¶</a></h2>
+<p>For example, typical 2D thermomechanical geodynamic model:</p>
+<ul class="simple">
+<li><p>Dimensions 1000 km x 1000 km</p></li>
+<li><p>Resolution 1 km</p>
+<ul>
+<li><p><strong>1 000 000 grid points</strong></p></li>
+<li><p>Max. time step (diffusion limit) 16 kyrs</p></li>
+</ul>
+</li>
+<li><p>Four unknowns (<span class="math notranslate nohighlight">\(v_x\)</span>, <span class="math notranslate nohighlight">\(v_y\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(T\)</span>)</p></li>
+<li><p>Four equations per grid point</p></li>
+<li><p>Discretized versions of the equations: About 20 operations (+-*/) per equation</p>
+<ul>
+<li><p><strong>80 000 000 operations (80 MFLOPS =</strong> <span class="math notranslate nohighlight">\(80\times10^6\)</span> <strong>FLOPS) per step</strong></p></li>
+</ul>
+</li>
+<li><p>Modern PC processors can do about 10-100 GFLOPS (GFLOP = <span class="math notranslate nohighlight">\(10^9\)</span> FLOPS)</p>
+<ul>
+<li><p><em>Processor</em> could do 1000 steps per second</p></li>
+<li><p>E.g. 50 Myrs / 16 kyrs/step = 3200 steps</p></li>
+<li><p><strong>Model run time 3.2 secs</strong></p></li>
+</ul>
+</li>
+<li><p>BUT: Memory access time (random) approx. 50 ns</p>
+<ul>
+<li><p>Each operation needs to fetch at least one number from memory</p></li>
+<li><p>Worst case: random location. <span class="math notranslate nohighlight">\(80\times10^6\times50\times10^{-9}~s=4.0~s\)</span> per step</p></li>
+<li><p><strong>Total runtime</strong> (“<strong>wall clock time</strong>”) <span class="math notranslate nohighlight">\(\approx 4~\mathrm{s/step}\times3200~\mathrm{steps}=3.5~\mathrm{hours}\)</span></p></li>
+</ul>
+</li>
+<li><p>Also, a lot of other “book keeping” during the model calculations</p></li>
+</ul>
+<div class="section" id="do">
+<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Make a similar runtime estimation for a 3D model with same resolution</p></li>
+</ul>
+<p><img alt="Memory hierarchy" src="../_images/memory-hierarchy.jpg" /></p>
+<p><em>Memory hierarchy of modern PC (https://allthingsvlsi.wordpress.com)</em></p>
+<p>The cure: Split the job among multiple processors.</p>
+<ul class="simple">
+<li><p>Each will have less operations to do</p>
+<ul>
+<li><p><em>Partitioning</em> of the job:</p>
+<ul>
+<li><p>Each processors will handle its own grid points, or</p></li>
+<li><p>Each processors will handle itw own part in solving the coefficient matrix</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Each will have smaller memory region to worry about (can store numbers closer to the processing unit)</p></li>
+</ul>
+<p><img alt="Processor architecture" src="../_images/arch1.jpg" /></p>
+<p><em>Processor architecture of a 4-core processor (http://sips.inesc-id.pt/~nfvr/msc_theses/msc10g/)</em></p>
+<p>Modern PCs already use multiple <em>cores</em> (CPUs within one physical processor).</p>
+<ul class="simple">
+<li><p>No speedup if the program/code used does not support multiple cores!</p></li>
+<li><p>Limited (currently) to about 16 cores, typically 2-4</p></li>
+<li><p>Some PC hardware allows two physical processors</p></li>
+</ul>
+<p>More cores can be used by interconnecting multiple physical computers (<em>nodes</em>)</p>
+<ul class="simple">
+<li><p>Needs a fast way to communicate between computers</p>
+<ul>
+<li><p>Faster is better (&gt;10 Gb/s)</p></li>
+</ul>
+</li>
+<li><p>Needs a protocol for CPUs/nodes to discuss with each other in order
+to distribute (partition) the work</p>
+<ul>
+<li><p>One of the most common: MPI (Message Passing Interface)</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="../_images/nodesNetwork.gif" /></p>
+<p><em>Architecture of a computing cluster</em></p>
+<img src="img/IMG_1903.jpg" width="30%"/><p><strong>geo-hpcc</strong> cluster</p>
+<ul class="simple">
+<li><p>35 nodes, each with 2 processors, each with 8 cores = 560 cores</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="performance-of-parallel-programs">
+<h2>Performance of parallel programs<a class="headerlink" href="#performance-of-parallel-programs" title="Permalink to this headline">¶</a></h2>
+<p>We will test the effect of running a code in parallel, using the <em>geo-hpcc</em> cluster.</p>
+<ol class="simple">
+<li><p>Login to the cluster using instructions at https://introgm.github.io/2018/instructions/cluster.html</p></li>
+<li><p>Type</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd mpi
+$ srun -n 64 python mpi.py
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>To see and edit the Python code</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ nano mpi.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">mpi.py</span></code> script with different number of cores (modify the number after <code class="docutils literal notranslate"><span class="pre">-n</span></code>, try values between 1-256 cores). Keep record of core count and time elapsed. Use Excel/LibreOffice/Python to plot number of processors versus elapsed time. What kind of plot would you expect to see? What do you actually see?</p></li>
+<li><p>Try plotting 2-base logarithm of time vs 2-base logarithm of number of cores used.</p></li>
+<li><p>Try commands <code class="docutils literal notranslate"><span class="pre">squeue</span></code> and <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> to see the job queue and the status of different nodes</p></li>
+</ul>
+<div class="section" id="parallel-performance-results">
+<h3>Parallel performance results<a class="headerlink" href="#parallel-performance-results" title="Permalink to this headline">¶</a></h3>
+<p>You can find the results of the parallel performance exercise in the <code class="xref any docutils literal notranslate"><span class="pre">exercise</span> <span class="pre">summary</span> <span class="pre">notebook</span></code>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-4"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../day-3/channel.html" title="previous page">Solution strategy for the channel flow</a>
+    <a class='right-next' id="next-link" href="putting-it-together.html" title="next page">Putting it all together</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

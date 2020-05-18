@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Putting it all together</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Marker-in-cell technique" href="marker-in-cell.html" />
+    <link rel="prev" title="Cluster computing" href="clusters.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../day-2/fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="clusters.html">Cluster computing</a>
+  </li>
+  <li class="active">
+    <a href="">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-4/putting-it-together.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-4/putting-it-together.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#processes-to-consider" class="nav-link">Processes to consider</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#interactions-between-processes-materials" class="nav-link">Interactions between processes/materials</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#general-structure-of-a-thermomechanical-code" class="nav-link">General structure of a thermomechanical code</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="putting-it-all-together">
+<h1>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h1>
+<p>In the past three days we have been introduced to a number of topics related to geodynamic modelling:</p>
+<ul class="simple">
+<li><p>Physical processes</p></li>
+<li><p>Solving equations</p></li>
+<li><p>Programming concepts</p></li>
+<li><p>Numerical methods</p></li>
+<li><p>Benchmarking numerical solutions</p></li>
+</ul>
+<p>Now we turn to how these different topics are related to one another in the design of a modern 3D thermomechanical numerical geodynamic model.
+As you will see, there are a number of different factors we must consider in the model design, and the order in which we perform various actions is important.</p>
+<div class="section" id="processes-to-consider">
+<h2>Processes to consider<a class="headerlink" href="#processes-to-consider" title="Permalink to this headline">¶</a></h2>
+<p>The essential dynamics of a geodynamic model comprise (1) deformation in the model owing to the applied boundary conditions, pressures in the fluid, and buoyancy, and (2) the transfer of heat by various processes strongly linked to the material flow field. We have already seen parts of many of these processes, but now we need consider the details of each and how they relate. We can see some key processes and their components below.</p>
+<ul class="simple">
+<li><p>Heat transfer in 3D</p>
+<ul>
+<li><p>Conduction</p></li>
+<li><p>Production</p></li>
+<li><p>Advection</p></li>
+<li><p>Material thermal properties</p>
+<ul>
+<li><p>Thermal conductivity</p></li>
+<li><p>Concentration of heat-producing elements</p></li>
+<li><p>Heat capacity</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Stokes flow</p>
+<ul>
+<li><p>Momentum and continuity equations</p></li>
+<li><p>Material mechanical properties</p>
+<ul>
+<li><p>Viscosity</p></li>
+</ul>
+</li>
+<li><p>Material advection (related to of Stokes flow)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="interactions-between-processes-materials">
+<h2>Interactions between processes/materials<a class="headerlink" href="#interactions-between-processes-materials" title="Permalink to this headline">¶</a></h2>
+<p>How might various processes we consider above interact with one another?
+This is an important consideration because we need to know in which order we should handle the different processes.
+In the Earth, materials move and transfer heat simultaneously, but in our model we will solve the Stokes flow and heat transfer equations separately.</p>
+<ul class="simple">
+<li><p>Stokes flow solution will affect advection in the heat transfer calculations</p></li>
+<li><p>Temperature will affect viscosity of model materials, influencing in turn how the material deforms</p></li>
+<li><p>Velocities from Stokes flow will influence size of time step for material advection</p></li>
+</ul>
+</div>
+<div class="section" id="general-structure-of-a-thermomechanical-code">
+<h2>General structure of a thermomechanical code<a class="headerlink" href="#general-structure-of-a-thermomechanical-code" title="Permalink to this headline">¶</a></h2>
+<p>With the list of processes and their interactions given above, how should we design our numerical modelling code?
+In what order should we do the different steps?</p>
+<p><img alt="Figure 1" src="../_images/2D-flow-chart-Gerya.png" /></p>
+<p><strong>Figure 1</strong>. An example of a flow chart for the steps needed to simulate geodynamic processes in 2D from Gerya (2010).</p>
+<p>Above we see an example of the order in which various processes and numerical procedures should be executed.
+Notably, we calculate the velocities for Stokes flow first, temperature after that (using the Stokes flow velocities), and move the markers after the new temperature values have been interpolated onto them.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-4"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="clusters.html" title="previous page">Cluster computing</a>
+    <a class='right-next' id="next-link" href="marker-in-cell.html" title="next page">Marker-in-cell technique</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

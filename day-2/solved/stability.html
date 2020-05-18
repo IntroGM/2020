@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stability of the heat equation FD approximation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/day-2/solved/stability.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-2/solved/stability.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="stability-of-the-heat-equation-fd-approximation">
+<h1>Stability of the heat equation FD approximation<a class="headerlink" href="#stability-of-the-heat-equation-fd-approximation" title="Permalink to this headline">¶</a></h1>
+<p>The explicit (forward difference in time) formulation of the FD heat equation has a maximum time step that can be used in the calculations. Exceeding this time step will lead to the <em>instability</em> of the calculations, and typically, misbehaviour or crashing of the computational code (and, certainly, erroneous results).</p>
+<p>Consider the simplified heat equation</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial x^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\kappa = \frac{k}{\rho C_p}\)</span>. The FD approximation is</p>
+<div class="math notranslate nohighlight">
+\[ \frac{T_i^{q+1}-T_i^q}{\Delta t} = \kappa \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}\]</div>
+<p>and, with <span class="math notranslate nohighlight">\(r=\frac{\kappa\Delta t}{\Delta x^2}\)</span>, can be written</p>
+<div class="math notranslate nohighlight">
+\[ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})\]</div>
+<p>If we assume that the numerical solution of the temperature, <span class="math notranslate nohighlight">\(T\)</span> is the sum of the correct temperature values <span class="math notranslate nohighlight">\(\theta\)</span> and the error <span class="math notranslate nohighlight">\(\epsilon\)</span> at each grid point (<span class="math notranslate nohighlight">\(T_i = \theta_i + \epsilon_i\)</span>), the difference equations of temperatures and errors can be separated, leading to</p>
+<div class="math notranslate nohighlight">
+\[ \epsilon_i^{q+1} = \epsilon_i^q + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q})\]</div>
+<p>That is, the error <em>diffuses</em> from grid point to next grid point, similarly to the actual temperature. We want to <em>suppress</em> the error, that is, we want <span class="math notranslate nohighlight">\(|\epsilon_i^{q+1}| \leq |\epsilon_i^q| \Rightarrow \Big|\frac{\epsilon_i^{q+1}}{\epsilon_i^q}\Big| \leq 1\)</span>, since otherwise the error would grow from time step to next.</p>
+<p>Dividing the error diffusion expression by <span class="math notranslate nohighlight">\(\epsilon_i^q\)</span> and applying the inequality</p>
+<div class="math notranslate nohighlight">
+\[\Big|1 + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q}) / \epsilon_i^q\Big| \leq 1\]</div>
+<p>Let’s consider the worst case scenario, where <span class="math notranslate nohighlight">\(\epsilon_{i+1} = \epsilon_{i-1} = a\)</span> and <span class="math notranslate nohighlight">\(\epsilon_i = -a\)</span>. We get</p>
+<div class="math notranslate nohighlight">
+\[\Big|1 - 4r\Big| \leq 1 \Rightarrow 0 \leq r \leq \frac{1}{2}\]</div>
+<p>The first inequality is naturally true (<span class="math notranslate nohighlight">\(r\)</span> cannot be negative), the second leads to</p>
+<div class="math notranslate nohighlight">
+\[\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{2}\]</div>
+<p>This inequality can be used to determine a proper time step if grid spacing has been chosen, or proper grid spacing if time step has been chosen. Typically, it is safer to force stricter condition, e.g. <span class="math notranslate nohighlight">\(\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{4}\)</span>.</p>
+<p>Stability of the method does not guarantee its correctness!</p>
+<p>A physical interpretation exists for the stability criterion: The diffusive time scale <span class="math notranslate nohighlight">\(\sqrt{\kappa\Delta t}\)</span> should not exceed the grid spacing, i.e. heat should not diffuse in significant amounts over more than one grid point within one time step.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-2/solved"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

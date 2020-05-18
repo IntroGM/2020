@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Project overview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using geo-hpcc cluster" href="../instructions/cluster.html" />
+    <link rel="prev" title="Helpful command line tools" href="cli-tools.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../day-2/fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="active">
+    <a href="">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-5/project-overview.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-5/project-overview.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-project" class="nav-link">Course project</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#what-is-the-idea" class="nav-link">What is the idea?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#what-do-you-need-to-do" class="nav-link">What do you need to do?</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#the-paper" class="nav-link">The paper</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#format" class="nav-link">Format</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#abstract" class="nav-link">Abstract</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#introduction" class="nav-link">Introduction</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#methods" class="nav-link">Methods</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#results" class="nav-link">Results</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#discussion" class="nav-link">Discussion</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#conclusions-summary" class="nav-link">Conclusions/summary</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#references" class="nav-link">References</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#appendices" class="nav-link">Appendices</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#due-date-and-credit-points" class="nav-link">Due date and credit points</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#project-due-date" class="nav-link">Project due date</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#any-questions" class="nav-link">Any questions?</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="project-overview">
+<h1>Project overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h1>
+<p><em>Introduction to geodynamic modelling</em></p>
+<p>Lars Kaislaniemi and David Whipp</p>
+<p>14-18 May 2018</p>
+<div class="section" id="course-project">
+<h2>Course project<a class="headerlink" href="#course-project" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-the-idea">
+<h3>What is the idea?<a class="headerlink" href="#what-is-the-idea" title="Permalink to this headline">¶</a></h3>
+<p>We’d like to see you take your new skills as geodynamic modellers and apply them to learning something about a problem of your choosing.</p>
+<p>Example problems could include:</p>
+<ul class="simple">
+<li><p>Modifying our DOUAR models of rifting of a continent</p></li>
+<li><p>Using DOUAR to model continent-continent collision</p></li>
+<li><p>Writing a 2D finite-difference solution to the heat advection-diffusion equation</p></li>
+<li><p>Modelling sinking of tectonic plates in the mantle using DOUAR</p></li>
+</ul>
+</div>
+<div class="section" id="what-do-you-need-to-do">
+<h3>What do you need to do?<a class="headerlink" href="#what-do-you-need-to-do" title="Permalink to this headline">¶</a></h3>
+<p>For the project you should design a model, run 1-3 numerical experiments with your model, and write a short paper describing the model and your results in the format of a scientic journal article.</p>
+</div>
+</div>
+<div class="section" id="the-paper">
+<h2>The paper<a class="headerlink" href="#the-paper" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="format">
+<h3>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h3>
+<p>The paper should be formatted as follows:</p>
+<ul class="simple">
+<li><p>12 pt Times New Roman (or similar) font</p></li>
+<li><p>Single spacing between lines</p></li>
+<li><p>Text and figures should not exceed 8 pages</p>
+<ul>
+<li><p>References and the appendix can be on additional pages as needed</p></li>
+</ul>
+</li>
+</ul>
+<p>The paper should include the sections described on the following slides</p>
+</div>
+<div class="section" id="abstract">
+<h3>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h3>
+<p>A one-paragraph summary of the exercise and your results</p>
+</div>
+<div class="section" id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Clearly describe the problem you are addressing (or hypothesis being tested) and it’s significance</p></li>
+<li><p>Provide background information on the topic (e.g., from lecture notes and other sources)</p></li>
+<li><p>Provide 1 short paragraph about how your models relate to understanding your stated problem</p></li>
+<li><p>2-4 paragraphs in length</p></li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Clearly state the equations being solved and the different methods used in solving the equations</p></li>
+<li><p>List the main variables or free parameters in the equations</p></li>
+<li><p>This should be more than 1 paragraph in length</p></li>
+</ul>
+</div>
+<div class="section" id="results">
+<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>This part describes the results from your experiments</p></li>
+<li><p>Include selected figures from the output of your model with figure captions describing the results</p></li>
+<li><p>You should have at least 1 paragraph of text that describes each figure</p></li>
+</ul>
+<p><strong>Note</strong>: The results section should only contain observations that resulted from your experiment. No interpretations of the results should be included in this section.</p>
+</div>
+<div class="section" id="discussion">
+<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>This part of the report discusses your results. It can have multiple subsections if you desire. Any interpretation you make from your plots/calculations should be presented here.</p></li>
+<li><p>An example discussion section topics (at least one paragraph each) could include:</p>
+<ul>
+<li><p>What are the main geological or geophysical implications of your results?</p></li>
+<li><p>Was there any result that was unexpected or counterintuitive?</p></li>
+<li><p>What are the limitations of the modeling approach and how do they affect the results?</p></li>
+<li><p>What are the implications of your results for the problem/hypothesis you stated in the introduction? Have you su ciently tested your hypothesis or are more experiments needed?</p></li>
+<li><p>Any other topics you feel should be discussed about the implications of the model results</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="conclusions-summary">
+<h3>Conclusions/summary<a class="headerlink" href="#conclusions-summary" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>This should summarize the main findings of your research paper</p></li>
+<li><p>1-2 paragraphs in length</p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Include a list of cited references from your paper</p>
+<ul>
+<li><p>This should include at least 6 primary sources</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="appendices">
+<h3>Appendices<a class="headerlink" href="#appendices" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Include a link to a webpage containing the code you have used to generate your results (if relevant)</p>
+<ul>
+<li><p>If you have made any significant changes to the code, describe them here</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="due-date-and-credit-points">
+<h2>Due date and credit points<a class="headerlink" href="#due-date-and-credit-points" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-due-date">
+<h3>Project due date<a class="headerlink" href="#project-due-date" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The final project should be submitted via email to Dave/Lars by the end of the day on <strong>31.8.2018</strong></p></li>
+<li><p>Completion of the course project will provide an additional 2 CP</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="any-questions">
+<h2>Any questions?<a class="headerlink" href="#any-questions" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-5"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="cli-tools.html" title="previous page">Helpful command line tools</a>
+    <a class='right-next' id="next-link" href="../instructions/cluster.html" title="next page">Using geo-hpcc cluster</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Solution strategy for the channel flow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cluster computing" href="../day-4/clusters.html" />
+    <link rel="prev" title="FD for Stokes equation" href="stokes.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../day-2/fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../day-2/diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="active">
+    <a href="">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/day-3/channel.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-3/channel.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#do" class="nav-link">Do</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="solution-strategy-for-the-channel-flow">
+<h1>Solution strategy for the channel flow<a class="headerlink" href="#solution-strategy-for-the-channel-flow" title="Permalink to this headline">¶</a></h1>
+<p>Rearranging the discretized equation so that all unknowns are on the left hand side, on the right hand side there are only known values.</p>
+<div class="math notranslate nohighlight">
+\[v_{i-1} - 2v_i + v_{i+1} = \frac{dP/dx}{\eta}\Delta y^2\]</div>
+<p>There is one such equation for each internal grid point. At the boundaries, boundary conditions have to be used, e.g. <span class="math notranslate nohighlight">\(v_0 = v_\mathrm{surf}\)</span> and <span class="math notranslate nohighlight">\(v_{\mathrm{ny}-1} = v_\mathrm{bott}\)</span>.</p>
+<p>For five grid points we thus have five equations in total:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+i=0:\qquad\qquad &amp; v_0 &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp;     &amp; = &amp; v_\mathrm{surf} \\
+i=1:\qquad\qquad &amp; v_0 &amp; -2 &amp; v_1  &amp; +  &amp; v_2 &amp;    &amp;     &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \\
+i=2:\qquad\qquad &amp;     &amp;    &amp; v_1  &amp; -2 &amp; v_2 &amp; +  &amp; v_3 &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \\
+i=3:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp; v_2 &amp; -2 &amp; v_3 &amp; + &amp; v_4 &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \\
+i=4:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp; v_4 &amp; = &amp; v_\mathrm{bott} \\
+\end{eqnarray}\end{split}\]</div>
+<p>This system of equations can be written in matrix format as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+1 &amp; &amp; &amp; &amp; \\ 
+1 &amp; -2 &amp;  1 &amp; &amp; \\ 
+ &amp; 1 &amp; -2 &amp; 1 &amp; \\ 
+ &amp; &amp; 1 &amp; -2 &amp; 1 \\ 
+ &amp; &amp; &amp; &amp; 1 \\ 
+\end{pmatrix}
+\begin{pmatrix}
+v_0 \\ 
+v_1 \\ 
+v_2 \\ 
+v_3 \\ 
+v_4 \\ 
+\end{pmatrix}
+=
+\begin{pmatrix}
+v_\mathrm{surf} \\ 
+\frac{dP/dx}{\eta}\Delta y^2 \\ 
+\frac{dP/dx}{\eta}\Delta y^2 \\ 
+\frac{dP/dx}{\eta}\Delta y^2 \\ 
+v_\mathrm{bott} \\ 
+\end{pmatrix}
+\end{split}\]</div>
+<p>and is typically written with symbols</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{Ax}=\mathbf{b}\]</div>
+<p>Python comes with a module, <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> that includes function <code class="docutils literal notranslate"><span class="pre">solve</span></code>, which can be used to solve this type of systems of linear equations:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from scipy.linalg import solve
+x = solve(A, b)
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">b</span></code> has to be a 1-D NumPy array of size <code class="docutils literal notranslate"><span class="pre">ny</span></code>, and includes the numerical values of the right hand side expressions; and <code class="docutils literal notranslate"><span class="pre">A</span></code> a 2-D NumPy array of size (<code class="docutils literal notranslate"><span class="pre">ny</span></code>,<code class="docutils literal notranslate"><span class="pre">ny</span></code>), and includes the numerical coefficients, as above. <code class="docutils literal notranslate"><span class="pre">x</span></code> will then contain the wanted velocity values. The following script utilizes this function to solve the channel flow problem.</p>
+<div class="section" id="do">
+<h2>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Complete the following script</p></li>
+<li><p>Once complete:</p>
+<ul>
+<li><p>Which direction is the flow mostly going?</p></li>
+<li><p>How can you make it go more to the left/ro the right?</p></li>
+<li><p>What happens if you decrease the viscosity? Why?</p></li>
+<li><p>What happens if you remove (or comment out) the lines where B.C. are set?</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define physical parameters</span>
+<span class="n">visc</span> <span class="o">=</span> <span class="mf">1e19</span>                    <span class="c1"># Viscosity of the rock in the channel, Pa s</span>
+<span class="n">dpdx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2800</span><span class="o">*</span><span class="mf">9.81</span><span class="o">*</span><span class="mi">4000</span><span class="o">/</span><span class="mf">500e3</span>   <span class="c1"># Pressure gradient within the channel, Pa m^-1</span>
+
+<span class="c1"># Define problem geometry</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># number of grid points</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">10e3</span>    <span class="c1"># size of the problem (width of the channel)</span>
+
+<span class="c1"># Define values for boundary conditions, m s^-1</span>
+<span class="n">vx_surf</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vx_bott</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.01</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mf">365.25</span><span class="p">)</span>
+
+<span class="c1"># Calculate grid spacing and y coordinates</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+
+<span class="c1"># Create the empty (zero) coefficient and right hand side arrays</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span><span class="n">ny</span><span class="p">))</span>  <span class="c1"># 2-dimensional array, ny rows, ny columns</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span>
+
+<span class="c1"># Set B.C. values in the coefficient array and in the r.h.s. array</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">vx_surf</span>
+<span class="n">A</span><span class="p">[</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span><span class="p">[</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">vx_bott</span>
+
+<span class="c1"># Set remaining (internal grid point) coefficients in the array `A`.</span>
+<span class="c1"># TODO: Complete the for loop so that it will write the coefficient </span>
+<span class="c1"># values in the array `A`. The for loop loops over all the rows</span>
+<span class="c1"># of the matrix. On each row, you need to fill in three coefficients.</span>
+<span class="c1"># In python, elements of 2D arrays are referenced to like &#39;A[row, col]&#39;</span>
+<span class="k">for</span> <span class="n">iy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    
+
+<span class="c1"># Set remaining (internal grid point) coefficients in the r.h.s. array b</span>
+<span class="c1"># TODO: Create a for loop that loops over the internal grid points (i.e.</span>
+<span class="c1"># from 1 to ny-1), and fills in the `b` array with r.h.s. values</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+
+<span class="c1"># For debugging purposes, plot A (if it is small enough) and b</span>
+<span class="k">if</span> <span class="n">ny</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">b is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    
+<span class="c1"># Solve it!</span>
+<span class="n">vx</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Plot it!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">25</span><span class="o">*</span><span class="mf">365.25</span><span class="p">),</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-2-b4aa1299ed23&gt;&quot;</span><span class="gt">, line </span><span class="mi">33</span>
+    <span class="o">.</span>
+    <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculating-strain-rates">
+<h1>Calculating strain rates<a class="headerlink" href="#calculating-strain-rates" title="Permalink to this headline">¶</a></h1>
+<p>Strain rate in 2D is defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\underline{\underline{\dot\epsilon}} = \begin{pmatrix}
+\frac{\partial v_x}{\partial x} &amp; \frac{\partial v_x}{\partial y} \\
+\frac{\partial v_y}{\partial x} &amp; \frac{\partial v_y}{\partial y} \\
+\end{pmatrix}\end{split}\]</div>
+<p>In our case the only relevant component is the shear strain rate <span class="math notranslate nohighlight">\(\dot\epsilon_{xy} = \frac{\partial v_x}{\partial y}\)</span> (why?).</p>
+<div class="section" id="id1">
+<h2>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Discretize the shear strain rate expression</p></li>
+<li><p>Complete the script below so that it will loop over all the grid points, calculate the shear strain, and store it in the array <code class="docutils literal notranslate"><span class="pre">e</span></code></p></li>
+<li><p>How does the resulting plot look like? Note that the <em>shear stress</em> is defined as <span class="math notranslate nohighlight">\(\sigma_{xy} = \eta\dot\epsilon_{xy}\)</span>. Where is the shear stress smallest?</p></li>
+</ul>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># TODO: Write here a for-loop that loops over the grid points</span>
+<span class="c1"># and calculate the shear strain rate on every step</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+ 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-3-98f93c156fbf&gt;&quot;</span><span class="gt">, line </span><span class="mi">5</span>
+    <span class="o">.</span>
+    <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="velocity-boundary-conditions">
+<h1>Velocity boundary conditions<a class="headerlink" href="#velocity-boundary-conditions" title="Permalink to this headline">¶</a></h1>
+<p>Like in the case of heat equation, the FD formulation for velocity field may have different boundary conditions:</p>
+<ol class="simple">
+<li><p>No-slip:</p>
+<ul class="simple">
+<li><p>Velocity parallel to the surface is fixed at zero</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_x = 0\)</span></p></li>
+</ul>
+</li>
+<li><p>Free-slip:</p>
+<ul class="simple">
+<li><p>Shear stress at the surface is zero</p></li>
+<li><p><span class="math notranslate nohighlight">\(0 = \sigma_{xy} = \eta\dot\epsilon_{xy} = \eta\frac{\partial v_x}{\partial y} \Rightarrow \frac{\partial v_x}{\partial y} = 0\)</span></p></li>
+</ul>
+</li>
+<li><p>Other:</p>
+<ul class="simple">
+<li><p>Velocity is fixed at non-zero value</p></li>
+<li><p>e.g. <span class="math notranslate nohighlight">\(v_x = a \neq 0\)</span>, also incoming/outgoing flow (<span class="math notranslate nohighlight">\(v_y \neq 0\)</span>) possible (in 2D models)</p></li>
+</ul>
+</li>
+</ol>
+<p>We used cases 1 and 3 previously.</p>
+<div class="section" id="id2">
+<h2>Do<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Discretize the free-slip boundary condition <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial y} = 0\)</span></p></li>
+<li><p>If you want to apply this at the upper surface (i.e. at <span class="math notranslate nohighlight">\(x=x_0\)</span>), how would your system of equations change? How would the coefficients in the matrix <span class="math notranslate nohighlight">\(A\)</span> change?</p></li>
+<li><p>Modify your script for the channel flow model, and change the upper surface velocity boundary condition from <span class="math notranslate nohighlight">\(v_x=0\)</span> to a free-slip B.C.</p>
+<ul>
+<li><p>How does the resulting velocity plot change?</p></li>
+<li><p>How does the plot for shear strain rate change?</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-3"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="stokes.html" title="previous page">FD for Stokes equation</a>
+    <a class='right-next' id="next-link" href="../day-4/clusters.html" title="next page">Cluster computing</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

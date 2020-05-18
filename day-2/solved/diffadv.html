@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Heat diffusion + advection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../welcome.html">Introduction to Geodynamic Modelling</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">General info</p>
+</li>
+  <li class="">
+    <a href="../../course-info/general-info.html">General info</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/learning-goals.html">Learning goals</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/grading.html">Grading</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/resources.html">Resources</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/licensing.html">License and terms of usage</a>
+  </li>
+  <li class="">
+    <a href="../../course-info/previous-years.html">Past versions of this course</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 1</p>
+</li>
+  <li class="">
+    <a href="../../day-1/course-overview.html">Course overview</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/physical-processes.html">Processes and concepts</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/solving-equations.html">Solving equations</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/python-basics.html">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/for-loops.html">for loops</a>
+  </li>
+  <li class="">
+    <a href="../../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../fdheat.html">Finite differences for heat equation</a>
+  </li>
+  <li class="">
+    <a href="../stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../diffadv.html">Heat diffusion + advection</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 3</p>
+</li>
+  <li class="">
+    <a href="../../day-3/benchmarking.html">Testing your code and benchmarking</a>
+  </li>
+  <li class="">
+    <a href="../../day-3/stokes.html">FD for Stokes equation</a>
+  </li>
+  <li class="">
+    <a href="../../day-3/channel.html">Solution strategy for the channel flow</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../../day-5/cli-tools.html">Helpful command line tools</a>
+  </li>
+  <li class="">
+    <a href="../../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../../instructions/cluster.html">Using geo-hpcc cluster</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/day-2/solved/diffadv.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-2/solved/diffadv.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#do" class="nav-link">Do</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#answer" class="nav-link">ANSWER</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="heat-diffusion-advection">
+<h1>Heat diffusion + advection<a class="headerlink" href="#heat-diffusion-advection" title="Permalink to this headline">¶</a></h1>
+<p>If we add advection and internal heat generation to our heat equation, we get</p>
+<div class="math notranslate nohighlight">
+\[\rho C_p \left(\frac{\partial T}{\partial t} + v_x\frac{\partial T}{\partial x}\right) = k \frac{\partial^2 T}{\partial x^2} + H\]</div>
+<p>Leaving only the time derivative on the left-hand side,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial T}{\partial t} = \frac{k}{\rho C_p} \frac{\partial^2 T}{\partial x^2} + \frac{H}{\rho C_p} - v_x\frac{\partial T}{\partial x}\]</div>
+<div class="section" id="do">
+<h2>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Write the finite difference approximation for (i.e. <em>discretize</em>) the diffusion-advection equation. Use forward difference in time and central difference in space. Write the expression in form <span class="math notranslate nohighlight">\(T_i^{q+1} = \ldots~T^q~\mathrm{terms~only~on~this~side}~\ldots\)</span></p></li>
+<li><p>Modify the intrusion code below (or use the one you modified previously):</p>
+<ul>
+<li><p>Add variables that store the internal heat production <span class="math notranslate nohighlight">\(H\)</span> and the advection velocity <span class="math notranslate nohighlight">\(v_x\)</span> (what are suitable values?)</p></li>
+<li><p>Modify the line within the time loop that calculates the next valuer of <span class="math notranslate nohighlight">\(T\)</span>: include the terms for heat generation and advection</p></li>
+</ul>
+</li>
+<li><p>Start with <span class="math notranslate nohighlight">\(H=0\)</span> and <span class="math notranslate nohighlight">\(v_x = 0\)</span>. Gradually change these values. How does the results change as you give non-zero values for these? What happens if <span class="math notranslate nohighlight">\(v_x &gt; 0\)</span> compared to <span class="math notranslate nohighlight">\(v_x &lt; 0\)</span>? What if <span class="math notranslate nohighlight">\(v_x\)</span> has a large (positive or negative) value?</p></li>
+<li><p>Extra:</p>
+<ul>
+<li><p>Remove the initial hot intrusion. Instead, add spatially variable internal heat generation. For this, you will need to introduce new numpy array (of size <code class="docutils literal notranslate"><span class="pre">nx</span></code>), fill it with values of internal heat generation, and use it (<code class="docutils literal notranslate"><span class="pre">H[ix]</span></code> instead of <code class="docutils literal notranslate"><span class="pre">H</span></code>) when you calculate the new temperature value.</p></li>
+<li><p>Calculating heat flow:</p>
+<ul>
+<li><p>Heat flow is defined as <span class="math notranslate nohighlight">\(q=k\frac{dT}{dx}\)</span>. Write an approximation for <span class="math notranslate nohighlight">\(q\)</span> by replacing the derivative with a finite difference expression.</p></li>
+<li><p>Modify the code so that you create an array (of size <code class="docutils literal notranslate"><span class="pre">nt</span></code>) that stores surface heat flow values each time step. Within the time loop, calculate each time step the heat flow between two topmost grid points.</p></li>
+<li><p>After the time loop, plot the recorded surface heat flow history.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">yr2sec</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mf">365.25</span>  <span class="c1"># num of seconds in a year</span>
+
+<span class="c1"># Set material properties</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">2900</span>   <span class="c1"># kg m^-3</span>
+<span class="n">Cp</span> <span class="o">=</span> <span class="mi">900</span>     <span class="c1"># J kg^-1 K^-1</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">2.5</span>      <span class="c1"># W m^-1 K^-1</span>
+
+<span class="c1"># Set geometry and dimensions</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">35e3</span>         <span class="c1"># m</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">30</span>          <span class="c1"># -</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># m</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dx is&quot;</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+
+<span class="n">silltop</span> <span class="o">=</span> <span class="mf">5e3</span>    <span class="c1"># m</span>
+<span class="n">sillbott</span> <span class="o">=</span> <span class="mf">10e3</span>  <span class="c1"># m</span>
+
+<span class="c1"># Set total time and time step</span>
+<span class="n">t_total</span> <span class="o">=</span> <span class="mf">0.1e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e4</span> <span class="o">*</span> <span class="n">yr2sec</span>                 <span class="c1"># s</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t_total</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>  <span class="c1"># -</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating&quot;</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="s2">&quot;time steps&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set boundary temperature values and intrusion temperature</span>
+<span class="n">Tsurf</span> <span class="o">=</span> <span class="mf">0.0</span>        <span class="c1"># deg C</span>
+<span class="n">Tmoho</span> <span class="o">=</span> <span class="mf">600.0</span>      <span class="c1"># deg C</span>
+<span class="n">Tintrusion</span> <span class="o">=</span> <span class="mf">700.0</span> <span class="c1"># deg C</span>
+
+<span class="c1"># Create arrays to hold temperature fields</span>
+<span class="n">Tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">Tprev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+
+<span class="c1"># Create coordinates of the grid points</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+
+<span class="c1"># Generate initial temperature field</span>
+<span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sillbott</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">silltop</span><span class="p">):</span>
+        <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tintrusion</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tmoho</span> <span class="o">-</span> <span class="n">Tsurf</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
+
+<span class="c1"># Plot initial temperature field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Start the loop over time steps</span>
+<span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">curtime</span> <span class="o">&lt;</span> <span class="n">t_total</span><span class="p">:</span>
+    <span class="n">curtime</span> <span class="o">=</span> <span class="n">curtime</span> <span class="o">+</span> <span class="n">dt</span>
+    
+    <span class="c1"># boundary conditions</span>
+    <span class="n">Tnew</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tsurf</span>
+    <span class="n">Tnew</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tmoho</span>
+    
+    <span class="c1"># internal grid points</span>
+    <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">)</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
+        
+    <span class="c1"># copy Tnew to Tprev</span>
+    <span class="n">Tprev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Tnew</span><span class="p">[:]</span>
+    
+
+<span class="c1"># Plot the final temperature field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tnew</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T final&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>dx is 1206.896551724138 m
+Calculating 10 time steps
+</pre></div>
+</div>
+<img alt="../../_images/diffadv_4_11.png" src="../../_images/diffadv_4_11.png" />
+<img alt="../../_images/diffadv_4_21.png" src="../../_images/diffadv_4_21.png" />
+</div>
+</div>
+<div class="section" id="answer">
+<h3>ANSWER<a class="headerlink" href="#answer" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delta x^2} + \frac{H}{\rho C_p} - v_x\frac{T_{i+1}^q - T_{i-1}^q}{2\Delta x}\right)\Delta t+T_i^q\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### ANSWER ###</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">yr2sec</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mf">365.25</span>  <span class="c1"># num of seconds in a year</span>
+
+<span class="c1"># Set material properties</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">2900</span>   <span class="c1"># kg m^-3</span>
+<span class="n">Cp</span> <span class="o">=</span> <span class="mi">900</span>     <span class="c1"># J kg^-1 K^-1</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">2.5</span>      <span class="c1"># W m^-1 K^-1</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mf">0.0</span>      <span class="c1"># W m^-3</span>
+<span class="n">vx</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mf">365.25</span><span class="p">)</span>     <span class="c1"># m s^-1</span>
+
+<span class="c1"># Set geometry and dimensions</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">35e3</span>         <span class="c1"># m</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">30</span>          <span class="c1"># -</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># m</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dx is&quot;</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+
+<span class="n">silltop</span> <span class="o">=</span> <span class="mf">5e3</span>    <span class="c1"># m</span>
+<span class="n">sillbott</span> <span class="o">=</span> <span class="mf">10e3</span>  <span class="c1"># m</span>
+
+<span class="c1"># Set total time and time step</span>
+<span class="n">t_total</span> <span class="o">=</span> <span class="mf">0.1e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e4</span> <span class="o">*</span> <span class="n">yr2sec</span>                 <span class="c1"># s</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t_total</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>  <span class="c1"># -</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating&quot;</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="s2">&quot;time steps&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set boundary temperature values and intrusion temperature</span>
+<span class="n">Tsurf</span> <span class="o">=</span> <span class="mf">0.0</span>        <span class="c1"># deg C</span>
+<span class="n">Tmoho</span> <span class="o">=</span> <span class="mf">600.0</span>      <span class="c1"># deg C</span>
+<span class="n">Tintrusion</span> <span class="o">=</span> <span class="mf">700.0</span> <span class="c1"># deg C</span>
+
+<span class="c1"># Create arrays to hold temperature fields</span>
+<span class="n">Tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">Tprev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+
+<span class="c1"># Create coordinates of the grid points</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+
+<span class="c1"># Generate initial temperature field</span>
+<span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sillbott</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">silltop</span><span class="p">):</span>
+        <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tintrusion</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tmoho</span> <span class="o">-</span> <span class="n">Tsurf</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
+
+<span class="c1"># Plot initial temperature field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Start the loop over time steps</span>
+<span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">curtime</span> <span class="o">&lt;</span> <span class="n">t_total</span><span class="p">:</span>
+    <span class="n">curtime</span> <span class="o">=</span> <span class="n">curtime</span> <span class="o">+</span> <span class="n">dt</span>
+    
+    <span class="c1"># boundary conditions</span>
+    <span class="n">Tnew</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tsurf</span>
+    <span class="n">Tnew</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tmoho</span>
+    
+    <span class="c1"># internal grid points</span>
+    <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">H</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">)</span> <span class="o">-</span> <span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
+        
+    <span class="c1"># copy Tnew to Tprev</span>
+    <span class="n">Tprev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Tnew</span><span class="p">[:]</span>
+    
+
+<span class="c1"># Plot the final temperature field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tnew</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T final&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>dx is 1206.896551724138 m
+Calculating 10 time steps
+</pre></div>
+</div>
+<img alt="../../_images/diffadv_6_1.png" src="../../_images/diffadv_6_1.png" />
+<img alt="../../_images/diffadv_6_2.png" src="../../_images/diffadv_6_2.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "day-2/solved"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David Whipp and Lars Kaislaniemi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>
