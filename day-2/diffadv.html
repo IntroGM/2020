@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Heat diffusion + advection</title>
+    <title>Heat advection and diffusion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -131,7 +131,7 @@
     <a href="stability.html">Stability of the heat equation FD approximation</a>
   </li>
   <li class="active">
-    <a href="">Heat diffusion + advection</a>
+    <a href="">Heat advection and diffusion</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 3</p>
@@ -246,7 +246,13 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#general-equation" class="nav-link">General equation</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
             <a href="#do" class="nav-link">Do</a>
+        </li>
+    
+            </ul>
         </li>
     
     </ul>
@@ -260,16 +266,20 @@
         
               <div>
                 
-  <div class="section" id="heat-diffusion-advection">
-<h1>Heat diffusion + advection<a class="headerlink" href="#heat-diffusion-advection" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="heat-advection-and-diffusion">
+<h1>Heat advection and diffusion<a class="headerlink" href="#heat-advection-and-diffusion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-equation">
+<h2>General equation<a class="headerlink" href="#general-equation" title="Permalink to this headline">¶</a></h2>
 <p>If we add advection and internal heat generation to our heat equation, we get</p>
-<div class="math notranslate nohighlight">
-\[\rho C_p \left(\frac{\partial T}{\partial t} + v_x\frac{\partial T}{\partial x}\right) = k \frac{\partial^2 T}{\partial x^2} + H\]</div>
+<p>\begin{equation}
+\rho C_p \left(\frac{\partial T}{\partial t} + v_x\frac{\partial T}{\partial x}\right) = k \frac{\partial^2 T}{\partial x^2} + H
+\end{equation}</p>
 <p>Leaving only the time derivative on the left-hand side,</p>
-<div class="math notranslate nohighlight">
-\[\frac{\partial T}{\partial t} = \frac{k}{\rho C_p} \frac{\partial^2 T}{\partial x^2} + \frac{H}{\rho C_p} - v_x\frac{\partial T}{\partial x}\]</div>
+<p>\begin{equation}
+\frac{\partial T}{\partial t} = \frac{k}{\rho C_p} \frac{\partial^2 T}{\partial x^2} + \frac{H}{\rho C_p} - v_x\frac{\partial T}{\partial x}
+\end{equation}</p>
 <div class="section" id="do">
-<h2>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h2>
+<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Write the finite difference approximation for (i.e. <em>discretize</em>) the diffusion-advection equation. Use forward difference in time and central difference in space. Write the expression in form <span class="math notranslate nohighlight">\(T_i^{q+1} = \ldots~T^q~\mathrm{terms~only~on~this~side}~\ldots\)</span></p></li>
 <li><p>Modify the intrusion code below (or use the one you modified previously):</p>
@@ -372,8 +382,9 @@
 Calculating 10 time steps
 </pre></div>
 </div>
-<img alt="../_images/diffadv_4_1.png" src="../_images/diffadv_4_1.png" />
-<img alt="../_images/diffadv_4_2.png" src="../_images/diffadv_4_2.png" />
+<img alt="../_images/diffadv_2_1.png" src="../_images/diffadv_2_1.png" />
+<img alt="../_images/diffadv_2_2.png" src="../_images/diffadv_2_2.png" />
+</div>
 </div>
 </div>
 </div>
