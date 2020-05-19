@@ -120,7 +120,7 @@
     "9. Start the loop that iterates over all the time steps. Within the time step:\n",
     "    - Set the temperature at the boundaries, according to boundary conditions, at `Tnew[0]` and `Tnew[nx-1]`\n",
     "    - Calculate remaining (internal grid points) within `Tnew` based on values of `Tprev`\n",
-    "    - Prepare for next time step: Copy all values of `Tnew` to `Tprev`"
+    "    - Prepare for next time step: Copy all values of `Tnew` to `Tprev`\n"
    ]
   },
   {
