@@ -31,6 +31,7 @@
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script async="async" src="../_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://introgm.github.io/2020/day-2/stability.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Heat advection and diffusion" href="diffadv.html" />
@@ -39,6 +40,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://introgm.github.io/2020/day-2/stability.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Stability of the heat equation FD approximation" />
+<meta property="og:description" content="Stability of the heat equation FD approximation  Calcuation of the stability condtions  The explicit (forward difference in time) formulation of the FD heat equ" />
+<meta property="og:image"       content="https://introgm.github.io/2020/_static/logo.png" />
+
+<meta name="twitter:card" content="summary">
 
 
   </head>
@@ -67,9 +77,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="../welcome.html">Introduction to Geodynamic Modelling</a>
-  </li>
 <li class="navbar-special">
 <p class="margin-caption">General info</p>
 </li>
@@ -228,7 +235,7 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
             <div class="dropdown-buttons">
                 
-                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day-2/stability.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                <a class="binder-button" href="https://mybinder.org/v2/gh/IntroGM/2020/master?urlpath=lab/tree/day-2/stability.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
                 
                 
                 <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
@@ -304,7 +311,7 @@ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})
     {
         requestKernel: true,
         binderOptions: {
-            repo: "executablebooks/jupyter-book",
+            repo: "IntroGM/2020",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -348,6 +355,16 @@ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})
     </div>
 
     <script src="../_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-92357604-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>
