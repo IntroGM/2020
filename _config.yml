@@ -3,10 +3,24 @@ title:
 author: David Whipp and Lars Kaislaniemi
 copyright: '2020'
 logo: logo.png
+email: david.whipp@helsinki.fi
+description: >- # this means to ignore newlines until "baseurl:"
+  This is the website for the Introduction to Geodynamic Modelling course.
 
 latex:
   latex_documents:
     targetname: book.tex
 
+html:
+  google_analytics_id: UA-92357604-1
+  home_page_in_navbar: false
+  baseurl: https://introgm.github.io/2020/
+
+repository:
+  url                       : https://github.com/IntroGM/2020
+  path_to_book              : ""
+
 launch_buttons:
+  notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url             : "https://mybinder.org"
   thebelab                  : true
