@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Finite differences for heat equation</title>
+    <title>Finite differences for the heat equation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -125,7 +125,7 @@
     <a href="fdbasics.html">Introduction to finite differences</a>
   </li>
   <li class="active">
-    <a href="">Finite differences for heat equation</a>
+    <a href="">Finite differences for the heat equation</a>
   </li>
   <li class="">
     <a href="stability.html">Stability of the heat equation FD approximation</a>
@@ -282,25 +282,37 @@
 </div>
 </div>
 </div>
-<div class="section" id="finite-differences-for-heat-equation">
-<h1>Finite differences for heat equation<a class="headerlink" href="#finite-differences-for-heat-equation" title="Permalink to this headline">¶</a></h1>
-<p>Simple 1D diffusion-only constant-conductivity heat equation is <span class="math notranslate nohighlight">\(\rho C_p \frac{\partial T}{\partial t} = k \frac{\partial^2 T}{\partial x^2}\)</span></p>
-<p>The second-order spatial derivative of temperature can be approximated with finite differences:
-\begin{align}
+<div class="section" id="finite-differences-for-the-heat-equation">
+<h1>Finite differences for the heat equation<a class="headerlink" href="#finite-differences-for-the-heat-equation" title="Permalink to this headline">¶</a></h1>
+<p>The 1D heat equation for diffusion (conduction) only and a constant thermal conductivity is
+\begin{equation}
+\rho C_p \frac{\partial T}{\partial t} = k \frac{\partial^2 T}{\partial x^2}
+\end{equation}</p>
+<p>The second-order spatial derivative of temperature can be approximated with finite differences as</p>
+<p>\begin{align}
 \frac{\partial^2 T}{\partial x^2}\Big\vert_{x=x_1}^{t=t_1}
 &amp;\approx \left(\frac{\partial T}{\partial x}\Big\vert_{x=x_1+0.5\Delta x}^{t=t_1} - \frac{\partial T}{\partial x}\Big  \vert_{x=x_1-0.5\Delta x}^{t=t_1}\right) / \Delta x \newline
 &amp;\approx \left(\frac{T_{x=x_1+\Delta x}^{t=t_1} - T_{x=x_1}^{t=t_1}}{\Delta x} - \frac{T_{x=x_1}^{t=t_1} -   T_{x=x_1-\Delta x}^{t=t_1}}{\Delta x}\right) / \Delta x
 = \frac{T_{x=x_1+\Delta x}^{t=t_1} - 2T_{x=x_1}^{t=t_1} + T_{x=x_1 - \Delta x}^{t=t_1}}{(\Delta x)^2}
 \end{align}</p>
-<p>Since <span class="math notranslate nohighlight">\(x_1 - \Delta x = x_0\)</span> and <span class="math notranslate nohighlight">\(x_1 + \Delta x = x_2\)</span>, we get
-<span class="math notranslate nohighlight">\(\frac{\partial^2 T}{\partial x^2}\Big\vert_{x=x_1}^{t=t_1} \approx \frac{T_{x=x_2}^{t=t_1} - 2T_{x=x_1}^{t=t_1} + T_{x=x_0}^{t=t_1}}{(\Delta x)^2} = \frac{T_{2}^{1} - 2T_{1}^{1} + T_{0}^{1}}{(\Delta x)^2}\)</span> where the last formula uses the short hand notation for indices. Note that here the superscripts do not mean “to power” but are indices for time steps.</p>
-<p>Using the same short hand notation, we can approximate the time derivative of the temperature:
-<span class="math notranslate nohighlight">\(\frac{\partial T}{\partial t}\Big\vert_{x=x_1}^{t=t_1} \approx \frac{T_1^2-T_1^1}{\Delta t}\)</span></p>
-<p>These approximations can be generalized:</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial^2 T}{\partial x^2}\Big\vert_{x=x_i}^{t=t_q} \approx \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial T}{\partial t}\Big\vert_{x=x_i}^{t=t_q} \approx \frac{T_i^{q+1}-T_i^q}{\Delta t}\)</span></p>
+<p>Since <span class="math notranslate nohighlight">\(x_1 - \Delta x = x_0\)</span> and <span class="math notranslate nohighlight">\(x_1 + \Delta x = x_2\)</span>, we get</p>
+<p>\begin{equation}
+\frac{\partial^2 T}{\partial x^2}\Big\vert_{x=x_1}^{t=t_1} \approx \frac{T_{x=x_2}^{t=t_1} - 2T_{x=x_1}^{t=t_1} + T_{x=x_0}^{t=t_1}}{(\Delta x)^2} = \frac{T_{2}^{1} - 2T_{1}^{1} + T_{0}^{1}}{(\Delta x)^2}
+\end{equation}</p>
+<p>where the last formula uses the short hand notation for indices. Note that here the superscripts do not mean “to power” but are indices for time steps.</p>
+<p>Using the same short hand notation, we can approximate the time derivative of the temperature as</p>
+<p>\begin{equation}
+\frac{\partial T}{\partial t}\Big\vert_{x=x_1}^{t=t_1} \approx \frac{T_1^2-T_1^1}{\Delta t}
+\end{equation}</p>
+<p>These approximations can be generalized as</p>
+<p>\begin{align}
+\frac{\partial^2 T}{\partial x^2}\Big\vert_{x=x_i}^{t=t_q} &amp;\approx \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2} \newline
+\frac{\partial T}{\partial t}\Big\vert_{x=x_i}^{t=t_q} &amp;\approx \frac{T_i^{q+1}-T_i^q}{\Delta t}
+\end{align}</p>
 <p>And thus the full finite differences approximation of the heat equation can be written as</p>
-<p>$ \rho C_p \frac{T_i^{q+1}-T_i^q}{\Delta t} = k \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}$</p>
+<p>\begin{equation}
+\rho C_p \frac{T_i^{q+1}-T_i^q}{\Delta t} = k \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}
+\end{equation}</p>
 <p>This applies to <em>any</em> <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(i\)</span>. If we know <span class="math notranslate nohighlight">\(T\)</span> everywhere at time <span class="math notranslate nohighlight">\(t_q\)</span>, we can calculate <span class="math notranslate nohighlight">\(T\)</span> at time <span class="math notranslate nohighlight">\(t_{q+1} = t_q + \Delta t\)</span>.</p>
 <div class="section" id="do">
 <h2>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h2>
