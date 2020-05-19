@@ -238,9 +238,16 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#calcuation-of-the-stability-condtions" class="nav-link">Calcuation of the stability condtions</a>
+        </li>
     
     </ul>
 </nav>
@@ -255,32 +262,42 @@
                 
   <div class="section" id="stability-of-the-heat-equation-fd-approximation">
 <h1>Stability of the heat equation FD approximation<a class="headerlink" href="#stability-of-the-heat-equation-fd-approximation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="calcuation-of-the-stability-condtions">
+<h2>Calcuation of the stability condtions<a class="headerlink" href="#calcuation-of-the-stability-condtions" title="Permalink to this headline">¶</a></h2>
 <p>The explicit (forward difference in time) formulation of the FD heat equation has a maximum time step that can be used in the calculations. Exceeding this time step will lead to the <em>instability</em> of the calculations, and typically, misbehaviour or crashing of the computational code (and, certainly, erroneous results).</p>
 <p>Consider the simplified heat equation</p>
-<div class="math notranslate nohighlight">
-\[\frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial x^2}\]</div>
+<p>\begin{equation}
+\frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial x^2}
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\kappa = \frac{k}{\rho C_p}\)</span>. The FD approximation is</p>
-<div class="math notranslate nohighlight">
-\[ \frac{T_i^{q+1}-T_i^q}{\Delta t} = \kappa \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}\]</div>
+<p>\begin{equation}
+\frac{T_i^{q+1}-T_i^q}{\Delta t} = \kappa \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}
+\end{equation}</p>
 <p>and, with <span class="math notranslate nohighlight">\(r=\frac{\kappa\Delta t}{\Delta x^2}\)</span>, can be written</p>
-<div class="math notranslate nohighlight">
-\[ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})\]</div>
+<p>\begin{equation}
+T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})
+\end{equation}</p>
 <p>If we assume that the numerical solution of the temperature, <span class="math notranslate nohighlight">\(T\)</span> is the sum of the correct temperature values <span class="math notranslate nohighlight">\(\theta\)</span> and the error <span class="math notranslate nohighlight">\(\epsilon\)</span> at each grid point (<span class="math notranslate nohighlight">\(T_i = \theta_i + \epsilon_i\)</span>), the difference equations of temperatures and errors can be separated, leading to</p>
-<div class="math notranslate nohighlight">
-\[ \epsilon_i^{q+1} = \epsilon_i^q + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q})\]</div>
+<p>\begin{equation}
+\epsilon_i^{q+1} = \epsilon_i^q + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q})
+\end{equation}</p>
 <p>That is, the error <em>diffuses</em> from grid point to next grid point, similarly to the actual temperature. We want to <em>suppress</em> the error, that is, we want <span class="math notranslate nohighlight">\(|\epsilon_i^{q+1}| \leq |\epsilon_i^q| \Rightarrow \Big|\frac{\epsilon_i^{q+1}}{\epsilon_i^q}\Big| \leq 1\)</span>, since otherwise the error would grow from time step to next.</p>
 <p>Dividing the error diffusion expression by <span class="math notranslate nohighlight">\(\epsilon_i^q\)</span> and applying the inequality</p>
-<div class="math notranslate nohighlight">
-\[\Big|1 + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q}) / \epsilon_i^q\Big| \leq 1\]</div>
+<p>\begin{equation}
+\Big|1 + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q}) / \epsilon_i^q\Big| \leq 1
+\end{equation}</p>
 <p>Let’s consider the worst case scenario, where <span class="math notranslate nohighlight">\(\epsilon_{i+1} = \epsilon_{i-1} = a\)</span> and <span class="math notranslate nohighlight">\(\epsilon_i = -a\)</span>. We get</p>
-<div class="math notranslate nohighlight">
-\[\Big|1 - 4r\Big| \leq 1 \Rightarrow 0 \leq r \leq \frac{1}{2}\]</div>
+<p>\begin{equation}
+\Big|1 - 4r\Big| \leq 1 \Rightarrow 0 \leq r \leq \frac{1}{2}
+\end{equation}</p>
 <p>The first inequality is naturally true (<span class="math notranslate nohighlight">\(r\)</span> cannot be negative), the second leads to</p>
-<div class="math notranslate nohighlight">
-\[\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{2}\]</div>
+<p>\begin{equation}
+\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{2}
+\end{equation}</p>
 <p>This inequality can be used to determine a proper time step if grid spacing has been chosen, or proper grid spacing if time step has been chosen. Typically, it is safer to force stricter condition, e.g. <span class="math notranslate nohighlight">\(\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{4}\)</span>.</p>
 <p>Stability of the method does not guarantee its correctness!</p>
 <p>A physical interpretation exists for the stability criterion: The diffusive time scale <span class="math notranslate nohighlight">\(\sqrt{\kappa\Delta t}\)</span> should not exceed the grid spacing, i.e. heat should not diffuse in significant amounts over more than one grid point within one time step.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
