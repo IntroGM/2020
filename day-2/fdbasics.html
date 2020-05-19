@@ -246,7 +246,11 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#taylor-series-approach-accuracy" class="nav-link">Taylor series approach; accuracy</a>
+            <a href="#basic-concept" class="nav-link">Basic concept</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#taylor-series-approach-and-accuracy" class="nav-link">Taylor series approach and accuracy</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -260,10 +264,12 @@
             <a href="#id1" class="nav-link">Do</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#calculating-the-error" class="nav-link">Calculating the error</a>
+            </ul>
         </li>
     
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#calculating-the-error" class="nav-link">Calculating the error</a><ul class="nav section-nav flex-column">
+                
         <li class="nav-item toc-entry toc-h3">
             <a href="#id2" class="nav-link">Do</a>
         </li>
@@ -292,7 +298,7 @@
         
               <div>
                 
-  <div class="cell docutils container">
+  <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -302,6 +308,8 @@
 </div>
 <div class="section" id="introduction-to-finite-differences">
 <h1>Introduction to finite differences<a class="headerlink" href="#introduction-to-finite-differences" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-concept">
+<h2>Basic concept<a class="headerlink" href="#basic-concept" title="Permalink to this headline">¶</a></h2>
 <p>The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables in differential equations to small but finite differences, thus enabling solution of these equations by means of numerical calculations in a computer. This might be necessary if the equations at hand are too complicated to be solved analytically, or if the geometry of the problem setup is too complex.</p>
 <p>The starting point for the finite differences method is the definition of a derivative:</p>
 <div class="math notranslate nohighlight">
@@ -337,8 +345,9 @@ One can define also the <em>central difference</em> approximation:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{ f(x_0 + \Delta x) - f(x_0 - \Delta x)}{2\Delta x}\]</div>
 <p>Other approximations exist, too.</p>
-<div class="section" id="taylor-series-approach-accuracy">
-<h2>Taylor series approach; accuracy<a class="headerlink" href="#taylor-series-approach-accuracy" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="taylor-series-approach-and-accuracy">
+<h2>Taylor series approach and accuracy<a class="headerlink" href="#taylor-series-approach-and-accuracy" title="Permalink to this headline">¶</a></h2>
 <p>Taylor’s Theorem states that function <span class="math notranslate nohighlight">\(f\)</span> can be presented with following series in the vicinity of <span class="math notranslate nohighlight">\(a\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ f(x) = f(a) + \frac{df}{dx}\frac{(x-a)}{1!} + \frac{d^2f}{dx^2}\frac{(x-a)^2}{2!} + \frac{d^3f}{dx^3}\frac{(x-a)^3}{3!} + \ldots \]</div>
@@ -403,7 +412,7 @@ One can define also the <em>central difference</em> approximation:</p>
 <span class="ne">NameError</span>: name &#39;dfdx&#39; is not defined
 </pre></div>
 </div>
-<img alt="../_images/fdbasics_7_1.png" src="../_images/fdbasics_7_1.png" />
+<img alt="../_images/fdbasics_8_1.png" src="../_images/fdbasics_8_1.png" />
 </div>
 </div>
 <p>To calculate <span class="math notranslate nohighlight">\(\frac{df}{dx}\)</span> numerically, using finite differences, we can define a function that computes the derivative of a given function <span class="math notranslate nohighlight">\(g\)</span> at given position <span class="math notranslate nohighlight">\(x_0\)</span>, using <em>step size</em> <span class="math notranslate nohighlight">\(dx\)</span>.</p>
@@ -439,7 +448,7 @@ One can define also the <em>central difference</em> approximation:</p>
 <span class="ne">NameError</span>: name &#39;dfdx&#39; is not defined
 </pre></div>
 </div>
-<img alt="../_images/fdbasics_11_1.png" src="../_images/fdbasics_11_1.png" />
+<img alt="../_images/fdbasics_12_1.png" src="../_images/fdbasics_12_1.png" />
 </div>
 </div>
 </div>
@@ -450,8 +459,9 @@ One can define also the <em>central difference</em> approximation:</p>
 <li><p>Modify the definition of <code class="docutils literal notranslate"><span class="pre">dfdx_fd</span></code> to a) backward difference, b) central difference form. How does the derivative approximation change?</p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="calculating-the-error">
-<h3>Calculating the error<a class="headerlink" href="#calculating-the-error" title="Permalink to this headline">¶</a></h3>
+<h2>Calculating the error<a class="headerlink" href="#calculating-the-error" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -474,8 +484,7 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fdbasics_14_0.png" src="../_images/fdbasics_14_0.png" />
-</div>
+<img alt="../_images/fdbasics_15_0.png" src="../_images/fdbasics_15_0.png" />
 </div>
 </div>
 <div class="section" id="id2">
@@ -490,12 +499,29 @@ One can define also the <em>central difference</em> approximation:</p>
 <div class="section" id="applying-finite-differences-to-a-physical-problem">
 <h2>Applying finite differences to a physical problem<a class="headerlink" href="#applying-finite-differences-to-a-physical-problem" title="Permalink to this headline">¶</a></h2>
 <p>If we know the analytical form of <span class="math notranslate nohighlight">\(f\)</span>, there is often little interest in approximating its derivative numerically. Instead, derivative approximations are used indirectly to approximate the values of <span class="math notranslate nohighlight">\(f\)</span> itself. Let’s see how this works in a simple example of a falling sphere.</p>
-<p>Consider a solid sphere in a viscous fluid, with <span class="math notranslate nohighlight">\(\rho_\mathrm{sphere} &gt; \rho_\mathrm{fluid}\)</span>. The gravity pulls the sphere downwards, causing a buoyancy force
-<span class="math notranslate nohighlight">\(F_\mathrm{b} = V\Delta\rho g = V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g\)</span>. The viscous fluids resists the movement of the sphere downwards. The drag caused is given by the Stokes’s law, <span class="math notranslate nohighlight">\(F_\mathrm{d} = -6\pi\eta R v\)</span>. The sum of forces acting on the ball is then
-<span class="math notranslate nohighlight">\(\sum F = m_\mathrm{sphere} a = V\rho_\mathrm{sphere} a = F_\mathrm{d} + F_\mathrm{b} = -6\pi\eta R v + V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g\)</span>.</p>
-<p>Simplifying, and noting that <span class="math notranslate nohighlight">\(V = \frac{4}{3}\pi R^3\)</span> and acceleration <span class="math notranslate nohighlight">\(a=\frac{dv}{dt}\)</span>, gives
-<span class="math notranslate nohighlight">\($\frac{dv}{dt} = -\frac{9 \eta v}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g}{\rho_\mathrm{sphere}}\)</span>$</p>
-<p>When the sphere has reached its terminal velocity, acceleration is zero, so <span class="math notranslate nohighlight">\(dv/dt = 0 \Rightarrow v = \frac{2}{9}\frac{\Delta \rho R^2 g}{\eta}\)</span></p>
+<p>Consider a solid sphere in a viscous fluid, with <span class="math notranslate nohighlight">\(\rho_\mathrm{sphere} &gt; \rho_\mathrm{fluid}\)</span>. The gravity pulls the sphere downwards, causing a buoyancy force</p>
+<p>\begin{equation}
+F_\mathrm{b} = V\Delta\rho g = V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g.
+\end{equation}</p>
+<p>The viscous fluids resists the movement of the sphere downwards. The drag caused is given by Stokes’s law,</p>
+<p>\begin{equation}
+F_\mathrm{d} = -6\pi\eta R v.
+\end{equation}</p>
+<p>The sum of forces acting on the ball is then</p>
+<p>\begin{align}
+\sum F &amp;= m_\mathrm{sphere} a \newline
+&amp;= V\rho_\mathrm{sphere} a \newline
+&amp;= F_\mathrm{d} + F_\mathrm{b} \newline
+&amp;= -6\pi\eta R v + V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g$.
+\end{align}</p>
+<p>Simplifying, and noting that <span class="math notranslate nohighlight">\(V = \frac{4}{3}\pi R^3\)</span> and acceleration <span class="math notranslate nohighlight">\(a=\frac{dv}{dt}\)</span>, gives</p>
+<p>\begin{equation}
+\frac{dv}{dt} = -\frac{9 \eta v}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g}{\rho_\mathrm{sphere}}
+\end{equation}</p>
+<p>When the sphere has reached its terminal velocity, acceleration is zero, so</p>
+<p>\begin{equation}
+dv/dt = 0 \Rightarrow v = \frac{2}{9}\frac{\Delta \rho R^2 g}{\eta}
+\end{equation}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vel_term_stokes</span><span class="p">(</span><span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
@@ -517,13 +543,20 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 </div>
-<p>We could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically. To apply finite differences, we replace all derivatives with their finite approximations at time <span class="math notranslate nohighlight">\(t_0\)</span>. In this case,
-<span class="math notranslate nohighlight">\($\frac{dv}{dt}\Big\rvert_{t=t_0} \approx \frac{v(t_0+\Delta t) - v(t_0)}{\Delta t}\)</span>$</p>
-<p>Inserting this into the previous formula gives <span class="math notranslate nohighlight">\(\frac{v(t_0+\Delta t) - v(t_0)}{\Delta t} = -\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\)</span>. Note that on the right hand side <span class="math notranslate nohighlight">\(v\)</span> has been replaced by <span class="math notranslate nohighlight">\(v(t_0)\)</span>.</p>
+<p>We could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically. To apply finite differences, we replace all derivatives with their finite approximations at time <span class="math notranslate nohighlight">\(t_0\)</span>. In this case,</p>
+<p>\begin{equation}
+\frac{dv}{dt}\Big\rvert_{t=t_0} \approx \frac{v(t_0+\Delta t) - v(t_0)}{\Delta t}
+\end{equation}</p>
+<p>Inserting this into the previous formula gives</p>
+<p>\begin{equation}
+\frac{v(t_0+\Delta t) - v(t_0)}{\Delta t} = -\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}.
+\end{equation}</p>
+<p>Note that on the right hand side <span class="math notranslate nohighlight">\(v\)</span> has been replaced by <span class="math notranslate nohighlight">\(v(t_0)\)</span>.</p>
 <p>In other words, if we know velocity at some time <span class="math notranslate nohighlight">\(t_0\)</span> (i.e. <span class="math notranslate nohighlight">\(v(t_0)\)</span>), we can calculate the velocity after time <span class="math notranslate nohighlight">\(\Delta t\)</span> has elapsed:</p>
-<div class="math notranslate nohighlight">
-\[v(t_0 + \Delta t) = \left(-\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 \pi R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\right) \Delta t + v(t_0)\]</div>
-<p>Let’s write this as a python function:</p>
+<p>\begin{equation}
+v(t_0 + \Delta t) = \left(-\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 \pi R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\right) \Delta t + v(t_0)
+\end{equation}</p>
+<p>Let’s write this as a python function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vel_next</span><span class="p">(</span><span class="n">vel_prev</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
@@ -559,7 +592,7 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 </div>
-<p>We can automate the calculation of the steps:</p>
+<p>We can automate the calculation of the steps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span>   <span class="c1"># time step size</span>
@@ -579,13 +612,13 @@ One can define also the <em>central difference</em> approximation:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity at time &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot; s is &quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity at time&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;s is&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fdbasics_29_0.png" src="../_images/fdbasics_29_0.png" />
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Velocity at time  0.0049  s is  0.005202758993971469
+<img alt="../_images/fdbasics_25_0.png" src="../_images/fdbasics_25_0.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Velocity at time 0.0049 s is 0.005202758993971469
 </pre></div>
 </div>
 </div>
