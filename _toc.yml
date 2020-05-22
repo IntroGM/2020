@@ -10,35 +10,35 @@
 
 - header: Day 1
 - file: day-1/course-overview
-- file: day-1/physical-processes
-- file: day-1/solving-equations
-- file: day-1/python-basics
-- file: day-1/functions
-- file: day-1/numpy
-- file: day-1/for-loops
-- file: day-1/conditional-statements
+#- file: day-1/physical-processes
+#- file: day-1/solving-equations
+#- file: day-1/python-basics
+#- file: day-1/functions
+#- file: day-1/numpy
+#- file: day-1/for-loops
+#- file: day-1/conditional-statements
 
-- header: Day 2
-- file: day-2/fdbasics
-- file: day-2/fdheat
-- file: day-2/stability
-- file: day-2/diffadv
+#- header: Day 2
+#- file: day-2/fdbasics
+#- file: day-2/fdheat
+#- file: day-2/stability
+#- file: day-2/diffadv
 
-- header: Day 3
-- file: day-3/benchmarking
-- file: day-3/stokes
-- file: day-3/channel
+#- header: Day 3
+#- file: day-3/benchmarking
+#- file: day-3/stokes
+#- file: day-3/channel
 
-- header: Day 4
-- file: day-4/clusters
-- file: day-4/putting-it-together
-- file: day-4/marker-in-cell
-- file: day-4/numerical-diffusion
-- file: day-4/intro-to-douar
+#- header: Day 4
+#- file: day-4/clusters
+#- file: day-4/putting-it-together
+#- file: day-4/marker-in-cell
+#- file: day-4/numerical-diffusion
+#- file: day-4/intro-to-douar
 
-- header: Day 5
-- file: day-5/cli-tools
-- file: day-5/project-overview
+#- header: Day 5
+#- file: day-5/cli-tools
+#- file: day-5/project-overview
 
-- header: Technical instructions
-- file: instructions/cluster
+#- header: Technical instructions
+#- file: instructions/cluster
