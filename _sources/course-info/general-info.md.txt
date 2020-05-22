@@ -2,9 +2,9 @@
 
 ## Course meetings
 
-- 9:30-16:30, May 14-18 in room D211, Exactum
+- 9:00-16:00, May 25-29 on Zoom
 
-Class attendance is mandatory and any absences must be cleared by the instructors prior to the start of class that day.
+Zoom meeting attendance is mandatory and any absences must be cleared by the instructor prior to the start of class that day.
 
 ## Instructor
 

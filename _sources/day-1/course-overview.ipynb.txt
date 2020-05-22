@@ -10,9 +10,9 @@
    "source": [
     "# Course overview\n",
     "\n",
-    "Lars Kaislaniemi and David Whipp\n",
+    "David Whipp\n",
     "\n",
-    "14-18 May 2018"
+    "25-29 May 2020"
    ]
   },
   {
@@ -34,15 +34,12 @@
     }
    },
    "source": [
-    "### Who are we?\n",
+    "### Who am I?\n",
     "\n",
     "- Dave Whipp, Associate professor\n",
     "    - Geodynamics of convergent orogens\n",
     "    - Geomorphology\n",
-    "\n",
-    "- Lars Kaislaniemi, Postdoctoral researcher\n",
-    "    - Geodynamics of the Bolivian Andes\n",
-    "    - Mantle dynamics and geochemistry"
+    "    - High-performance computing"
    ]
   },
   {
@@ -54,16 +51,11 @@
    },
    "source": [
     "### Who are you?\n",
-    "<p>\n",
-    "<img src=\"img/mystery-person.png\" alt=\"Mystery person\" style=\"float:left;\" height=\"300px\">\n",
-    "<ul style=\"width: 50%;\">\n",
-    "  <li>Name</li>\n",
-    "  <li>Home university & program</li>\n",
-    "  <li>Status (Ph.D., MSc, etc.)</li>\n",
-    "  <li>Thesis topic</li>\n",
-    "  <li>Experience with coding and/or modelling</li>\n",
-    "</ul>\n",
-    "</p>"
+    "\n",
+    "- Name\n",
+    "- Home university / study program\n",
+    "- Degree pursued (Ph.D., MSc, etc.)\n",
+    "- Thesis topic"
    ]
   },
   {
@@ -85,50 +77,11 @@
     }
    },
    "source": [
-    "### Where are we?\n",
-    "![D211](img/D211.png)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "slideshow": {
-     "slide_type": "subslide"
-    }
-   },
-   "source": [
-    "### Toilets\n",
-    "![Toilets](img/toilets.png)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "slideshow": {
-     "slide_type": "subslide"
-    }
-   },
-   "source": [
-    "### Coffee/tea\n",
-    "![Coffee/tea](img/coffee.png)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "slideshow": {
-     "slide_type": "subslide"
-    }
-   },
-   "source": [
-    "### Lunch\n",
-    "<p>\n",
-    "  <img src=\"img/lunch.png\" alt=\"Mystery person\" style=\"float:left;\" height=\"500px\">\n",
-    "  <ul style=\"width: 50%;\">\n",
-    "    <li>You can get a <b>full hot lunch</b> at the Chemicum, Excatum, or Dynamicum (pricier, but a bit better).</li>\n",
-    "    <li>The Unicafe (coffee / tea spot) also has <b>sandwiches / paninis</b></li>\n",
-    "  </ul>\n",
-    "</p>"
+    "### Daily schedule\n",
+    "\n",
+    "- 9-12: Online meeting in Zoom\n",
+    "- 12-15: Free working time for exercises\n",
+    "- 15-16: Online meeting in Zoom"
    ]
   },
   {
@@ -140,21 +93,6 @@
    },
    "source": [
     "## Computer stuff and course website"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "slideshow": {
-     "slide_type": "subslide"
-    }
-   },
-   "source": [
-    "### Computers in this classroom\n",
-    "\n",
-    "- It's best if you use your own computer for this course\n",
-    "\n",
-    "- Computers in this classroom can also be used, but require a University of Helsinki IT account"
    ]
   },
   {
@@ -222,6 +160,7 @@
    },
    "source": [
     "### Learning objectives\n",
+    "\n",
     "At the end of this course, students should be able to:\n",
     "\n",
     "- Solve partial differential equations using the finite-difference method\n",
@@ -238,6 +177,7 @@
    },
    "source": [
     "### Working methods\n",
+    "\n",
     "<p align=\"left\">The course involves a combination of lectures and computer-based exercises</p>\n",
     "\n",
     "- We will try to keep lectures to a minimum, but we do need to present some material you will need to complete the computer exercises\n",
@@ -253,8 +193,10 @@
    },
    "source": [
     "## Schedule\n",
-    "<p style = \"font-size:24px\">***Subject to change - Last updated 15.5.2018***</p>\n",
-    "<p style = \"font-size:24px\">***Press space to view each day***</p>"
+    "\n",
+    "***Subject to change - Last updated 22.5.2020***\n",
+    "\n",
+    "***Press space to view each day***"
    ]
   },
   {
@@ -266,24 +208,18 @@
    },
    "source": [
     "### Day 1\n",
-    "<p style = \"font-size:24px\">\n",
-    "09:30-10:00 - Course overview and introductions<br/>\n",
-    "10:00-10:50 - Key physical processes/concepts<br/><br/>\n",
     "\n",
-    "10:50-11:05 - ***Coffee/tea break***<br/><br/>\n",
+    "#### Morning\n",
     "\n",
-    "11:05-11:45 - Key physical processes/concepts (ctd.)<br/>\n",
-    "11:45-12:15 - Solving equations<br/>\n",
-    "12:15-12:30 - *Computer setup/introduction* (optional)<br/><br/>\n",
+    "- 09:00-09:30 - Course overview and introductions\n",
+    "- 09:30-11:15 - Key physical processes/concepts\n",
+    "- 11:15-11:45 - Solving equations\n",
+    "- 11:45-12:00 - *Computer setup/introduction* (optional)\n",
     "\n",
-    "12:30-13:30 - ***Lunch***<br/><br/>\n",
+    "#### Afternoon\n",
     "\n",
-    "13:30-14:50 - Python/computing essentials<br/><br/>\n",
-    "\n",
-    "14:50-15:05 - ***Coffee/tea break***<br/><br/>\n",
-    "\n",
-    "15:05-16:30 - Python/computing essentials (ctd.)\n",
-    "</p>"
+    "- 12:00-15:00 - Python/computing essentials (self-study, exercises)\n",
+    "- 15:00-16:00 - Python/computing essentials (review, Q&A)"
    ]
   },
   {
@@ -295,21 +231,16 @@
    },
    "source": [
     "### Day 2\n",
-    "<p style = \"font-size:24px\">\n",
-    "09:30-10:50 - The finite difference method, part I<br/><br/>\n",
     "\n",
-    "10:50-11:05 - ***Coffee/tea break***<br/><br/>\n",
+    "#### Morning\n",
     "\n",
-    "11:05-12:30 - The finite difference method, part I (ctd.)<br/><br/>\n",
+    "- 09:00-10:30 - The finite-difference method, part I\n",
+    "- 10:30-12:00 - Heat conduction and advection in 1D\n",
     "\n",
-    "12:30-13:30 - ***Lunch***<br/><br/>\n",
+    "#### Afternoon\n",
     "\n",
-    "13:30-15:00 - Heat conduction and advection in 1D<br/><br/>\n",
-    "\n",
-    "15:00-15:15 - ***Coffee/tea break***<br/><br/>\n",
-    "\n",
-    "15:15-16:30 - Heat conduction and advection in 1D (ctd.)\n",
-    "</p>"
+    "- 12:00-15:00 - Finite-difference method exercises\n",
+    "- 15:00-16:00 - Exercise review and Q&A"
    ]
   },
   {
@@ -321,21 +252,16 @@
    },
    "source": [
     "### Day 3\n",
-    "<p style = \"font-size:24px\">\n",
-    "09:30-10:50 - Testing your code and benchmarking<br/><br/>\n",
     "\n",
-    "10:50-11:05 - ***Coffee/tea break***<br/><br/>\n",
+    "#### Morning\n",
     "\n",
-    "11:05-12:30 - Solving the momentum and continuity equations <br/><br/>\n",
+    "- 09:00-10:30 - Testing your code and benchmarking\n",
+    "- 10:30-12:00 - Solving the momentum and continuity equations\n",
     "\n",
-    "12:30-13:30 - ***Lunch***<br/><br/>\n",
+    "#### Afternoon\n",
     "\n",
-    "13:30-15:00 - Solving the momentum and continuity equations (ctd.)<br/><br/>\n",
-    "\n",
-    "15:00-15:15 - ***Coffee/tea break***<br/><br/>\n",
-    "\n",
-    "15:15-16:30 - Free working time\n",
-    "</p>"
+    "- 12:00-15:00 - Momentum and continuity equations exercises\n",
+    "- 15:00-16:00 - Exercise review and Q&A"
    ]
   },
   {
@@ -347,21 +273,17 @@
    },
    "source": [
     "### Day 4\n",
-    "<p style = \"font-size:24px\">\n",
-    "09:30-10:50 - Introduction to DOUAR<br/><br/>\n",
     "\n",
-    "10:50-11:05 - ***Coffee/tea break***<br/><br/>\n",
+    "#### Morning\n",
     "\n",
-    "11:05-12:30 - Cluster computing<br/><br/>\n",
+    "- 09:00-10:30 - Cluster computing\n",
+    "- 10:30-11:30 - Introduction to DOUAR\n",
+    "- 11:30-12:00 - Running a DOUAR model\n",
     "\n",
-    "12:30-13:30 - ***Lunch***<br/><br/>\n",
+    "#### Afternoon\n",
     "\n",
-    "13:30-15:00 - Running a DOUAR model<br/><br/>\n",
-    "\n",
-    "15:00-15:15 - ***Coffee/tea break***<br/><br/>\n",
-    "\n",
-    "15:15-16:30 - 3D visualization with ParaView\n",
-    "</p>"
+    "- 12:00-15:00 - DOUAR exercise, putting it all together (self study)\n",
+    "- 14:30-16:00 - Exercise review, Q&A, 3D visualization with ParaView"
    ]
   },
   {
@@ -373,22 +295,16 @@
    },
    "source": [
     "### Day 5\n",
-    "<p style = \"font-size:24px\">\n",
-    "09:30-10:50 - Modifying the DOUAR models and re-running experiments<br/><br/>\n",
     "\n",
-    "10:50-11:05 - ***Coffee/tea break***<br/><br/>\n",
+    "#### Morning\n",
     "\n",
-    "11:05-12:30 - Modifying the DOUAR models and re-running experiments (ctd.)<br/><br/>\n",
+    "- 09:00-11:30 - Modifying / re-running DOUAR experiments\n",
+    "- 11:30-12:00 - Course project description, DOUAR Q&A\n",
     "\n",
-    "12:30-13:30 - ***Lunch***<br/><br/>\n",
+    "#### Afternoon\n",
     "\n",
-    "13:30-13:45 - Course project description<br/>\n",
-    "13:45-15:00 - Free time for experimentation with DOUAR<br/><br/>\n",
-    "\n",
-    "15:00-15:15 - ***Coffee/tea break***<br/><br/>\n",
-    "\n",
-    "15:15-16:30 - Free time for experimentation with DOUAR (ctd.)\n",
-    "</p>"
+    "- 12:00-16:00 - Free time for experimentation with DOUAR\n",
+    "    - Dave available online from 12:00-14:00"
    ]
   },
   {
@@ -420,7 +336,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.6.4"
+   "version": "3.8.2"
   },
   "livereveal": {
    "autolaunch": true,
