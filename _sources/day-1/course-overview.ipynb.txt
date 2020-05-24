@@ -81,7 +81,7 @@
     "\n",
     "- 9-12: Online meeting in Zoom\n",
     "- 12-15: Free working time for exercises\n",
-    "- 15-16: Online meeting in Zoom"
+    "- ~15-16: Online meeting in Zoom"
    ]
   },
   {
@@ -180,8 +180,8 @@
     "\n",
     "<p align=\"left\">The course involves a combination of lectures and computer-based exercises</p>\n",
     "\n",
-    "- We will try to keep lectures to a minimum, but we do need to present some material you will need to complete the computer exercises\n",
-    "- For the computer exercises, you should work together with the others in the course and we will discuss your solutions after you have completed each exercise"
+    "- I will try to keep lectures to a minimum, but we do need to present some material you will need to complete the computer exercises\n",
+    "- For the computer exercises, you should work together your partner in the course and we will discuss your solutions after you have completed the daily exercises"
    ]
   },
   {
@@ -218,7 +218,7 @@
     "\n",
     "#### Afternoon\n",
     "\n",
-    "- 12:00-15:00 - Python/computing essentials (self-study, exercises)\n",
+    "- 12:00-15:00 - Python/computing essentials (self study, exercises)\n",
     "- 15:00-16:00 - Python/computing essentials (review, Q&A)"
    ]
   },

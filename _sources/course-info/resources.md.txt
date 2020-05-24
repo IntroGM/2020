@@ -3,9 +3,9 @@
 We will attempt to provide all necessary resources to complete this course, but we do have some recommendations for supplementary materials that you may find helpful.
 These come from the [Geo-Python course website](https://geo-python.github.io).
 
-- [Resources for learning Python](https://geo-python.github.io/2017/course-info/resources.html)
-- [Definitions for common Python terms](https://geo-python.github.io/2017/course-info/python-vocabulary.html)
-- [Installing Anaconda (Python + many useful libraries)](https://geo-python.github.io/2017/course-info/installing-anacondas.html)
+- [Resources for learning Python](https://geo-python.github.io/site/course-info/resources.html)
+- [Definitions for common Python terms](https://geo-python.github.io/site/course-info/python-vocabulary.html)
+- [Installing Anaconda (Python + many useful libraries)](https://geo-python.github.io/site/course-info/installing-anacondas.html)
 
 You may benefit from studying the following web resources:
 
