@@ -15,6 +15,10 @@ html:
   google_analytics_id: UA-92357604-1
   home_page_in_navbar: false
   baseurl: https://introgm.github.io/2020/
+  extra_footer: |
+    <div>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </div>
 
 repository:
   url                       : https://github.com/IntroGM/2020
@@ -24,9 +28,3 @@ launch_buttons:
   notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : "https://mybinder.org"
   thebelab                  : true
-
-html:
-    extra_footer: |
-        <div>
-            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-        </div>
