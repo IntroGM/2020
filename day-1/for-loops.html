@@ -34,6 +34,8 @@
     <link rel="canonical" href="https://introgm.github.io/2020/day-1/for-loops.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conditional statements" href="conditional-statements.html" />
+    <link rel="prev" title="Introduction to NumPy" href="numpy.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -43,7 +45,7 @@
 <meta property="og:url"         content="https://introgm.github.io/2020/day-1/for-loops.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="for loops" />
-<meta property="og:description" content="for loops  Sources  This lesson is based on the Software Carpentry group’s lessons on Programming with Python.  Basics of for loops  1. Loops allow parts of cod" />
+<meta property="og:description" content="for loops  Sources  This lesson is based on the Software Carpentry group’s lessons on Programming with Python.  Basics of for loops  Introducing loops  Loops al" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -113,6 +115,15 @@
   </li>
   <li class="">
     <a href="functions.html">Functions</a>
+  </li>
+  <li class="">
+    <a href="numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="active">
+    <a href="">for loops</a>
+  </li>
+  <li class="">
+    <a href="conditional-statements.html">Conditional statements</a>
   </li>
 </ul>
 </nav>
@@ -195,27 +206,27 @@
             <a href="#basics-of-for-loops" class="nav-link">Basics of for loops</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#loops-allow-parts-of-code-to-be-repeated-over-some-number-of-times" class="nav-link">1. Loops allow parts of code to be repeated over some number of times.</a>
+            <a href="#introducing-loops" class="nav-link">Introducing loops</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#for-loops-in-python-have-the-general-form-below" class="nav-link">2. for loops in Python have the general form below.</a>
+            <a href="#for-loop-format" class="nav-link">for loop format</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#let-s-consider-another-example" class="nav-link">3. Let’s consider another example.</a>
+            <a href="#another-loop-example" class="nav-link">Another loop example</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#a-loop-can-be-used-to-iterate-over-any-list-of-values-in-python" class="nav-link">4. A loop can be used to iterate over any list of values in Python.</a>
+            <a href="#for-loops-and-the-range-function" class="nav-link">for loops and the range() function</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#often-when-you-use-for-loops-you-are-looping-over-the-values-in-a-list-and-either-calculating-a-new-value-or-modifying-the-existing-values" class="nav-link">5. Often when you use for loops, you are looping over the values in a list and either calculating a new value or modifying the existing values.</a>
+            <a href="#loops-and-index-values" class="nav-link">Loops and index values</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#one-of-the-drawbacks-in-the-example-above-is-that-we-need-to-know-the-length-of-the-list-before-running-that-for-loop-example" class="nav-link">6. One of the drawbacks in the example above is that we need to know the length of the list before running that for loop example.</a>
+            <a href="#the-len-function" class="nav-link">The len() function</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
@@ -251,10 +262,11 @@
 <p>This lesson is based on the <a class="reference external" href="http://software-carpentry.org">Software Carpentry group’s</a> lessons on <a class="reference external" href="http://swcarpentry.github.io/python-novice-inflammation/">Programming with Python</a>.</p>
 </div>
 <div class="section" id="basics-of-for-loops">
-<h2>Basics of <code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#basics-of-for-loops" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="loops-allow-parts-of-code-to-be-repeated-over-some-number-of-times">
-<h3>1. Loops allow parts of code to be repeated over some number of times.<a class="headerlink" href="#loops-allow-parts-of-code-to-be-repeated-over-some-number-of-times" title="Permalink to this headline">¶</a></h3>
-<p>One of the simple loop options in Python is the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
+<h2>Basics of for loops<a class="headerlink" href="#basics-of-for-loops" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introducing-loops">
+<h3>Introducing loops<a class="headerlink" href="#introducing-loops" title="Permalink to this headline">¶</a></h3>
+<p>Loops allow parts of code to be repeated over some number of times.
+One of the simple loop options in Python is the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;rock&#39;</span>
@@ -273,8 +285,9 @@ k
 </div>
 </div>
 </div>
-<div class="section" id="for-loops-in-python-have-the-general-form-below">
-<h3>2. <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in Python have the general form below.<a class="headerlink" href="#for-loops-in-python-have-the-general-form-below" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="for-loop-format">
+<h3>for loop format<a class="headerlink" href="#for-loop-format" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">for</span></code> loops in Python have the general form below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
     <span class="n">do</span> <span class="n">things</span> <span class="k">with</span> <span class="n">variable</span>
 </pre></div>
@@ -283,8 +296,9 @@ k
 The code that should be executed as part of the loop must be indented beneath the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, and the typical indentation is 4 spaces.
 There is not additional special word needed to end the loop, just change the indentation back to normal.</p>
 </div>
-<div class="section" id="let-s-consider-another-example">
-<h3>3. Let’s consider another example.<a class="headerlink" href="#let-s-consider-another-example" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="another-loop-example">
+<h3>Another loop example<a class="headerlink" href="#another-loop-example" title="Permalink to this headline">¶</a></h3>
+<p>Let’s consider another example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
@@ -320,9 +334,10 @@ There is not additional special word needed to end the loop, just change the ind
 </div>
 </div>
 </div>
-<div class="section" id="a-loop-can-be-used-to-iterate-over-any-list-of-values-in-python">
-<h3>4. A loop can be used to iterate over any list of values in Python.<a class="headerlink" href="#a-loop-can-be-used-to-iterate-over-any-list-of-values-in-python" title="Permalink to this headline">¶</a></h3>
-<p>So far we have considered only character strings, but we could also write a loop that performs a calculation a specified number of times.</p>
+<div class="section" id="for-loops-and-the-range-function">
+<h3>for loops and the range() function<a class="headerlink" href="#for-loops-and-the-range-function" title="Permalink to this headline">¶</a></h3>
+<p>A loop can be used to iterate over any list of values in Python.
+So far we have considered only character strings, but we could also write a loop that performs a calculation a specified number of times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -345,9 +360,10 @@ Well, in this case, we use a special function called <code class="docutils liter
 When given an integer (whole number) as an argument, <code class="docutils literal notranslate"><span class="pre">range()</span></code> will produce a list of numbers with a length equal to the specified number.
 The list starts at zero and ends with <code class="docutils literal notranslate"><span class="pre">number-1</span></code>.</p>
 </div>
-<div class="section" id="often-when-you-use-for-loops-you-are-looping-over-the-values-in-a-list-and-either-calculating-a-new-value-or-modifying-the-existing-values">
-<h3>5. Often when you use <code class="docutils literal notranslate"><span class="pre">for</span></code> loops, you are looping over the values in a list and either calculating a new value or modifying the existing values.<a class="headerlink" href="#often-when-you-use-for-loops-you-are-looping-over-the-values-in-a-list-and-either-calculating-a-new-value-or-modifying-the-existing-values" title="Permalink to this headline">¶</a></h3>
-<p>Let’s consider an example.</p>
+<div class="section" id="loops-and-index-values">
+<h3>Loops and index values<a class="headerlink" href="#loops-and-index-values" title="Permalink to this headline">¶</a></h3>
+<p>Often when you use <code class="docutils literal notranslate"><span class="pre">for</span></code> loops, you are looping over the values in a list and either calculating a new value or modifying the existing values.
+Let’s consider an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
@@ -379,9 +395,10 @@ The list starts at zero and ends with <code class="docutils literal notranslate"
 We first create a list of 6 numbers.
 Then, we loop over 6 values using the <code class="docutils literal notranslate"><span class="pre">range()</span></code> function and add each value to the existing location in <code class="docutils literal notranslate"><span class="pre">myList</span></code>.</p>
 </div>
-<div class="section" id="one-of-the-drawbacks-in-the-example-above-is-that-we-need-to-know-the-length-of-the-list-before-running-that-for-loop-example">
-<h3>6. One of the drawbacks in the example above is that we need to know the length of the list before running that <code class="docutils literal notranslate"><span class="pre">for</span></code> loop example.<a class="headerlink" href="#one-of-the-drawbacks-in-the-example-above-is-that-we-need-to-know-the-length-of-the-list-before-running-that-for-loop-example" title="Permalink to this headline">¶</a></h3>
-<p>However, we already know how to find the length of a list using the <code class="docutils literal notranslate"><span class="pre">len()</span></code> function, and we can take advantage of this knowledge to make our <code class="docutils literal notranslate"><span class="pre">for</span></code> loop more flexible.</p>
+<div class="section" id="the-len-function">
+<h3>The len() function<a class="headerlink" href="#the-len-function" title="Permalink to this headline">¶</a></h3>
+<p>One of the drawbacks in the example above is that we need to know the length of the list before running that <code class="docutils literal notranslate"><span class="pre">for</span></code> loop example.
+However, we already know how to find the length of a list using the <code class="docutils literal notranslate"><span class="pre">len()</span></code> function, and we can take advantage of this knowledge to make our <code class="docutils literal notranslate"><span class="pre">for</span></code> loop more flexible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">myList</span><span class="p">)):</span>
@@ -439,7 +456,7 @@ Then, we loop over 6 values using the <code class="docutils literal notranslate"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>329 ms ± 3.89 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>334 ms ± 5.87 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -489,6 +506,8 @@ Then, we loop over 6 values using the <code class="docutils literal notranslate"
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="numpy.html" title="previous page">Introduction to NumPy</a>
+    <a class='right-next' id="next-link" href="conditional-statements.html" title="next page">Conditional statements</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
