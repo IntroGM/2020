@@ -12,7 +12,9 @@
     "## Basics of conditional statements\n",
     "Conditional statements can change the code behavior based on meeting certain conditions.\n",
     "\n",
-    "##### 1. Let's take a simple example."
+    "### A starting example\n",
+    "\n",
+    "Let's take a simple conditional statement example."
    ]
   },
   {
@@ -41,7 +43,9 @@
     "Since 37 is smaller than 100, the code beneath the `else` is executed.\n",
     "The `else` statement code will run whenever the `if` test is false.\n",
     "\n",
-    "##### 2. The combination of `if` and `else` is very common, but both are not strictly required."
+    "### If, but not else\n",
+    "\n",
+    "The combination of `if` and `else` is very common, but both are not strictly required."
    ]
   },
   {
@@ -61,7 +65,9 @@
    "source": [
     "Note that here we use only the `if` statement, and because 53 is not greater than 100, nothing is printed to the screen.\n",
     "\n",
-    "##### 3. We can also have a second test for an `if` statment by using the `elif` (else-if) statement."
+    "### The else-if case\n",
+    "\n",
+    "We can also have a second test for an `if` statment by using the `elif` (else-if) statement."
    ]
   },
   {
@@ -96,7 +102,9 @@
     "| `>`        | Greater than               |\n",
     "| `!=`       | Not equal to               |\n",
     "\n",
-    "##### 4. We can also use `and` and `or` to have multiple conditions."
+    "### Multiple conditions\n",
+    "\n",
+    "We can also use `and` and `or` to have multiple conditions."
    ]
   },
   {
@@ -127,13 +135,6 @@
    "source": [
     "This can be quite handy."
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {
@@ -152,7 +153,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.6.4"
+   "version": "3.8.2"
   }
  },
  "nbformat": 4,
