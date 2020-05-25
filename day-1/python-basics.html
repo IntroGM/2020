@@ -34,6 +34,8 @@
     <link rel="canonical" href="https://introgm.github.io/2020/day-1/python-basics.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Functions" href="functions.html" />
+    <link rel="prev" title="Solving equations" href="solving-equations.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -107,6 +109,12 @@
   </li>
   <li class="">
     <a href="solving-equations.html">Solving equations</a>
+  </li>
+  <li class="active">
+    <a href="">Basic elements of Python</a>
+  </li>
+  <li class="">
+    <a href="functions.html">Functions</a>
   </li>
 </ul>
 </nav>
@@ -275,6 +283,20 @@
 <div class="section" id="simple-python-math">
 <h3>Simple Python math<a class="headerlink" href="#simple-python-math" title="Permalink to this headline">¶</a></h3>
 <p>Python can be used as a simple calculator. Remember, you can press <strong>Shift-Enter</strong> to execute the code in the cells below. Try it out by typing <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">7</span></code> and see what you get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add 1 + 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply 5 * 7</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>If you want to edit and re-run some code, simply make changes to the cell and press <strong>Shift-Enter</strong> to execute the revised code.</p>
 </div>
 <div class="section" id="math-operations">
@@ -317,7 +339,28 @@
 </tbody>
 </table>
 <p>For anything more advanced, we need to load a <em>module</em>. For math operations, this module is called <em>math</em> and it can be loaded by typing <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>. Try that below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import math below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Now that we have access to functions in the math module, we can use it by typing the module name, a period (dot), and the the name of the function we want to use. For example, <code class="docutils literal notranslate"><span class="pre">math.sin(3)</span></code> or <code class="docutils literal notranslate"><span class="pre">math.sqrt(4)</span></code>. Try these examples out below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the sine of 3 below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the square root of 4 below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Let’s summarize what we’ve just seen with modules:</p>
 <ol class="simple">
 <li><p>A <em>module</em> is a group of code items such as functions that are related to one another. Individual modules are often in a group referred to as a <em>library</em>.</p></li>
@@ -325,16 +368,51 @@
 <li><p>Within a given Jupyter Notebook the variables you define earlier in the notebook will be available for use in the cells that follow as long as you have already executed the cells.</p></li>
 <li><p>Modules may also contain constants such as <code class="docutils literal notranslate"><span class="pre">math.pi</span></code>. Type this in the cell below to see the value of the contant <code class="docutils literal notranslate"><span class="pre">math.pi</span></code>.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the value of math.pi below</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="combining-functions">
 <h3>Combining functions<a class="headerlink" href="#combining-functions" title="Permalink to this headline">¶</a></h3>
 <p>Functions can also be combined. The <code class="docutils literal notranslate"><span class="pre">print()</span></code> function returns values within the parentheses as text on the screen. Below, try printing the value of the square root of four.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the square root of four below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can also combine text with other calculated values using the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function. For example, <code class="docutils literal notranslate"><span class="pre">print('Two</span> <span class="pre">plus</span> <span class="pre">two</span> <span class="pre">is',</span> <span class="pre">2+2)</span></code> would generate text reading ‘Two plus two is 4’. Combine the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function with the <code class="docutils literal notranslate"><span class="pre">math.sqrt()</span></code> function in the cell below to produce text that reads ‘The square root of 4 is 2.0’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the &quot;fancy&quot; text below</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="variables">
 <h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
 <p><em>Variables</em> can be used to store values calculated in expressions and used for other calculations. Assigning value to variables is straightforward. To assign a value, you simply type <code class="docutils literal notranslate"><span class="pre">variable_name</span> <span class="pre">=</span> <span class="pre">value</span></code>, where <code class="docutils literal notranslate"><span class="pre">variable_name</span></code> is the name of the variable you wish to define. In the cell below, define a variable called <code class="docutils literal notranslate"><span class="pre">temp_celsius</span></code>, assign it a value of ‘10.0’, and then print that variable value using the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function. Note that you need to do this on two separate lines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define and print temp_celsius below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>As we did above, you can combine text and even use some math when printing out variable values. The idea is similar to the examples of adding 2+2 or calculating the square root of four from the previous section. In the cell below, print out the value of <code class="docutils literal notranslate"><span class="pre">temp_celsius</span></code> in degrees Fahrenheit by multiplying <code class="docutils literal notranslate"><span class="pre">temp_celsius</span></code> by 9/5 and adding 32. This should be done within the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function to produce output that reads ‘Temperature in Fahrenheit: 50.0’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the temperature of temp_celsius in Fahrenheit</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Note that if you try to run some code that accesses a variable that has not yet been defined you will get a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> message.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
@@ -345,7 +423,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mf">2067e78</span><span class="n">f4444</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mf">2067e78</span><span class="n">f4444</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="nn">----&gt; 1 print(&#39;Temperature</span> in <span class="ni">Celsius:&#39;, 5/9 * </span><span class="nt">(tempFahrenheit - 32))</span>
 
 <span class="ne">NameError</span>: name &#39;tempFahrenheit&#39; is not defined
@@ -355,6 +433,13 @@
 </div>
 <p>One of the cool things here is that if we define the undefined variable in a later cell and execute that cell, we can return to the earlier one and the code should now work. That was a bit of a complicated sentence, so let’s test this all out. First, assign a value to the variable <code class="docutils literal notranslate"><span class="pre">tempFahrenheit</span></code> in the cell below. Then, return to the cell above this text and run it again. See how the error message has gone away? <code class="docutils literal notranslate"><span class="pre">tempFahrenheit</span></code> has now been defined and thus the cell above no longer generates a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> when the code is executed.</p>
 <p>Note that the number beside the cell, for example <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[2]</span></code>, tells you the order in which the Python cells have been executed. This way you can see a history of the commands you’ve executed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define tempFahrenheit below</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="data-types">
 <h3>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h3>
@@ -388,7 +473,21 @@
 <p>The data type can be found using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.
 As you will see, the data types are important because some are not compatible with one another.</p>
 <p>Let’s define a variable <code class="docutils literal notranslate"><span class="pre">weatherForecast</span></code> and assign it the value ‘Hot’. After this, we can check its data type using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define weatherForecast and check its type below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Let’s also check the type of <code class="docutils literal notranslate"><span class="pre">tempFahrenheit</span></code>. What happens if you try to combine <code class="docutils literal notranslate"><span class="pre">tempFahrenheit</span></code> and <code class="docutils literal notranslate"><span class="pre">weatherForecast</span></code> in a single math equation such as <code class="docutils literal notranslate"><span class="pre">tempFahrenheit</span> <span class="pre">=</span> <span class="pre">tempFahrenheit</span> <span class="pre">+</span> <span class="pre">5.0</span> <span class="pre">*</span> <span class="pre">weatherForecast</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine tempFahrenheit and weatherForecast below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>In this case we get at <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> because we are trying to execute a math operation with data types that are not compatible. There is no way in Python to multpily numbers with a character string.</p>
 </div>
 </div>
@@ -412,6 +511,13 @@ As you will see, the data types are important because some are not compatible wi
 </div>
 </div>
 <p>We can also check the type of the <code class="docutils literal notranslate"><span class="pre">sampleIDs</span></code> list using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the typr of sampleIDs below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Here we have a list of 4 sampleID values in a list called sampleIDs.
 As you can see, the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function recognizes this as a list.
 Lists can be created using the square brackets (<code class="docutils literal notranslate"><span class="pre">[</span></code> and <code class="docutils literal notranslate"><span class="pre">]</span></code>), with commas separating the values in the list.</p>
@@ -421,11 +527,32 @@ Lists can be created using the square brackets (<code class="docutils literal no
 <p>To access an individual value in the list we need to use an <em>index value</em>.
 An index value is a number that refers to a given position in the list.
 Let’s check out the first value in our list as an example by printing out <code class="docutils literal notranslate"><span class="pre">sampleIDs[1]</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the first value of sampleIDs below</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Note that Python (and many other programming languages) start values stored in collections with the index value <code class="docutils literal notranslate"><span class="pre">0</span></code>. Print out the actual first value of the list <code class="docutils literal notranslate"><span class="pre">sampleIDs</span></code> in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the actual first value of sampleIDs below</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="length-of-a-list">
 <h3>Length of a list<a class="headerlink" href="#length-of-a-list" title="Permalink to this headline">¶</a></h3>
 <p>We can find the length of a list using the <code class="docutils literal notranslate"><span class="pre">len()</span></code> function. Use it in the cell below to find the length of the list <code class="docutils literal notranslate"><span class="pre">sampleIDs</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the len function to check the length of sampleIDs</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Just as expected, there are 4 values in our list and <code class="docutils literal notranslate"><span class="pre">len(sampleIDs)</span></code> returns a value of <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
 </div>
 <div class="section" id="exercise-getting-to-know-lists">
@@ -478,6 +605,8 @@ Let’s check out the first value in our list as an example by printing out <cod
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="solving-equations.html" title="previous page">Solving equations</a>
+    <a class='right-next' id="next-link" href="functions.html" title="next page">Functions</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

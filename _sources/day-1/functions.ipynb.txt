@@ -60,7 +60,9 @@
    "source": [
     "## Calling functions\n",
     "\n",
-    "##### 1. Let's try running our function.\n",
+    "### Using a function\n",
+    "\n",
+    "Let's try running our function.\n",
     "Calling our self-defined function is no different from calling any other function such as `print()`.\n",
     "You need to call it with its name and send your value to the required parameter(s) inside the parentheses."
    ]
@@ -88,8 +90,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "### Creating a second function\n",
     "\n",
-    "##### 2. Now that we know how to create a function to convert Celsius to Fahrenheit, let's create another function called `kelvin_to_celsius`."
+    "Now that we know how to create a function to convert Celsius to Fahrenheit, let's create another function called `kelvin_to_celsius`."
    ]
   },
   {
@@ -106,7 +109,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 3. And let's use it in a similar way as the earlier one."
+    "### Using our new function\n",
+    "\n",
+    "And let's use it in a similar way as the earlier one."
    ]
   },
   {
@@ -123,7 +128,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 4. What about converting Kelvins to Fahrenheit?\n",
+    "### Combining functions\n",
+    "\n",
+    "What about converting Kelvins to Fahrenheit?\n",
     "We could write out an own formula for it, but we don’t need to.\n",
     "Instead, we can compose it by using the two functions we have already created and calling those from the function we are now creating."
    ]
@@ -147,7 +154,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 5. Let's use the function."
+    "### Using the combined function\n",
+    "\n",
+    "Let's use the function."
    ]
   },
   {
@@ -177,7 +186,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.6.4"
+   "version": "3.8.2"
   }
  },
  "nbformat": 4,
