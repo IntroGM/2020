@@ -202,31 +202,31 @@
             <a href="#introducing-numpy" class="nav-link">Introducing NumPy</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#to-start-using-the-numpy-module-we-will-need-to-import-it" class="nav-link">1. To start using the NumPy module we will need to import it.</a>
+            <a href="#importing-numpy" class="nav-link">Importing NumPy</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#a-common-numpy-task-is-to-create-your-own-arrays-to-make-a-variable-that-has-a-range-from-one-value-to-another" class="nav-link">2. A common NumPy task is to create your own arrays to make a variable that has a range from one value to another.</a>
+            <a href="#creating-numpy-arrays-of-values" class="nav-link">Creating NumPy arrays of values</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#to-calculate-the-sine-function-values-we-can-simply-use-the-np-sin-function" class="nav-link">3. To calculate the sine function values, we can simply use the np.sin() function.</a>
+            <a href="#math-using-numpy" class="nav-link">Math using NumPy</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#as-before-we-can-check-out-the-type-of-data-in-our-arrays-x-and-x2-using-the-type-function" class="nav-link">4. As before, we can check out the type of data in our arrays x and x2 using the type() function.</a>
+            <a href="#numpy-array-data-types" class="nav-link">NumPy array data types</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#how-much-data-do-we-have-in-our-x-variable" class="nav-link">5. How much data do we have in our x variable?</a>
+            <a href="#size-of-numpy-arrays" class="nav-link">Size of NumPy arrays</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#we-can-also-check-the-data-type-of-our-data-columns-by-using-x-dtype" class="nav-link">6. We can also check the data type of our data columns by using x.dtype</a>
+            <a href="#type-of-data-in-numpy-arrays" class="nav-link">Type of data in NumPy arrays</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#like-lists-we-can-find-any-value-in-an-array-by-using-it-s-indices" class="nav-link">7. Like lists, we can find any value in an array by using it’s indices.</a>
+            <a href="#index-values-in-numpy-arrays" class="nav-link">Index values in NumPy arrays</a>
         </li>
     
             </ul>
@@ -236,23 +236,23 @@
             <a href="#useful-functions" class="nav-link">Useful functions</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#like-normal-variables-array-variables-can-also-be-used-for-various-mathematical-operations" class="nav-link">1. Like normal variables, array variables can also be used for various mathematical operations.</a>
+            <a href="#basic-math" class="nav-link">Basic math</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#in-addition-to-the-attributes-we-saw-prevously-for-numpy-ndarray-variables-there-are-also-many-methods-that-are-part-of-the-ndarray-data-type" class="nav-link">2. In addition to the attributes we saw prevously for NumPy ndarray variables, there are also many methods that are part of the ndarray data type.</a>
+            <a href="#numpy-methods" class="nav-link">NumPy methods</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#methods-can-also-act-on-part-of-an-array" class="nav-link">3. Methods can also act on part of an array.</a>
+            <a href="#numpy-methods-on-data-slices" class="nav-link">NumPy methods on data slices</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#zeros-and-ones" class="nav-link">4. Zeros and ones.</a>
+            <a href="#arrays-of-zeros-or-ones" class="nav-link">Arrays of zeros or ones</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#a-word-of-caution-and-the-need-for-copies-of-arrays" class="nav-link">5. A word of caution, and the need for copies of arrays.</a>
+            <a href="#caution-copying-numpy-arrays" class="nav-link">Caution: Copying NumPy arrays</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
@@ -280,8 +280,9 @@
 <p><a class="reference external" href="http://www.numpy.org/">NumPy</a> is a library for Python designed for efficient scientific (numerical) computing.
 It is an essential library in Python that is used under the hood in many other modules.
 Here, we will get a sense of a few things NumPy can do.</p>
-<div class="section" id="to-start-using-the-numpy-module-we-will-need-to-import-it">
-<h3>1. To start using the NumPy module we will need to <code class="docutils literal notranslate"><span class="pre">import</span></code> it.<a class="headerlink" href="#to-start-using-the-numpy-module-we-will-need-to-import-it" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="importing-numpy">
+<h3>Importing NumPy<a class="headerlink" href="#importing-numpy" title="Permalink to this headline">¶</a></h3>
+<p>To start using the NumPy module we will need to <code class="docutils literal notranslate"><span class="pre">import</span></code> it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -292,9 +293,10 @@ Here, we will get a sense of a few things NumPy can do.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">library</span> <span class="pre">as</span></code> syntax can be used to give the library a different name in memory.
 Since we may want to use NumPy many time, shortening <code class="docutils literal notranslate"><span class="pre">numpy</span></code> to <code class="docutils literal notranslate"><span class="pre">np</span></code> is helpful.</p>
 </div>
-<div class="section" id="a-common-numpy-task-is-to-create-your-own-arrays-to-make-a-variable-that-has-a-range-from-one-value-to-another">
-<h3>2. A common NumPy task is to create your own <em>arrays</em> to make a variable that has a range from one value to another.<a class="headerlink" href="#a-common-numpy-task-is-to-create-your-own-arrays-to-make-a-variable-that-has-a-range-from-one-value-to-another" title="Permalink to this headline">¶</a></h3>
-<p>A NumPy array is similar in concept to a Python list, but only contains data of one type.
+<div class="section" id="creating-numpy-arrays-of-values">
+<h3>Creating NumPy arrays of values<a class="headerlink" href="#creating-numpy-arrays-of-values" title="Permalink to this headline">¶</a></h3>
+<p>A common NumPy task is to create your own <em>arrays</em> to make a variable that has a range from one value to another.
+A NumPy array is similar in concept to a Python list, but only contains data of one type.
 If we wanted to calculate the <code class="docutils literal notranslate"><span class="pre">sin()</span></code> of a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> at 10 points from zero to 2 * pi, we could do the following.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -328,8 +330,9 @@ Alternatively, if we wanted to specify the size of the increments for a new vari
 <p>In this case, <code class="docutils literal notranslate"><span class="pre">x2</span></code> starts at zero and goes to the largest value that is smaller than 2 * pi by increments of 0.5.
 Both of these types of array options are useful in different situations.</p>
 </div>
-<div class="section" id="to-calculate-the-sine-function-values-we-can-simply-use-the-np-sin-function">
-<h3>3. To calculate the sine function values, we can simply use the <code class="docutils literal notranslate"><span class="pre">np.sin()</span></code> function.<a class="headerlink" href="#to-calculate-the-sine-function-values-we-can-simply-use-the-np-sin-function" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="math-using-numpy">
+<h3>Math using NumPy<a class="headerlink" href="#math-using-numpy" title="Permalink to this headline">¶</a></h3>
+<p>To calculate the sine function values, we can simply use the <code class="docutils literal notranslate"><span class="pre">np.sin()</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -347,8 +350,9 @@ Both of these types of array options are useful in different situations.</p>
 </div>
 <p>Note that performing calculations on NumPy arrays will produce output in an array.</p>
 </div>
-<div class="section" id="as-before-we-can-check-out-the-type-of-data-in-our-arrays-x-and-x2-using-the-type-function">
-<h3>4. As before, we can check out the type of data in our arrays <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code> using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.<a class="headerlink" href="#as-before-we-can-check-out-the-type-of-data-in-our-arrays-x-and-x2-using-the-type-function" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="numpy-array-data-types">
+<h3>NumPy array data types<a class="headerlink" href="#numpy-array-data-types" title="Permalink to this headline">¶</a></h3>
+<p>As before, we can check out the type of data in our arrays <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code> using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -365,8 +369,9 @@ Both of these types of array options are useful in different situations.</p>
 NumPy has its own data types that are part of the module.
 In this case, our data is stored in an NumPy <em>n</em>-dimensional array.</p>
 </div>
-<div class="section" id="how-much-data-do-we-have-in-our-x-variable">
-<h3>5. How much data do we have in our <code class="docutils literal notranslate"><span class="pre">x</span></code> variable?<a class="headerlink" href="#how-much-data-do-we-have-in-our-x-variable" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="size-of-numpy-arrays">
+<h3>Size of NumPy arrays<a class="headerlink" href="#size-of-numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<p>How much data do we have in our <code class="docutils literal notranslate"><span class="pre">x</span></code> variable?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -384,8 +389,9 @@ In this case the single column value is suppressed.
 <code class="docutils literal notranslate"><span class="pre">shape</span></code> is a <em>member</em> or <em>attribute</em> of <code class="docutils literal notranslate"><span class="pre">x</span></code>, and is part of any NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>.
 Printing <code class="docutils literal notranslate"><span class="pre">x.shape</span></code> tells us the size of the array.</p>
 </div>
-<div class="section" id="we-can-also-check-the-data-type-of-our-data-columns-by-using-x-dtype">
-<h3>6. We can also check the data type of our data columns by using <code class="docutils literal notranslate"><span class="pre">x.dtype</span></code><a class="headerlink" href="#we-can-also-check-the-data-type-of-our-data-columns-by-using-x-dtype" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="type-of-data-in-numpy-arrays">
+<h3>Type of data in NumPy arrays<a class="headerlink" href="#type-of-data-in-numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<p>We can also check the data type of our data columns by using <code class="docutils literal notranslate"><span class="pre">x.dtype</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
@@ -400,9 +406,10 @@ Printing <code class="docutils literal notranslate"><span class="pre">x.shape</s
 </div>
 <p>OK, so it seems that all the data in our file is float data type, i.e., decimal numbers (stored with a precision of 64 bytes).</p>
 </div>
-<div class="section" id="like-lists-we-can-find-any-value-in-an-array-by-using-it-s-indices">
-<h3>7. Like lists, we can find any value in an array by using it’s <em>indices</em>.<a class="headerlink" href="#like-lists-we-can-find-any-value-in-an-array-by-using-it-s-indices" title="Permalink to this headline">¶</a></h3>
-<p>We can also extract parts of an array using <em>index slicing</em>.
+<div class="section" id="index-values-in-numpy-arrays">
+<h3>Index values in NumPy arrays<a class="headerlink" href="#index-values-in-numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<p>Like lists, we can find any value in an array by using it’s <em>indices</em>.
+We can also extract parts of an array using <em>index slicing</em>.
 Perhaps we only want the first three values out of array <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -422,8 +429,9 @@ The data extracted will start at <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="useful-functions">
 <h2>Useful functions<a class="headerlink" href="#useful-functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="like-normal-variables-array-variables-can-also-be-used-for-various-mathematical-operations">
-<h3>1. Like normal variables, array variables can also be used for various mathematical operations.<a class="headerlink" href="#like-normal-variables-array-variables-can-also-be-used-for-various-mathematical-operations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="basic-math">
+<h3>Basic math<a class="headerlink" href="#basic-math" title="Permalink to this headline">¶</a></h3>
+<p>Like normal variables, array variables can also be used for various mathematical operations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doublex</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mf">2.0</span>
@@ -439,8 +447,9 @@ The data extracted will start at <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-<div class="section" id="in-addition-to-the-attributes-we-saw-prevously-for-numpy-ndarray-variables-there-are-also-many-methods-that-are-part-of-the-ndarray-data-type">
-<h3>2. In addition to the <em>attributes</em> we saw prevously for NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> variables, there are also many <em>methods</em> that are part of the <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> data type.<a class="headerlink" href="#in-addition-to-the-attributes-we-saw-prevously-for-numpy-ndarray-variables-there-are-also-many-methods-that-are-part-of-the-ndarray-data-type" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="numpy-methods">
+<h3>NumPy methods<a class="headerlink" href="#numpy-methods" title="Permalink to this headline">¶</a></h3>
+<p>In addition to the <em>attributes</em> we saw prevously for NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> variables, there are also many <em>methods</em> that are part of the <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> data type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
@@ -459,8 +468,9 @@ The data extracted will start at <code class="docutils literal notranslate"><spa
 <strong>NOTE</strong>: When using methods, you always include the parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> to be clear we are referring to a <em>method</em> and not an <em>attribute</em>.
 There are many other useful <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> methods, such as <code class="docutils literal notranslate"><span class="pre">x.min()</span></code>, <code class="docutils literal notranslate"><span class="pre">x.max()</span></code>, and <code class="docutils literal notranslate"><span class="pre">x.std()</span></code> (standard deviation).</p>
 </div>
-<div class="section" id="methods-can-also-act-on-part-of-an-array">
-<h3>3. <em>Methods</em> can also act on part of an array.<a class="headerlink" href="#methods-can-also-act-on-part-of-an-array" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="numpy-methods-on-data-slices">
+<h3>NumPy methods on data slices<a class="headerlink" href="#numpy-methods-on-data-slices" title="Permalink to this headline">¶</a></h3>
+<p>In addition to the <em>attributes</em> we saw prevously for NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> variables, there are also many <em>methods</em> that are part of the <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> data type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
@@ -474,8 +484,8 @@ There are many other useful <code class="docutils literal notranslate"><span cla
 </div>
 </div>
 </div>
-<div class="section" id="zeros-and-ones">
-<h3>4. Zeros and ones.<a class="headerlink" href="#zeros-and-ones" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="arrays-of-zeros-or-ones">
+<h3>Arrays of zeros or ones<a class="headerlink" href="#arrays-of-zeros-or-ones" title="Permalink to this headline">¶</a></h3>
 <p>It is pretty common that you will need to create arrays full of zeros or ones to store output from calculations.
 NumPy includes well-named functions for doing this.</p>
 <div class="cell docutils container">
@@ -505,9 +515,10 @@ NumPy includes well-named functions for doing this.</p>
 </div>
 </div>
 </div>
-<div class="section" id="a-word-of-caution-and-the-need-for-copies-of-arrays">
-<h3>5. A word of caution, and the need for copies of arrays.<a class="headerlink" href="#a-word-of-caution-and-the-need-for-copies-of-arrays" title="Permalink to this headline">¶</a></h3>
-<p>Unlike many data types in Python, assigning an existing NumPy array to a new variable <em>does not</em> create a copy of the array, but rather simply creates pointer to the original array.
+<div class="section" id="caution-copying-numpy-arrays">
+<h3>Caution: Copying NumPy arrays<a class="headerlink" href="#caution-copying-numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<p>A word of caution, and the need for copies of arrays.
+Unlike many data types in Python, assigning an existing NumPy array to a new variable <em>does not</em> create a copy of the array, but rather simply creates pointer to the original array.
 Consider the example below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -12,7 +12,9 @@
     "It is an essential library in Python that is used under the hood in many other modules.\n",
     "Here, we will get a sense of a few things NumPy can do.\n",
     "\n",
-    "##### 1. To start using the NumPy module we will need to `import` it."
+    "### Importing NumPy\n",
+    "\n",
+    "To start using the NumPy module we will need to `import` it."
    ]
   },
   {
@@ -31,7 +33,9 @@
     "The `import library as` syntax can be used to give the library a different name in memory.\n",
     "Since we may want to use NumPy many time, shortening `numpy` to `np` is helpful.\n",
     "\n",
-    "##### 2. A common NumPy task is to create your own *arrays* to make a variable that has a range from one value to another.\n",
+    "### Creating NumPy arrays of values\n",
+    "\n",
+    "A common NumPy task is to create your own *arrays* to make a variable that has a range from one value to another.\n",
     "A NumPy array is similar in concept to a Python list, but only contains data of one type.\n",
     "If we wanted to calculate the `sin()` of a variable `x` at 10 points from zero to 2 * pi, we could do the following."
    ]
@@ -71,7 +75,9 @@
     "In this case, `x2` starts at zero and goes to the largest value that is smaller than 2 * pi by increments of 0.5.\n",
     "Both of these types of array options are useful in different situations.\n",
     "\n",
-    "##### 3. To calculate the sine function values, we can simply use the `np.sin()` function."
+    "### Math using NumPy\n",
+    "\n",
+    "To calculate the sine function values, we can simply use the `np.sin()` function."
    ]
   },
   {
@@ -90,7 +96,9 @@
    "source": [
     "Note that performing calculations on NumPy arrays will produce output in an array.\n",
     "\n",
-    "##### 4. As before, we can check out the type of data in our arrays `x` and `x2` using the `type()` function."
+    "### NumPy array data types\n",
+    "\n",
+    "As before, we can check out the type of data in our arrays `x` and `x2` using the `type()` function."
    ]
   },
   {
@@ -110,7 +118,9 @@
     "NumPy has its own data types that are part of the module.\n",
     "In this case, our data is stored in an NumPy *n*-dimensional array.\n",
     "\n",
-    "##### 5. How much data do we have in our `x` variable?"
+    "### Size of NumPy arrays\n",
+    "\n",
+    "How much data do we have in our `x` variable?"
    ]
   },
   {
@@ -131,7 +141,9 @@
     "`shape` is a *member* or *attribute* of `x`, and is part of any NumPy `ndarray`.\n",
     "Printing `x.shape` tells us the size of the array.\n",
     "\n",
-    "##### 6. We can also check the data type of our data columns by using `x.dtype`"
+    "### Type of data in NumPy arrays\n",
+    "\n",
+    "We can also check the data type of our data columns by using `x.dtype`"
    ]
   },
   {
@@ -149,7 +161,9 @@
    "source": [
     "OK, so it seems that all the data in our file is float data type, i.e., decimal numbers (stored with a precision of 64 bytes).\n",
     "\n",
-    "##### 7. Like lists, we can find any value in an array by using it's *indices*.\n",
+    "### Index values in NumPy arrays\n",
+    "\n",
+    "Like lists, we can find any value in an array by using it's *indices*.\n",
     "We can also extract parts of an array using *index slicing*.\n",
     "Perhaps we only want the first three values out of array `x`."
    ]
@@ -172,7 +186,9 @@
     "\n",
     "## Useful functions \n",
     "\n",
-    "##### 1. Like normal variables, array variables can also be used for various mathematical operations."
+    "### Basic math\n",
+    "\n",
+    "Like normal variables, array variables can also be used for various mathematical operations."
    ]
   },
   {
@@ -189,7 +205,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 2. In addition to the *attributes* we saw prevously for NumPy `ndarray` variables, there are also many *methods* that are part of the `ndarray` data type."
+    "### NumPy methods\n",
+    "\n",
+    "In addition to the *attributes* we saw prevously for NumPy `ndarray` variables, there are also many *methods* that are part of the `ndarray` data type."
    ]
   },
   {
@@ -210,7 +228,9 @@
     "**NOTE**: When using methods, you always include the parentheses `()` to be clear we are referring to a *method* and not an *attribute*.\n",
     "There are many other useful `ndarray` methods, such as `x.min()`, `x.max()`, and `x.std()` (standard deviation).\n",
     "\n",
-    "##### 3. *Methods* can also act on part of an array."
+    "### NumPy methods on data slices\n",
+    "\n",
+    "In addition to the *attributes* we saw prevously for NumPy `ndarray` variables, there are also many *methods* that are part of the `ndarray` data type."
    ]
   },
   {
@@ -226,7 +246,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 4. Zeros and ones.\n",
+    "### Arrays of zeros or ones\n",
+    "\n",
     "It is pretty common that you will need to create arrays full of zeros or ones to store output from calculations.\n",
     "NumPy includes well-named functions for doing this."
    ]
@@ -255,7 +276,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 5. A word of caution, and the need for copies of arrays.\n",
+    "### Caution: Copying NumPy arrays\n",
+    "\n",
+    "A word of caution, and the need for copies of arrays.\n",
     "Unlike many data types in Python, assigning an existing NumPy array to a new variable *does not* create a copy of the array, but rather simply creates pointer to the original array.\n",
     "Consider the example below."
    ]
@@ -353,7 +376,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.6.4"
+   "version": "3.8.2"
   }
  },
  "nbformat": 4,
