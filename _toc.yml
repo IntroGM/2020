@@ -10,8 +10,8 @@
 
 - header: Day 1
 - file: day-1/course-overview
-#- file: day-1/physical-processes
-#- file: day-1/solving-equations
+- file: day-1/physical-processes
+- file: day-1/solving-equations
 #- file: day-1/python-basics
 #- file: day-1/functions
 #- file: day-1/numpy
