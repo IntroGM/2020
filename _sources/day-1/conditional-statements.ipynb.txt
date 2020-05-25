@@ -125,7 +125,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    ">>> if (1 < 0) or (-1 < 0):\n",
+    "if (1 < 0) or (-1 < 0):\n",
     "    print('At least one test is true')"
    ]
   },

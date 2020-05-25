@@ -350,7 +350,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Check the typr of sampleIDs below\n"
+    "# Check the type of sampleIDs below\n"
    ]
   },
   {
