@@ -22,24 +22,37 @@
     "\n",
     "## Basic concept\n",
     "\n",
-    "The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables in differential equations to small but finite differences, thus enabling solution of these equations by means of numerical calculations in a computer. This might be necessary if the equations at hand are too complicated to be solved analytically, or if the geometry of the problem setup is too complex.\n",
+    "The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables in differential equations to small but finite differences. This enables solution of these equations by means of numerical calculations in a computer. This might be necessary if the equations at hand are too complicated to be solved analytically, or if the geometry of the problem is too complex.\n",
     "\n",
     "The starting point for the finite differences method is the definition of a derivative:\n",
     "\n",
-    "$$\\frac{\\mathrm{d}f}{\\mathrm{d}x}\\Big\\rvert_{x=x_0} = \\lim_{\\Delta x \\rightarrow 0} \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}\n",
-    "= \\lim_{\\Delta x \\rightarrow 0} \\frac{f(x_0) - f(x_0 - \\Delta x)}{\\Delta x}$$\n",
+    "\\begin{equation}\n",
+    "  \\frac{\\mathrm{d}f}{\\mathrm{d}x}\\Big\\rvert_{x=x_0} = \\lim_{\\Delta x \\rightarrow 0} \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}\n",
+    "  = \\lim_{\\Delta x \\rightarrow 0} \\frac{f(x_0) - f(x_0 - \\Delta x)}{\\Delta x}\n",
+    "\\end{equation}\n",
     "\n",
     "However, computers can only handle numbers of finite value, not infinitesimally\n",
     "small values such as $\\Delta x$ at the limit used in the definition. Thus,\n",
     "the derivative is approximated by dropping out the limit:\n",
     "\n",
-    "$$\\frac{\\mathrm{d}f}{\\mathrm{d}x}\\Big\\rvert_{x=x_0} \\approx \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}\n",
-    "\\approx \\frac{f(x_0) - f(x_0 - \\Delta x)}{\\Delta x}$$\n",
+    "\\begin{equation}\n",
+    "  \\frac{\\mathrm{d}f}{\\mathrm{d}x}\\Big\\rvert_{x=x_0} \\approx \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}\n",
+    "\\approx \\frac{f(x_0) - f(x_0 - \\Delta x)}{\\Delta x}\n",
+    "\\end{equation}\n",
     "\n",
     "where $\\Delta x$ is *sufficiently small*. If we could choose arbitrary \n",
     "small values of $\\Delta x$, we would reach the exact value of the\n",
     "derivative, but in reality we are always limited by the numerical accuracy\n",
     "of the computers."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Determining the computer's numerical accuracy\n",
+    "\n",
+    "So, how well can a computer store small numbers? One way to assess this is to create a loop that adds increasingly small numbers to the number 1 and then reports the point at which adding the small number does not increase the sum. An example can be seen below."
    ]
   },
   {
@@ -58,6 +71,13 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "Let's look again at our finite differences presented above.\n",
+    "\n",
+    "\\begin{equation}\n",
+    "  \\frac{\\mathrm{d}f}{\\mathrm{d}x}\\Big\\rvert_{x=x_0} \\approx \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}\n",
+    "\\approx \\frac{f(x_0) - f(x_0 - \\Delta x)}{\\Delta x}\n",
+    "\\end{equation}\n",
+    "\n",
     "The first approximation above is called the *forward difference*, second the *backward difference*. \n",
     "One can define also the *central difference* approximation:\n",
     "\n",
@@ -101,16 +121,16 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "From maths we know that $\\frac{df}{dx} = 2\\cos(2x) - 2\\sin(x)$. Let's define this as a python function and plot it, together with $f$."
+    "From math we know that $\\frac{df}{dx} = 2\\cos(2x) - 2\\sin(x)$. Let's define this as a python function and plot it, together with $f$."
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Do\n",
+    "### Exercise - Calculating a derivative function\n",
     "\n",
-    " - Define function `dfdx` that returns the analytically calculated derivative of $f$"
+    " - Define a function `dfdx` that returns the analytically calculated derivative of $f$"
    ]
   },
   {
@@ -119,7 +139,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# TODO: Define function `dfdx` here"
+    "# TODO: Define function `dfdx` here\n"
    ]
   },
   {
@@ -185,17 +205,49 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Do\n",
+    "### Exercise - Changing the spatial difference\n",
     "\n",
-    " - Vary the third parameter `dx` of the last plot. Change it from 0.3 to larger and smaller values. What happens? \n",
-    " - Modify the definition of `dfdx_fd` to a) backward difference, b) central difference form. How does the derivative approximation change?"
+    " - Vary the third parameter `dx` of the previous plot. Change it from 0.3 to larger and smaller values. What happens?"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Calculating the error"
+    "### Exercise - Backward and central differences\n",
+    " \n",
+    "- Create new functions for the definition of the\n",
+    "    - The backward difference (`dfdx_fd_bd`)\n",
+    "    - The central difference (`dfdx_fd_cd`)\n",
+    "    \n",
+    "How does the derivative approximation change? Plot your results in the Python cell above."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# TODO: Define function `dfdx_fd_bd` here\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# TODO: Define function `dfdx_fd_cd` here\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Calculating the error\n",
+    "\n",
+    "In the cell below you have the original definition of the function $f$, its analytical derivative, its forward difference derivative, and the error (the difference between the two derivatives)."
    ]
   },
   {
@@ -226,11 +278,31 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Do\n",
+    "### Exercise - Exploring the error\n",
     "\n",
-    " - Compare error to the function itself. When is the error (its absolute value) largest?\n",
-    " - Choose another function $f$ and modify definitions of `f` and its analytically solved derivative `dfdx` above accordingly. What kind of function gives the smallest error?\n",
-    " - Modify `dfdx_fd` and implement backward or central difference approximation. How does the error change?"
+    " - Compare error to the function itself. When is the error (its absolute value) largest? It may help to plot the derivative of $f$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - Finding a \"good\" function\n",
+    "\n",
+    "- Choose another function $f$ and modify definitions of `f` and its analytically solved derivative `dfdx` above accordingly. What kind of function gives the smallest error?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - Backward and central difference errors\n",
+    "\n",
+    "- Calculate the error for your functions for the definition of the\n",
+    "    - The backward difference (`dfdx_fd_bd`)\n",
+    "    - The central difference (`dfdx_fd_cd`)\n",
+    "    \n",
+    "How does the error change?"
    ]
   },
   {
@@ -259,7 +331,7 @@
     "  \\sum F &= m_\\mathrm{sphere} a \\newline\n",
     "  &= V\\rho_\\mathrm{sphere} a \\newline\n",
     "  &= F_\\mathrm{d} + F_\\mathrm{b} \\newline\n",
-    "  &= -6\\pi\\eta R v + V (\\rho_\\mathrm{sphere} - \\rho_\\mathrm{fluid}) g$.\n",
+    "  &= -6\\pi\\eta R v + V (\\rho_\\mathrm{sphere} - \\rho_\\mathrm{fluid}) g.\n",
     "\\end{align}\n",
     "\n",
     "Simplifying, and noting that $V = \\frac{4}{3}\\pi R^3$ and acceleration $a=\\frac{dv}{dt}$, gives \n",
@@ -268,11 +340,15 @@
     "  \\frac{dv}{dt} = -\\frac{9 \\eta v}{\\rho_\\mathrm{sphere} 2 R^2} + \\frac{(\\rho_\\mathrm{sphere} - \\rho_\\mathrm{fluid}) g}{\\rho_\\mathrm{sphere}}\n",
     "\\end{equation}\n",
     "\n",
-    "When the sphere has reached its terminal velocity, acceleration is zero, so\n",
+    "### A case without finite differences\n",
+    "\n",
+    "When the sphere has reached its terminal velocity, the acceleration is zero, so\n",
     "\n",
     "\\begin{equation}\n",
     "  dv/dt = 0 \\Rightarrow v = \\frac{2}{9}\\frac{\\Delta \\rho R^2 g}{\\eta}\n",
-    "\\end{equation}"
+    "\\end{equation}\n",
+    "\n",
+    "In this case we're able to directly calculate the terminal velocity. This can be directly converted to a Python function, as shown below."
    ]
   },
   {
@@ -282,6 +358,7 @@
    "outputs": [],
    "source": [
     "def vel_term_stokes(rhosphere, rhofluid, radius, viscosity):\n",
+    "    \"\"\"Returns the terminal velocity of a solid sphere sinking in a viscous fluid\"\"\"\n",
     "    return (2.0/9.0)*(rhosphere-rhofluid)*radius*radius*9.81 / viscosity"
    ]
   },
@@ -289,7 +366,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "A marble with radius of 2 cm in honey:"
+    "Thus, for a marble with a radius of 2 cm sinking in honey we find the terminal velocity is"
    ]
   },
   {
@@ -305,7 +382,17 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically. To apply finite differences, we replace all derivatives with their finite approximations at time $t_0$. In this case,\n",
+    "### A case with finite differences\n",
+    "\n",
+    "If we again consider our general case for the sinking ball velocity, \n",
+    "\n",
+    "\\begin{equation}\n",
+    "  \\frac{dv}{dt} = -\\frac{9 \\eta v}{\\rho_\\mathrm{sphere} 2 R^2} + \\frac{(\\rho_\\mathrm{sphere} - \\rho_\\mathrm{fluid}) g}{\\rho_\\mathrm{sphere}},\n",
+    "\\end{equation}\n",
+    "\n",
+    "we could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically.\n",
+    "\n",
+    "To apply finite differences, we replace all derivatives with their finite approximations at time $t_0$. In this case,\n",
     "\n",
     "\\begin{equation}\n",
     "  \\frac{dv}{dt}\\Big\\rvert_{t=t_0} \\approx \\frac{v(t_0+\\Delta t) - v(t_0)}{\\Delta t}\n",
@@ -319,7 +406,7 @@
     "\n",
     "Note that on the right hand side $v$ has been replaced by $v(t_0)$.\n",
     "\n",
-    "In other words, if we know velocity at some time $t_0$ (i.e. $v(t_0)$), we can calculate the velocity after time $\\Delta t$ has elapsed: \n",
+    "In other words, if we know velocity at some time $t_0$ (i.e., $v(t_0)$), we can calculate the velocity after time $\\Delta t$ has elapsed: \n",
     "\n",
     "\\begin{equation}\n",
     "  v(t_0 + \\Delta t) = \\left(-\\frac{9 \\eta v(t_0)}{\\rho_\\mathrm{sphere} 2 \\pi R^2} + \\frac{(\\rho_\\mathrm{sphere} - \\rho_\\mathrm{fluid})g}{\\rho_\\mathrm{sphere}}\\right) \\Delta t + v(t_0)\n",
@@ -335,6 +422,7 @@
    "outputs": [],
    "source": [
     "def vel_next(vel_prev, dt, rhosphere, rhofluid, radius, viscosity):\n",
+    "    \"\"\"Returns the velocity of a solid sphere sinking in a viscous fluid\"\"\"\n",
     "    return (-9*viscosity*vel_prev / (rhosphere*2*radius*radius) + (rhosphere-rhofluid)*9.81/rhosphere)*dt + vel_prev"
    ]
   },
@@ -360,7 +448,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We can automate the calculation of the steps."
+    "To make this more useful, we can automate the calculation of the steps."
    ]
   },
   {
@@ -371,7 +459,7 @@
    "source": [
     "dt = 0.0001   # time step size\n",
     "v0 = 0.0      # initial condition\n",
-    "nt = 50      # num of tsteps to calculate\n",
+    "nt = 50       # num of time steps to calculate\n",
     "\n",
     "v = np.zeros(nt)   # stores calculated velocities\n",
     "t = np.zeros(nt)   # stores total time in seconds\n",
@@ -393,12 +481,20 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Do\n",
+    "### Exercise - Dropping the ball\n",
     "\n",
-    " - Use the code above to investigate what happens if the ball is being dropped from an elevation just slightly above the surface of the fluid. How do you need to modify the code?\n",
-    " - Take the finite differences approximation of the equation and replace $v(t_0)$ on the right hand side by $v(t_0 + \\Delta t)$. Rearrange the equation so that you have an expression for $v(t_0 + \\Delta t) = \\ldots$. \n",
-    " - Implement a function `vel_next_implicit`, similar to `vel_next` that calculates the velocity at next time step, but uses this modified expression.\n",
-    " - Copy and modify the code above so that you create a storage for both velocity values calculated using `vel_next` and `vel_next_implicit`, and plot the outcome on top of each other. Vary the value of `dt` and see what happens.  "
+    "- Use the code above to investigate what happens if the ball is being dropped from an elevation just slightly above the surface of the fluid. How do you need to modify the code?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - Explicit and implicit solutions\n",
+    "\n",
+    "- Go back to the finite differences approximation of the equation above and replace $v(t_0)$ on the right hand side by $v(t_0 + \\Delta t)$. Rearrange the equation so that you have an expression for $v(t_0 + \\Delta t) = \\ldots$. \n",
+    "    - Implement a function `vel_next_implicit`, similar to `vel_next` that calculates the velocity at next time step, but uses this modified expression.\n",
+    "    - Copy and modify the code above so that you create a storage for both velocity values calculated using `vel_next` and `vel_next_implicit`, and plot the outcome on top of each other. Vary the value of `dt` and see what happens.  "
    ]
   },
   {
