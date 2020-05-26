@@ -34,6 +34,8 @@
     <link rel="canonical" href="https://introgm.github.io/2020/day-2/stability.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Heat advection and diffusion" href="diffadv.html" />
+    <link rel="prev" title="Finite differences for the heat equation" href="fdheat.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -122,6 +124,21 @@
   </li>
   <li class="">
     <a href="../day-1/conditional-statements.html">Conditional statements</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="fdheat.html">Finite differences for the heat equation</a>
+  </li>
+  <li class="active">
+    <a href="">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="diffadv.html">Heat advection and diffusion</a>
   </li>
 </ul>
 </nav>
@@ -232,7 +249,11 @@ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})
 <p>\begin{equation}
 \epsilon_i^{q+1} = \epsilon_i^q + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q})
 \end{equation}</p>
-<p>That is, the error <em>diffuses</em> from grid point to next grid point, similarly to the actual temperature. We want to <em>suppress</em> the error, that is, we want <span class="math notranslate nohighlight">\(|\epsilon_i^{q+1}| \leq |\epsilon_i^q| \Rightarrow \Big|\frac{\epsilon_i^{q+1}}{\epsilon_i^q}\Big| \leq 1\)</span>, since otherwise the error would grow from time step to next.</p>
+<p>That is, the error <em>diffuses</em> from grid point to next grid point, similar to the actual temperature. We want to <em>suppress</em> the error, that is, we want</p>
+<p>\begin{equation}
+|\epsilon_i^{q+1}| \leq |\epsilon_i^q| \Rightarrow \Big|\frac{\epsilon_i^{q+1}}{\epsilon_i^q}\Big| \leq 1,
+\end{equation}</p>
+<p>since otherwise the error would grow from one time step to the next.</p>
 <p>Dividing the error diffusion expression by <span class="math notranslate nohighlight">\(\epsilon_i^q\)</span> and applying the inequality</p>
 <p>\begin{equation}
 \Big|1 + r (\epsilon_{i+1}^{q} - 2\epsilon_{i}^{q} + \epsilon_{i-1}^{q}) / \epsilon_i^q\Big| \leq 1
@@ -245,8 +266,8 @@ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})
 <p>\begin{equation}
 \frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{2}
 \end{equation}</p>
-<p>This inequality can be used to determine a proper time step if grid spacing has been chosen, or proper grid spacing if time step has been chosen. Typically, it is safer to force stricter condition, e.g. <span class="math notranslate nohighlight">\(\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{4}\)</span>.</p>
-<p>Stability of the method does not guarantee its correctness!</p>
+<p>This inequality can be used to determine a proper time step if grid spacing has been chosen, or proper grid spacing if time step has been chosen. Typically, it is safer to enforce an even stricter condition, e.g., <span class="math notranslate nohighlight">\(\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{4}\)</span>.</p>
+<p><strong>Note</strong>: The stability of the method does not guarantee its correctness!</p>
 <p>A physical interpretation exists for the stability criterion: The diffusive time scale <span class="math notranslate nohighlight">\(\sqrt{\kappa\Delta t}\)</span> should not exceed the grid spacing, i.e. heat should not diffuse in significant amounts over more than one grid point within one time step.</p>
 </div>
 </div>
@@ -278,6 +299,8 @@ T_i^{q+1} = T_i^q + r (T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q})
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="fdheat.html" title="previous page">Finite differences for the heat equation</a>
+    <a class='right-next' id="next-link" href="diffadv.html" title="next page">Heat advection and diffusion</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Heat diffusion + advection</title>
+    <title>Heat advection and diffusion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
@@ -42,8 +42,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://introgm.github.io/2020/day-2/solved/diffadv.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Heat diffusion + advection" />
-<meta property="og:description" content="Heat diffusion + advection  If we add advection and internal heat generation to our heat equation, we get  \rho C_p \left(\frac{\partial T}{\partial t} + v_x\fr" />
+<meta property="og:title"       content="Heat advection and diffusion" />
+<meta property="og:description" content="Heat advection and diffusion  General equation  If we add advection and internal heat generation to our heat equation, we get  \begin{equation} \rho C_p \left(\" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -123,6 +123,21 @@
   <li class="">
     <a href="../../day-1/conditional-statements.html">Conditional statements</a>
   </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../fdheat.html">Finite differences for the heat equation</a>
+  </li>
+  <li class="">
+    <a href="../stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../diffadv.html">Heat advection and diffusion</a>
+  </li>
 </ul>
 </nav>
 
@@ -197,8 +212,18 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#do" class="nav-link">Do</a><ul class="nav section-nav flex-column">
+            <a href="#general-equation" class="nav-link">General equation</a><ul class="nav section-nav flex-column">
                 
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-advection-and-diffusion" class="nav-link">Exercise - Advection and diffusion</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#extra-tasks" class="nav-link">Extra tasks</a>
+        </li>
+    
+            </ul>
+        </li>
+    
         <li class="nav-item toc-entry toc-h3">
             <a href="#answer" class="nav-link">ANSWER</a>
         </li>
@@ -217,29 +242,45 @@
         
               <div>
                 
-  <div class="section" id="heat-diffusion-advection">
-<h1>Heat diffusion + advection<a class="headerlink" href="#heat-diffusion-advection" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="heat-advection-and-diffusion">
+<h1>Heat advection and diffusion<a class="headerlink" href="#heat-advection-and-diffusion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-equation">
+<h2>General equation<a class="headerlink" href="#general-equation" title="Permalink to this headline">¶</a></h2>
 <p>If we add advection and internal heat generation to our heat equation, we get</p>
-<div class="math notranslate nohighlight">
-\[\rho C_p \left(\frac{\partial T}{\partial t} + v_x\frac{\partial T}{\partial x}\right) = k \frac{\partial^2 T}{\partial x^2} + H\]</div>
-<p>Leaving only the time derivative on the left-hand side,</p>
-<div class="math notranslate nohighlight">
-\[\frac{\partial T}{\partial t} = \frac{k}{\rho C_p} \frac{\partial^2 T}{\partial x^2} + \frac{H}{\rho C_p} - v_x\frac{\partial T}{\partial x}\]</div>
-<div class="section" id="do">
-<h2>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Write the finite difference approximation for (i.e. <em>discretize</em>) the diffusion-advection equation. Use forward difference in time and central difference in space. Write the expression in form <span class="math notranslate nohighlight">\(T_i^{q+1} = \ldots~T^q~\mathrm{terms~only~on~this~side}~\ldots\)</span></p></li>
-<li><p>Modify the intrusion code below (or use the one you modified previously):</p>
+<p>\begin{equation}
+\rho C_p \left(\frac{\partial T}{\partial t} + v_x\frac{\partial T}{\partial x}\right) = k \frac{\partial^2 T}{\partial x^2} + H
+\end{equation}</p>
+<p>If we rearrange the terms to have only the time derivative on the left-hand side, we get</p>
+<p>\begin{equation}
+\frac{\partial T}{\partial t} = \frac{k}{\rho C_p} \frac{\partial^2 T}{\partial x^2} + \frac{H}{\rho C_p} - v_x\frac{\partial T}{\partial x}
+\end{equation}</p>
+<div class="section" id="exercise-advection-and-diffusion">
+<h3>Exercise - Advection and diffusion<a class="headerlink" href="#exercise-advection-and-diffusion" title="Permalink to this headline">¶</a></h3>
 <ul>
+<li><p>Write the finite difference approximation (i.e., <em>discretize</em>) the advection-diffusion equation. Use the forward difference in time and the central difference in space. Write the expression in form</p>
+<p>\begin{equation}
+T_i^{q+1} = \ldots~T^q~\mathrm{terms~only~on~this~side}~\ldots
+\end{equation}</p>
+</li>
+<li><p>Modify the intrusion code below (or use the one you modified previously):</p>
+<ul class="simple">
 <li><p>Add variables that store the internal heat production <span class="math notranslate nohighlight">\(H\)</span> and the advection velocity <span class="math notranslate nohighlight">\(v_x\)</span> (what are suitable values?)</p></li>
-<li><p>Modify the line within the time loop that calculates the next valuer of <span class="math notranslate nohighlight">\(T\)</span>: include the terms for heat generation and advection</p></li>
+<li><p>Modify the line within the time loop that calculates the next value of <span class="math notranslate nohighlight">\(T\)</span>: include the terms for heat generation and advection</p></li>
 </ul>
 </li>
-<li><p>Start with <span class="math notranslate nohighlight">\(H=0\)</span> and <span class="math notranslate nohighlight">\(v_x = 0\)</span>. Gradually change these values. How does the results change as you give non-zero values for these? What happens if <span class="math notranslate nohighlight">\(v_x &gt; 0\)</span> compared to <span class="math notranslate nohighlight">\(v_x &lt; 0\)</span>? What if <span class="math notranslate nohighlight">\(v_x\)</span> has a large (positive or negative) value?</p></li>
-<li><p>Extra:</p>
-<ul>
+<li><p>Start with <span class="math notranslate nohighlight">\(H=0\)</span> and <span class="math notranslate nohighlight">\(v_x = 0\)</span>. Gradually change these values.</p>
+<ul class="simple">
+<li><p>How do the results change as you give non-zero values for these terms?</p></li>
+<li><p>What happens if <span class="math notranslate nohighlight">\(v_x &gt; 0\)</span> compared to <span class="math notranslate nohighlight">\(v_x &lt; 0\)</span>?</p></li>
+<li><p>What if <span class="math notranslate nohighlight">\(v_x\)</span> has a large (positive or negative) value?</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="extra-tasks">
+<h4>Extra tasks<a class="headerlink" href="#extra-tasks" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
 <li><p>Remove the initial hot intrusion. Instead, add spatially variable internal heat generation. For this, you will need to introduce new numpy array (of size <code class="docutils literal notranslate"><span class="pre">nx</span></code>), fill it with values of internal heat generation, and use it (<code class="docutils literal notranslate"><span class="pre">H[ix]</span></code> instead of <code class="docutils literal notranslate"><span class="pre">H</span></code>) when you calculate the new temperature value.</p></li>
-<li><p>Calculating heat flow:</p>
+<li><p>Calculating the heat flow</p>
 <ul>
 <li><p>Heat flow is defined as <span class="math notranslate nohighlight">\(q=k\frac{dT}{dx}\)</span>. Write an approximation for <span class="math notranslate nohighlight">\(q\)</span> by replacing the derivative with a finite difference expression.</p></li>
 <li><p>Modify the code so that you create an array (of size <code class="docutils literal notranslate"><span class="pre">nt</span></code>) that stores surface heat flow values each time step. Within the time loop, calculate each time step the heat flow between two topmost grid points.</p></li>
@@ -247,96 +288,13 @@
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">yr2sec</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mf">365.25</span>  <span class="c1"># num of seconds in a year</span>
-
-<span class="c1"># Set material properties</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="mi">2900</span>   <span class="c1"># kg m^-3</span>
-<span class="n">Cp</span> <span class="o">=</span> <span class="mi">900</span>     <span class="c1"># J kg^-1 K^-1</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mf">2.5</span>      <span class="c1"># W m^-1 K^-1</span>
-
-<span class="c1"># Set geometry and dimensions</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mf">35e3</span>         <span class="c1"># m</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">30</span>          <span class="c1"># -</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># m</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dx is&quot;</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
-
-<span class="n">silltop</span> <span class="o">=</span> <span class="mf">5e3</span>    <span class="c1"># m</span>
-<span class="n">sillbott</span> <span class="o">=</span> <span class="mf">10e3</span>  <span class="c1"># m</span>
-
-<span class="c1"># Set total time and time step</span>
-<span class="n">t_total</span> <span class="o">=</span> <span class="mf">0.1e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e4</span> <span class="o">*</span> <span class="n">yr2sec</span>                 <span class="c1"># s</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t_total</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>  <span class="c1"># -</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating&quot;</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="s2">&quot;time steps&quot;</span><span class="p">)</span>
-
-<span class="c1"># Set boundary temperature values and intrusion temperature</span>
-<span class="n">Tsurf</span> <span class="o">=</span> <span class="mf">0.0</span>        <span class="c1"># deg C</span>
-<span class="n">Tmoho</span> <span class="o">=</span> <span class="mf">600.0</span>      <span class="c1"># deg C</span>
-<span class="n">Tintrusion</span> <span class="o">=</span> <span class="mf">700.0</span> <span class="c1"># deg C</span>
-
-<span class="c1"># Create arrays to hold temperature fields</span>
-<span class="n">Tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
-<span class="n">Tprev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
-
-<span class="c1"># Create coordinates of the grid points</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-
-<span class="c1"># Generate initial temperature field</span>
-<span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sillbott</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">silltop</span><span class="p">):</span>
-        <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tintrusion</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tmoho</span> <span class="o">-</span> <span class="n">Tsurf</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
-
-<span class="c1"># Plot initial temperature field</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Start the loop over time steps</span>
-<span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">while</span> <span class="n">curtime</span> <span class="o">&lt;</span> <span class="n">t_total</span><span class="p">:</span>
-    <span class="n">curtime</span> <span class="o">=</span> <span class="n">curtime</span> <span class="o">+</span> <span class="n">dt</span>
-    
-    <span class="c1"># boundary conditions</span>
-    <span class="n">Tnew</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tsurf</span>
-    <span class="n">Tnew</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tmoho</span>
-    
-    <span class="c1"># internal grid points</span>
-    <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">)</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
-        
-    <span class="c1"># copy Tnew to Tprev</span>
-    <span class="n">Tprev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Tnew</span><span class="p">[:]</span>
-    
-
-<span class="c1"># Plot the final temperature field</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tnew</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T final&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>dx is 1206.896551724138 m
-Calculating 10 time steps
-</pre></div>
-</div>
-<img alt="../../_images/diffadv_4_1.png" src="../../_images/diffadv_4_1.png" />
-<img alt="../../_images/diffadv_4_2.png" src="../../_images/diffadv_4_2.png" />
 </div>
 </div>
 <div class="section" id="answer">
 <h3>ANSWER<a class="headerlink" href="#answer" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate nohighlight">
-\[T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delta x^2} + \frac{H}{\rho C_p} - v_x\frac{T_{i+1}^q - T_{i-1}^q}{2\Delta x}\right)\Delta t+T_i^q\]</div>
+<p>\begin{equation}
+T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delta x^2} + \frac{H}{\rho C_p} - v_x\frac{T_{i+1}^q - T_{i-1}^q}{2\Delta x}\right)\Delta t+T_i^q
+\end{equation}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### ANSWER ###</span>
@@ -413,7 +371,6 @@ Calculating 10 time steps
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tnew</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T final&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
 </pre></div>
 </div>
 </div>
@@ -422,8 +379,8 @@ Calculating 10 time steps
 Calculating 10 time steps
 </pre></div>
 </div>
-<img alt="../../_images/diffadv_6_1.png" src="../../_images/diffadv_6_1.png" />
-<img alt="../../_images/diffadv_6_2.png" src="../../_images/diffadv_6_2.png" />
+<img alt="../../_images/diffadv_3_1.png" src="../../_images/diffadv_3_1.png" />
+<img alt="../../_images/diffadv_3_2.png" src="../../_images/diffadv_3_2.png" />
 </div>
 </div>
 </div>

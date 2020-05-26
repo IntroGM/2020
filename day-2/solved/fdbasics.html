@@ -43,7 +43,7 @@
 <meta property="og:url"         content="https://introgm.github.io/2020/day-2/solved/fdbasics.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Introduction to finite differences" />
-<meta property="og:description" content="Introduction to finite differences  The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables " />
+<meta property="og:description" content="Introduction to finite differences  Basic concept  The method of finite differences is used, as the name suggests, to transform infinitesimally small difference" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -123,6 +123,21 @@
   <li class="">
     <a href="../../day-1/conditional-statements.html">Conditional statements</a>
   </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="../fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="">
+    <a href="../fdheat.html">Finite differences for the heat equation</a>
+  </li>
+  <li class="">
+    <a href="../stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="../diffadv.html">Heat advection and diffusion</a>
+  </li>
 </ul>
 </nav>
 
@@ -197,26 +212,50 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#taylor-series-approach-accuracy" class="nav-link">Taylor series approach; accuracy</a>
+            <a href="#basic-concept" class="nav-link">Basic concept</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#determining-the-computer-s-numerical-accuracy" class="nav-link">Determining the computer’s numerical accuracy</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#taylor-series-approach-and-accuracy" class="nav-link">Taylor series approach and accuracy</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#approximating-derivatives" class="nav-link">Approximating derivatives</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#do" class="nav-link">Do</a>
+            <a href="#exercise-calculating-a-derivative-function" class="nav-link">Exercise - Calculating a derivative function</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#id1" class="nav-link">Do</a>
+            <a href="#exercise-changing-the-spatial-difference" class="nav-link">Exercise - Changing the spatial difference</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#calculating-the-error" class="nav-link">Calculating the error</a>
+            <a href="#exercise-backward-and-central-differences" class="nav-link">Exercise - Backward and central differences</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#calculating-the-error" class="nav-link">Calculating the error</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-exploring-the-error" class="nav-link">Exercise - Exploring the error</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#id2" class="nav-link">Do</a>
+            <a href="#exercise-finding-a-good-function" class="nav-link">Exercise - Finding a “good” function</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-backward-and-central-difference-errors" class="nav-link">Exercise - Backward and central difference errors</a>
         </li>
     
             </ul>
@@ -226,7 +265,19 @@
             <a href="#applying-finite-differences-to-a-physical-problem" class="nav-link">Applying finite differences to a physical problem</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#id3" class="nav-link">Do</a>
+            <a href="#a-case-without-finite-differences" class="nav-link">A case without finite differences</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#a-case-with-finite-differences" class="nav-link">A case with finite differences</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-dropping-the-ball" class="nav-link">Exercise - Dropping the ball</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-explicit-and-implicit-solutions" class="nav-link">Exercise - Explicit and implicit solutions</a>
         </li>
     
             </ul>
@@ -243,7 +294,7 @@
         
               <div>
                 
-  <div class="cell docutils container">
+  <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -253,21 +304,28 @@
 </div>
 <div class="section" id="introduction-to-finite-differences">
 <h1>Introduction to finite differences<a class="headerlink" href="#introduction-to-finite-differences" title="Permalink to this headline">¶</a></h1>
-<p>The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables in differential equations to small but finite differences, thus enabling solution of these equations by means of numerical calculations in a computer. This might be necessary if the equations at hand are too complicated to be solved analytically, or if the geometry of the problem setup is too complex.</p>
+<div class="section" id="basic-concept">
+<h2>Basic concept<a class="headerlink" href="#basic-concept" title="Permalink to this headline">¶</a></h2>
+<p>The method of finite differences is used, as the name suggests, to transform infinitesimally small differences of variables in differential equations to small but finite differences. This enables solution of these equations by means of numerical calculations in a computer. This might be necessary if the equations at hand are too complicated to be solved analytically, or if the geometry of the problem is too complex.</p>
 <p>The starting point for the finite differences method is the definition of a derivative:</p>
-<div class="math notranslate nohighlight">
-\[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} = \lim_{\Delta x \rightarrow 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
-= \lim_{\Delta x \rightarrow 0} \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}\]</div>
+<p>\begin{equation}
+\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} = \lim_{\Delta x \rightarrow 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+= \lim_{\Delta x \rightarrow 0} \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}
+\end{equation}</p>
 <p>However, computers can only handle numbers of finite value, not infinitesimally
 small values such as <span class="math notranslate nohighlight">\(\Delta x\)</span> at the limit used in the definition. Thus,
 the derivative is approximated by dropping out the limit:</p>
-<div class="math notranslate nohighlight">
-\[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
-\approx \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}\]</div>
+<p>\begin{equation}
+\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+\approx \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\Delta x\)</span> is <em>sufficiently small</em>. If we could choose arbitrary
 small values of <span class="math notranslate nohighlight">\(\Delta x\)</span>, we would reach the exact value of the
 derivative, but in reality we are always limited by the numerical accuracy
 of the computers.</p>
+<div class="section" id="determining-the-computer-s-numerical-accuracy">
+<h3>Determining the computer’s numerical accuracy<a class="headerlink" href="#determining-the-computer-s-numerical-accuracy" title="Permalink to this headline">¶</a></h3>
+<p>So, how well can a computer store small numbers? One way to assess this is to create a loop that adds increasingly small numbers to the number 1 and then reports the point at which adding the small number does not increase the sum. An example can be seen below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
@@ -283,13 +341,20 @@ of the computers.</p>
 </div>
 </div>
 </div>
+<p>Let’s look again at our finite differences presented above.</p>
+<p>\begin{equation}
+\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+\approx \frac{f(x_0) - f(x_0 - \Delta x)}{\Delta x}
+\end{equation}</p>
 <p>The first approximation above is called the <em>forward difference</em>, second the <em>backward difference</em>.
 One can define also the <em>central difference</em> approximation:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm{d}f}{\mathrm{d}x}\Big\rvert_{x=x_0} \approx \frac{ f(x_0 + \Delta x) - f(x_0 - \Delta x)}{2\Delta x}\]</div>
 <p>Other approximations exist, too.</p>
-<div class="section" id="taylor-series-approach-accuracy">
-<h2>Taylor series approach; accuracy<a class="headerlink" href="#taylor-series-approach-accuracy" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="taylor-series-approach-and-accuracy">
+<h2>Taylor series approach and accuracy<a class="headerlink" href="#taylor-series-approach-and-accuracy" title="Permalink to this headline">¶</a></h2>
 <p>Taylor’s Theorem states that function <span class="math notranslate nohighlight">\(f\)</span> can be presented with following series in the vicinity of <span class="math notranslate nohighlight">\(a\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ f(x) = f(a) + \frac{df}{dx}\frac{(x-a)}{1!} + \frac{d^2f}{dx^2}\frac{(x-a)^2}{2!} + \frac{d^3f}{dx^3}\frac{(x-a)^3}{3!} + \ldots \]</div>
@@ -314,25 +379,19 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_4_0.png" src="../../_images/fdbasics_4_0.png" />
+<img alt="../../_images/fdbasics_5_01.png" src="../../_images/fdbasics_5_01.png" />
 </div>
 </div>
-<p>From maths we know that <span class="math notranslate nohighlight">\(\frac{df}{dx} = 2\cos(2x) - 2\sin(x)\)</span>. Let’s define this as a python function and plot it, together with <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<div class="section" id="do">
-<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<p>From math we know that <span class="math notranslate nohighlight">\(\frac{df}{dx} = 2\cos(2x) - 2\sin(x)\)</span>. Let’s define this as a python function and plot it, together with <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<div class="section" id="exercise-calculating-a-derivative-function">
+<h3>Exercise - Calculating a derivative function<a class="headerlink" href="#exercise-calculating-a-derivative-function" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Define function <code class="docutils literal notranslate"><span class="pre">dfdx</span></code> that returns the analytically calculated derivative of <span class="math notranslate nohighlight">\(f\)</span></p></li>
+<li><p>Define a function <code class="docutils literal notranslate"><span class="pre">dfdx</span></code> that returns the analytically calculated derivative of <span class="math notranslate nohighlight">\(f\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Define function `dfdx` here</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### ANSWER ###</span>
+<span class="c1">### ANSWER ###</span>
 
 <span class="k">def</span> <span class="nf">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -352,7 +411,7 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_8_0.png" src="../../_images/fdbasics_8_0.png" />
+<img alt="../../_images/fdbasics_9_0.png" src="../../_images/fdbasics_9_0.png" />
 </div>
 </div>
 <p>To calculate <span class="math notranslate nohighlight">\(\frac{df}{dx}\)</span> numerically, using finite differences, we can define a function that computes the derivative of a given function <span class="math notranslate nohighlight">\(g\)</span> at given position <span class="math notranslate nohighlight">\(x_0\)</span>, using <em>step size</em> <span class="math notranslate nohighlight">\(dx\)</span>.</p>
@@ -365,7 +424,7 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <p>Let’s plot this on top of the analytical solution.</p>
-<div class="cell docutils container">
+<div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfdx</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dfdx&#39;</span><span class="p">)</span>
@@ -376,16 +435,27 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_12_0.png" src="../../_images/fdbasics_12_0.png" />
+<img alt="../../_images/fdbasics_13_0.png" src="../../_images/fdbasics_13_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-changing-the-spatial-difference">
+<h3>Exercise - Changing the spatial difference<a class="headerlink" href="#exercise-changing-the-spatial-difference" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Vary the third parameter <code class="docutils literal notranslate"><span class="pre">dx</span></code> of the last plot. Change it from 0.3 to larger and smaller values. What happens?</p></li>
-<li><p>Modify the definition of <code class="docutils literal notranslate"><span class="pre">dfdx_fd</span></code> to a) backward difference, b) central difference form. How does the derivative approximation change?</p></li>
+<li><p>Vary the third parameter <code class="docutils literal notranslate"><span class="pre">dx</span></code> of the previous plot. Change it from 0.3 to larger and smaller values. What happens?</p></li>
 </ul>
+</div>
+<div class="section" id="exercise-backward-and-central-differences">
+<h3>Exercise - Backward and central differences<a class="headerlink" href="#exercise-backward-and-central-differences" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Create new functions for the definition of the</p>
+<ul>
+<li><p>The backward difference (<code class="docutils literal notranslate"><span class="pre">dfdx_fd_bd</span></code>)</p></li>
+<li><p>The central difference (<code class="docutils literal notranslate"><span class="pre">dfdx_fd_cd</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<p>How does the derivative approximation change? Plot your results in the Python cell above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### ANSWER ###</span>
@@ -409,12 +479,14 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_14_0.png" src="../../_images/fdbasics_14_0.png" />
+<img alt="../../_images/fdbasics_16_0.png" src="../../_images/fdbasics_16_0.png" />
+</div>
 </div>
 </div>
 </div>
 <div class="section" id="calculating-the-error">
-<h3>Calculating the error<a class="headerlink" href="#calculating-the-error" title="Permalink to this headline">¶</a></h3>
+<h2>Calculating the error<a class="headerlink" href="#calculating-the-error" title="Permalink to this headline">¶</a></h2>
+<p>In the cell below you have the original definition of the function <span class="math notranslate nohighlight">\(f\)</span>, its analytical derivative, its forward difference derivative, and the error (the difference between the two derivatives).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -437,37 +509,73 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_16_0.png" src="../../_images/fdbasics_16_0.png" />
+<img alt="../../_images/fdbasics_18_0.png" src="../../_images/fdbasics_18_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="id2">
-<h3>Do<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-exploring-the-error">
+<h3>Exercise - Exploring the error<a class="headerlink" href="#exercise-exploring-the-error" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Compare error to the function itself. When is the error (its absolute value) largest?</p></li>
-<li><p>Choose another function <span class="math notranslate nohighlight">\(f\)</span> and modify definitions of <code class="docutils literal notranslate"><span class="pre">f</span></code> and its analytically solved derivative <code class="docutils literal notranslate"><span class="pre">dfdx</span></code> above accordingly. What kind of function gives the smallest error?</p></li>
-<li><p>Modify <code class="docutils literal notranslate"><span class="pre">dfdx_fd</span></code> and implement backward or central difference approximation. How does the error change?</p></li>
+<li><p>Compare error to the function itself. When is the error (its absolute value) largest? It may help to plot the derivative of <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
 </ul>
+</div>
+<div class="section" id="exercise-finding-a-good-function">
+<h3>Exercise - Finding a “good” function<a class="headerlink" href="#exercise-finding-a-good-function" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Choose another function <span class="math notranslate nohighlight">\(f\)</span> and modify definitions of <code class="docutils literal notranslate"><span class="pre">f</span></code> and its analytically solved derivative <code class="docutils literal notranslate"><span class="pre">dfdx</span></code> above accordingly. What kind of function gives the smallest error?</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-backward-and-central-difference-errors">
+<h3>Exercise - Backward and central difference errors<a class="headerlink" href="#exercise-backward-and-central-difference-errors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Calculate the error for your functions for the definition of the</p>
+<ul>
+<li><p>The backward difference (<code class="docutils literal notranslate"><span class="pre">dfdx_fd_bd</span></code>)</p></li>
+<li><p>The central difference (<code class="docutils literal notranslate"><span class="pre">dfdx_fd_cd</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<p>How does the error change?</p>
 </div>
 </div>
 <div class="section" id="applying-finite-differences-to-a-physical-problem">
 <h2>Applying finite differences to a physical problem<a class="headerlink" href="#applying-finite-differences-to-a-physical-problem" title="Permalink to this headline">¶</a></h2>
 <p>If we know the analytical form of <span class="math notranslate nohighlight">\(f\)</span>, there is often little interest in approximating its derivative numerically. Instead, derivative approximations are used indirectly to approximate the values of <span class="math notranslate nohighlight">\(f\)</span> itself. Let’s see how this works in a simple example of a falling sphere.</p>
-<p>Consider a solid sphere in a viscous fluid, with <span class="math notranslate nohighlight">\(\rho_\mathrm{sphere} &gt; \rho_\mathrm{fluid}\)</span>. The gravity pulls the sphere downwards, causing a buoyancy force
-<span class="math notranslate nohighlight">\(F_\mathrm{b} = V\Delta\rho g = V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g\)</span>. The viscous fluids resists the movement of the sphere downwards. The drag caused is given by the Stokes’s law, <span class="math notranslate nohighlight">\(F_\mathrm{d} = -6\pi\eta R v\)</span>. The sum of forces acting on the ball is then
-<span class="math notranslate nohighlight">\(\sum F = m_\mathrm{sphere} a = V\rho_\mathrm{sphere} a = F_\mathrm{d} + F_\mathrm{b} = -6\pi\eta R v + V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g\)</span>.</p>
-<p>Simplifying, and noting that <span class="math notranslate nohighlight">\(V = \frac{4}{3}\pi R^3\)</span> and acceleration <span class="math notranslate nohighlight">\(a=\frac{dv}{dt}\)</span>, gives
-<span class="math notranslate nohighlight">\($\frac{dv}{dt} = -\frac{9 \eta v}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g}{\rho_\mathrm{sphere}}\)</span>$</p>
-<p>When the sphere has reached its terminal velocity, acceleration is zero, so <span class="math notranslate nohighlight">\(dv/dt = 0 \Rightarrow v = \frac{2}{9}\frac{\Delta \rho R^2 g}{\eta}\)</span></p>
+<p>Consider a solid sphere in a viscous fluid, with <span class="math notranslate nohighlight">\(\rho_\mathrm{sphere} &gt; \rho_\mathrm{fluid}\)</span>. The gravity pulls the sphere downwards, causing a buoyancy force</p>
+<p>\begin{equation}
+F_\mathrm{b} = V\Delta\rho g = V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g.
+\end{equation}</p>
+<p>The viscous fluids resists the movement of the sphere downwards. The drag caused is given by Stokes’s law,</p>
+<p>\begin{equation}
+F_\mathrm{d} = -6\pi\eta R v.
+\end{equation}</p>
+<p>The sum of forces acting on the ball is then</p>
+<p>\begin{align}
+\sum F &amp;= m_\mathrm{sphere} a \newline
+&amp;= V\rho_\mathrm{sphere} a \newline
+&amp;= F_\mathrm{d} + F_\mathrm{b} \newline
+&amp;= -6\pi\eta R v + V (\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g.
+\end{align}</p>
+<p>Simplifying, and noting that <span class="math notranslate nohighlight">\(V = \frac{4}{3}\pi R^3\)</span> and acceleration <span class="math notranslate nohighlight">\(a=\frac{dv}{dt}\)</span>, gives</p>
+<p>\begin{equation}
+\frac{dv}{dt} = -\frac{9 \eta v}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g}{\rho_\mathrm{sphere}}
+\end{equation}</p>
+<div class="section" id="a-case-without-finite-differences">
+<h3>A case without finite differences<a class="headerlink" href="#a-case-without-finite-differences" title="Permalink to this headline">¶</a></h3>
+<p>When the sphere has reached its terminal velocity, the acceleration is zero, so</p>
+<p>\begin{equation}
+dv/dt = 0 \Rightarrow v = \frac{2}{9}\frac{\Delta \rho R^2 g}{\eta}
+\end{equation}</p>
+<p>In this case we’re able to directly calculate the terminal velocity. This can be directly converted to a Python function, as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vel_term_stokes</span><span class="p">(</span><span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the terminal velocity of a solid sphere sinking in a viscous fluid&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">9.0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">rhosphere</span><span class="o">-</span><span class="n">rhofluid</span><span class="p">)</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="mf">9.81</span> <span class="o">/</span> <span class="n">viscosity</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>A marble with radius of 2 cm in honey:</p>
+<p>Thus, for a marble with a radius of 2 cm sinking in honey we find the terminal velocity is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vel_term_stokes</span><span class="p">(</span><span class="mi">2800</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
@@ -480,16 +588,32 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 </div>
-<p>We could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically. To apply finite differences, we replace all derivatives with their finite approximations at time <span class="math notranslate nohighlight">\(t_0\)</span>. In this case,
-<span class="math notranslate nohighlight">\($\frac{dv}{dt}\Big\rvert_{t=t_0} \approx \frac{v(t_0+\Delta t) - v(t_0)}{\Delta t}\)</span>$</p>
-<p>Inserting this into the previous formula gives <span class="math notranslate nohighlight">\(\frac{v(t_0+\Delta t) - v(t_0)}{\Delta t} = -\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\)</span>. Note that on the right hand side <span class="math notranslate nohighlight">\(v\)</span> has been replaced by <span class="math notranslate nohighlight">\(v(t_0)\)</span>.</p>
-<p>In other words, if we know velocity at some time <span class="math notranslate nohighlight">\(t_0\)</span> (i.e. <span class="math notranslate nohighlight">\(v(t_0)\)</span>), we can calculate the velocity after time <span class="math notranslate nohighlight">\(\Delta t\)</span> has elapsed:</p>
-<div class="math notranslate nohighlight">
-\[v(t_0 + \Delta t) = \left(-\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 \pi R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\right) \Delta t + v(t_0)\]</div>
-<p>Let’s write this as a python function:</p>
+</div>
+<div class="section" id="a-case-with-finite-differences">
+<h3>A case with finite differences<a class="headerlink" href="#a-case-with-finite-differences" title="Permalink to this headline">¶</a></h3>
+<p>If we again consider our general case for the sinking ball velocity,</p>
+<p>\begin{equation}
+\frac{dv}{dt} = -\frac{9 \eta v}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid}) g}{\rho_\mathrm{sphere}},
+\end{equation}</p>
+<p>we could solve the problem by integrating both sides of the expression for acceleration. However, as an example, we will solve this numerically.</p>
+<p>To apply finite differences, we replace all derivatives with their finite approximations at time <span class="math notranslate nohighlight">\(t_0\)</span>. In this case,</p>
+<p>\begin{equation}
+\frac{dv}{dt}\Big\rvert_{t=t_0} \approx \frac{v(t_0+\Delta t) - v(t_0)}{\Delta t}
+\end{equation}</p>
+<p>Inserting this into the previous formula gives</p>
+<p>\begin{equation}
+\frac{v(t_0+\Delta t) - v(t_0)}{\Delta t} = -\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}.
+\end{equation}</p>
+<p>Note that on the right hand side <span class="math notranslate nohighlight">\(v\)</span> has been replaced by <span class="math notranslate nohighlight">\(v(t_0)\)</span>.</p>
+<p>In other words, if we know velocity at some time <span class="math notranslate nohighlight">\(t_0\)</span> (i.e., <span class="math notranslate nohighlight">\(v(t_0)\)</span>), we can calculate the velocity after time <span class="math notranslate nohighlight">\(\Delta t\)</span> has elapsed:</p>
+<p>\begin{equation}
+v(t_0 + \Delta t) = \left(-\frac{9 \eta v(t_0)}{\rho_\mathrm{sphere} 2 \pi R^2} + \frac{(\rho_\mathrm{sphere} - \rho_\mathrm{fluid})g}{\rho_\mathrm{sphere}}\right) \Delta t + v(t_0)
+\end{equation}</p>
+<p>Let’s write this as a python function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vel_next</span><span class="p">(</span><span class="n">vel_prev</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the velocity of a solid sphere sinking in a viscous fluid&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="o">*</span><span class="n">viscosity</span><span class="o">*</span><span class="n">vel_prev</span> <span class="o">/</span> <span class="p">(</span><span class="n">rhosphere</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">rhosphere</span><span class="o">-</span><span class="n">rhofluid</span><span class="p">)</span><span class="o">*</span><span class="mf">9.81</span><span class="o">/</span><span class="n">rhosphere</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="n">vel_prev</span>
 </pre></div>
 </div>
@@ -522,12 +646,12 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 </div>
-<p>We can automate the calculation of the steps:</p>
+<p>To make this more useful, we can automate the calculation of the steps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span>   <span class="c1"># time step size</span>
 <span class="n">v0</span> <span class="o">=</span> <span class="mf">0.0</span>      <span class="c1"># initial condition</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="mi">50</span>      <span class="c1"># num of tsteps to calculate</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">50</span>       <span class="c1"># num of time steps to calculate</span>
 
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>   <span class="c1"># stores calculated velocities</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>   <span class="c1"># stores total time in seconds</span>
@@ -542,35 +666,38 @@ One can define also the <em>central difference</em> approximation:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity at time &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot; s is &quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity at time&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;s is&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_31_01.png" src="../../_images/fdbasics_31_01.png" />
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Velocity at time  0.0049  s is  0.005202758993971469
+<img alt="../../_images/fdbasics_30_0.png" src="../../_images/fdbasics_30_0.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Velocity at time 0.0049 s is 0.005202758993971469
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>Do<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="exercise-dropping-the-ball">
+<h3>Exercise - Dropping the ball<a class="headerlink" href="#exercise-dropping-the-ball" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Use the code above to investigate what happens if the ball is being dropped from an elevation just slightly above the surface of the fluid. How do you need to modify the code?</p></li>
-<li><p>Take the finite differences approximation of the equation and replace <span class="math notranslate nohighlight">\(v(t_0)\)</span> on the right hand side by <span class="math notranslate nohighlight">\(v(t_0 + \Delta t)\)</span>. Rearrange the equation so that you have an expression for <span class="math notranslate nohighlight">\(v(t_0 + \Delta t) = \ldots\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-explicit-and-implicit-solutions">
+<h3>Exercise - Explicit and implicit solutions<a class="headerlink" href="#exercise-explicit-and-implicit-solutions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Go back to the finite differences approximation of the equation above and replace <span class="math notranslate nohighlight">\(v(t_0)\)</span> on the right hand side by <span class="math notranslate nohighlight">\(v(t_0 + \Delta t)\)</span>. Rearrange the equation so that you have an expression for <span class="math notranslate nohighlight">\(v(t_0 + \Delta t) = \ldots\)</span>.</p>
+<ul>
 <li><p>Implement a function <code class="docutils literal notranslate"><span class="pre">vel_next_implicit</span></code>, similar to <code class="docutils literal notranslate"><span class="pre">vel_next</span></code> that calculates the velocity at next time step, but uses this modified expression.</p></li>
 <li><p>Copy and modify the code above so that you create a storage for both velocity values calculated using <code class="docutils literal notranslate"><span class="pre">vel_next</span></code> and <code class="docutils literal notranslate"><span class="pre">vel_next_implicit</span></code>, and plot the outcome on top of each other. Vary the value of <code class="docutils literal notranslate"><span class="pre">dt</span></code> and see what happens.</p></li>
+</ul>
+</li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement `vel_next_implicit` here</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### ANSWER ###</span>
+<span class="c1">### ANSWER ###</span>
 
 <span class="k">def</span> <span class="nf">vel_next_implicit</span><span class="p">(</span><span class="n">vel_prev</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">rhosphere</span><span class="p">,</span> <span class="n">rhofluid</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">viscosity</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">((</span><span class="n">rhosphere</span><span class="o">-</span><span class="n">rhofluid</span><span class="p">)</span><span class="o">*</span><span class="mf">9.81</span><span class="o">/</span><span class="n">rhosphere</span> <span class="o">+</span> <span class="n">vel_prev</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">viscosity</span><span class="o">/</span><span class="p">(</span><span class="n">rhosphere</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
@@ -606,7 +733,7 @@ One can define also the <em>central difference</em> approximation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdbasics_35_0.png" src="../../_images/fdbasics_35_0.png" />
+<img alt="../../_images/fdbasics_34_0.png" src="../../_images/fdbasics_34_0.png" />
 </div>
 </div>
 <p>The first approximation (<code class="docutils literal notranslate"><span class="pre">vel_next</span></code>) is the forward difference approximation. <code class="docutils literal notranslate"><span class="pre">vel_next_implicit</span></code> is the backward difference approximation. When applied to functions of time, these are also called <em>explicit</em> and <em>implicit</em> approximations.</p>

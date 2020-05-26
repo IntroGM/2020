@@ -43,7 +43,7 @@
     "  \\frac{\\partial^2 T}{\\partial x^2}\\Big\\vert_{x=x_1}^{t=t_1} \\approx \\frac{T_{x=x_2}^{t=t_1} - 2T_{x=x_1}^{t=t_1} + T_{x=x_0}^{t=t_1}}{(\\Delta x)^2} = \\frac{T_{2}^{1} - 2T_{1}^{1} + T_{0}^{1}}{(\\Delta x)^2}\n",
     "\\end{equation}\n",
     "\n",
-    "where the last formula uses the short hand notation for indices. Note that here the superscripts do not mean \"to power\" but are indices for time steps.\n",
+    "where the last formula uses the short hand notation for indices. Note that here the superscripts do not mean \"to the power\" but are indices for time steps.\n",
     "\n",
     "Using the same short hand notation, we can approximate the time derivative of the temperature as\n",
     "\n",
@@ -71,9 +71,11 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Do\n",
+    "### Exercise - The implicit form?\n",
     "\n",
-    "How would the implicit (backward difference in time) approximation look like for the heat equation? Recall that in the implicit approximation we used the values from the next time step to approximate the derivative. What is the problem in calculating $T_i^q$ using the implicit approximation?"
+    "- How would the implicit (backward difference in time) approximation look like for the heat equation?\n",
+    "    - Recall that in the implicit approximation we used the values from the next time step to approximate the derivative.\n",
+    "    - What is the problem in calculating $T_i^q$ using the implicit approximation?"
    ]
   },
   {
@@ -82,7 +84,7 @@
    "source": [
     "## Boundary and initial conditions\n",
     "\n",
-    "To start calculating the values of $T$, we need the *initial* values at some time $t_0$. This temperature field is the so called *initial condition* for our problem. It is a type of boundary condition that applies to a temporally variable field.\n",
+    "To start calculating the values of $T$, we need the *initial* values at some time $t_0$. This temperature field is the so called *initial condition* for our problem. It is a type of boundary condition that applies to a time varying field.\n",
     "\n",
     "(Spatial) boundary conditions are needed because when applying finite differences to a differential equation (in space), we need the surrounding values, such as $T_{i+1}$ and $T_{i-1}$ in the case of heat equation, to calculate the next value of $T_{i}$. These values are not available if we are near the geometrical boundary of the problem."
    ]
@@ -99,8 +101,8 @@
     "\n",
     "0. Draw a picture!\n",
     "1. Decide on model geometry and physical parameters\n",
-    "    - one-dimensional\n",
-    "    - homogeneous physical parameters\n",
+    "    - One-dimensional\n",
+    "    - Homogeneous physical parameters\n",
     "    - $\\Rightarrow$ we can use the equation above\n",
     "2. Set physical parameters ($\\rho$, $C_p$, $k$)\n",
     "3. Set geometrical parameters ($L$, $\\Delta x$ $\\Rightarrow$ `nx`)\n",
@@ -122,13 +124,13 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Do\n",
+    "### Exercise - Coding your solution, considering your results\n",
     "\n",
-    "- Use the following frame to start implementing the code. Once the code seems to work, experiment with it:\n",
+    "- Use the outline above to start implementing the code. Once the code seems to work, experiment with it:\n",
     "    - How does changing values of `Cp` and `rho` affect the results?\n",
     "    - Give `dt` values that are close to the critical time step. How do the results change?\n",
     "    - Can the code handle intrusions that are only 500 m in width?\n",
-    "- What have silently assumed in the implementation of the code? E.g. can we model the problem in simplified 1D world? What kind of physical processes, that are likely to be present, have we omitted?"
+    "- What have we silently assumed in the implementation of the code? For example, can we model the problem in simplified 1D world? What kind of physical processes that are likely to be present may we have omitted?"
    ]
   },
   {

@@ -34,6 +34,8 @@
     <link rel="canonical" href="https://introgm.github.io/2020/day-2/fdheat.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stability of the heat equation FD approximation" href="stability.html" />
+    <link rel="prev" title="Introduction to finite differences" href="fdbasics.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -123,6 +125,21 @@
   <li class="">
     <a href="../day-1/conditional-statements.html">Conditional statements</a>
   </li>
+<li class="navbar-special">
+<p class="margin-caption">Day 2</p>
+</li>
+  <li class="">
+    <a href="fdbasics.html">Introduction to finite differences</a>
+  </li>
+  <li class="active">
+    <a href="">Finite differences for the heat equation</a>
+  </li>
+  <li class="">
+    <a href="stability.html">Stability of the heat equation FD approximation</a>
+  </li>
+  <li class="">
+    <a href="diffadv.html">Heat advection and diffusion</a>
+  </li>
 </ul>
 </nav>
 
@@ -200,7 +217,7 @@
             <a href="#finite-difference-formulation" class="nav-link">Finite-difference formulation</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#do" class="nav-link">Do</a>
+            <a href="#exercise-the-implicit-form" class="nav-link">Exercise - The implicit form?</a>
         </li>
     
             </ul>
@@ -214,7 +231,7 @@
             <a href="#cooling-of-an-intrusion" class="nav-link">Cooling of an intrusion</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#id1" class="nav-link">Do</a>
+            <a href="#exercise-coding-your-solution-considering-your-results" class="nav-link">Exercise - Coding your solution, considering your results</a>
         </li>
     
             </ul>
@@ -258,7 +275,7 @@
 <p>\begin{equation}
 \frac{\partial^2 T}{\partial x^2}\Big\vert_{x=x_1}^{t=t_1} \approx \frac{T_{x=x_2}^{t=t_1} - 2T_{x=x_1}^{t=t_1} + T_{x=x_0}^{t=t_1}}{(\Delta x)^2} = \frac{T_{2}^{1} - 2T_{1}^{1} + T_{0}^{1}}{(\Delta x)^2}
 \end{equation}</p>
-<p>where the last formula uses the short hand notation for indices. Note that here the superscripts do not mean “to power” but are indices for time steps.</p>
+<p>where the last formula uses the short hand notation for indices. Note that here the superscripts do not mean “to the power” but are indices for time steps.</p>
 <p>Using the same short hand notation, we can approximate the time derivative of the temperature as</p>
 <p>\begin{equation}
 \frac{\partial T}{\partial t}\Big\vert_{x=x_1}^{t=t_1} \approx \frac{T_1^2-T_1^1}{\Delta t}
@@ -273,14 +290,21 @@
 \rho C_p \frac{T_i^{q+1}-T_i^q}{\Delta t} = k \frac{T_{i+1}^{q} - 2T_{i}^{q} + T_{i-1}^{q}}{(\Delta x)^2}
 \end{equation}</p>
 <p>This applies to <em>any</em> <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(i\)</span>. If we know <span class="math notranslate nohighlight">\(T\)</span> everywhere at time <span class="math notranslate nohighlight">\(t_q\)</span>, we can calculate <span class="math notranslate nohighlight">\(T\)</span> at time <span class="math notranslate nohighlight">\(t_{q+1} = t_q + \Delta t\)</span>.</p>
-<div class="section" id="do">
-<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
-<p>How would the implicit (backward difference in time) approximation look like for the heat equation? Recall that in the implicit approximation we used the values from the next time step to approximate the derivative. What is the problem in calculating <span class="math notranslate nohighlight">\(T_i^q\)</span> using the implicit approximation?</p>
+<div class="section" id="exercise-the-implicit-form">
+<h3>Exercise - The implicit form?<a class="headerlink" href="#exercise-the-implicit-form" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>How would the implicit (backward difference in time) approximation look like for the heat equation?</p>
+<ul>
+<li><p>Recall that in the implicit approximation we used the values from the next time step to approximate the derivative.</p></li>
+<li><p>What is the problem in calculating <span class="math notranslate nohighlight">\(T_i^q\)</span> using the implicit approximation?</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="boundary-and-initial-conditions">
 <h2>Boundary and initial conditions<a class="headerlink" href="#boundary-and-initial-conditions" title="Permalink to this headline">¶</a></h2>
-<p>To start calculating the values of <span class="math notranslate nohighlight">\(T\)</span>, we need the <em>initial</em> values at some time <span class="math notranslate nohighlight">\(t_0\)</span>. This temperature field is the so called <em>initial condition</em> for our problem. It is a type of boundary condition that applies to a temporally variable field.</p>
+<p>To start calculating the values of <span class="math notranslate nohighlight">\(T\)</span>, we need the <em>initial</em> values at some time <span class="math notranslate nohighlight">\(t_0\)</span>. This temperature field is the so called <em>initial condition</em> for our problem. It is a type of boundary condition that applies to a time varying field.</p>
 <p>(Spatial) boundary conditions are needed because when applying finite differences to a differential equation (in space), we need the surrounding values, such as <span class="math notranslate nohighlight">\(T_{i+1}\)</span> and <span class="math notranslate nohighlight">\(T_{i-1}\)</span> in the case of heat equation, to calculate the next value of <span class="math notranslate nohighlight">\(T_{i}\)</span>. These values are not available if we are near the geometrical boundary of the problem.</p>
 </div>
 <div class="section" id="cooling-of-an-intrusion">
@@ -291,8 +315,8 @@
 <li><p>Draw a picture!</p></li>
 <li><p>Decide on model geometry and physical parameters</p>
 <ul class="simple">
-<li><p>one-dimensional</p></li>
-<li><p>homogeneous physical parameters</p></li>
+<li><p>One-dimensional</p></li>
+<li><p>Homogeneous physical parameters</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> we can use the equation above</p></li>
 </ul>
 </li>
@@ -320,17 +344,17 @@
 </ul>
 </li>
 </ol>
-<div class="section" id="id1">
-<h3>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-coding-your-solution-considering-your-results">
+<h3>Exercise - Coding your solution, considering your results<a class="headerlink" href="#exercise-coding-your-solution-considering-your-results" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Use the following frame to start implementing the code. Once the code seems to work, experiment with it:</p>
+<li><p>Use the outline above to start implementing the code. Once the code seems to work, experiment with it:</p>
 <ul>
 <li><p>How does changing values of <code class="docutils literal notranslate"><span class="pre">Cp</span></code> and <code class="docutils literal notranslate"><span class="pre">rho</span></code> affect the results?</p></li>
 <li><p>Give <code class="docutils literal notranslate"><span class="pre">dt</span></code> values that are close to the critical time step. How do the results change?</p></li>
 <li><p>Can the code handle intrusions that are only 500 m in width?</p></li>
 </ul>
 </li>
-<li><p>What have silently assumed in the implementation of the code? E.g. can we model the problem in simplified 1D world? What kind of physical processes, that are likely to be present, have we omitted?</p></li>
+<li><p>What have we silently assumed in the implementation of the code? For example, can we model the problem in simplified 1D world? What kind of physical processes that are likely to be present may we have omitted?</p></li>
 </ul>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
@@ -472,6 +496,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="fdbasics.html" title="previous page">Introduction to finite differences</a>
+    <a class='right-next' id="next-link" href="stability.html" title="next page">Stability of the heat equation FD approximation</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
