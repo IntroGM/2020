@@ -10,6 +10,6 @@ You will need an account on [GitHub.com](https://www.github.com) to use GitHub C
 Please note that we provide assignment feedback only for students enrolled in the course at the University of Helsinki.
 ```
 
-- [Day 2 exercises](https://classroom.github.com/a/H_fg5Ay7)
-- [Day 3 exercises]()
-- [Day 4 exercises]()
+- Day 2
+    - [Create your copy using GitHub Classroom](https://classroom.github.com/a/H_fg5Ay7)
+    - [View the public version of the notebooks](https://github.com/IntroGM-2020/day-2-exercises)
