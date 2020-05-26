@@ -292,21 +292,23 @@
                 
   <div class="section" id="testing-your-code-and-benchmarking">
 <h1>Testing your code and benchmarking<a class="headerlink" href="#testing-your-code-and-benchmarking" title="Permalink to this headline">¶</a></h1>
-<p>As we have seen <code class="xref any docutils literal notranslate"><span class="pre">yesterday</span></code>, it is possible to use the finite difference method to solve equations, and if we use a sufficiently high resolution we can get a very precise solution. But is it correct? It can be difficult to know without directly comparing our solutions to known correct values. This process will be the focus of this lesson.</p>
+<p>As we have seen <a class="reference external" href="https://introgm.github.io/2020/day-2/fdbasics.html">yesterday</a>, it is possible to use the finite difference method to solve equations, and if we use a sufficiently high resolution we can get a very precise solution. But is the solution correct? It can be difficult to know without directly comparing our solutions to known correct values. This process will be the focus of this lesson.</p>
 <div class="section" id="sources-of-error-revisited">
 <h2>Sources of error (revisited)<a class="headerlink" href="#sources-of-error-revisited" title="Permalink to this headline">¶</a></h2>
 <p>We have focussed thus far on using the finite difference method to approximate solutions to equations that we cannot directly integrate. As we have seen, the definition of a derivative is</p>
-<div class="math notranslate nohighlight">
-\[\frac{\mathrm{d}f}{\mathrm{d}x}\rvert_{x=x_0} = \lim_{\Delta x \rightarrow 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x},\]</div>
+<p>\begin{equation}
+\frac{\mathrm{d}f}{\mathrm{d}x}\rvert_{x=x_0} = \lim_{\Delta x \rightarrow 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x},
+\end{equation}</p>
 <p>which we can approximate in a number of forms by removing the limit <span class="math notranslate nohighlight">\(\Delta x \rightarrow 0\)</span>. For example, we have seen that for forward differences we can state</p>
-<div class="math notranslate nohighlight">
-\[\frac{\mathrm{d}f}{\mathrm{d}x}\rvert_{x=x_0} \approx \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}.\]</div>
+<p>\begin{equation}
+\frac{\mathrm{d}f}{\mathrm{d}x}\rvert_{x=x_0} \approx \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}.
+\end{equation}</p>
 <p>And again, as long as <span class="math notranslate nohighlight">\(\Delta x\)</span> is “small enough”, the error that is introduced in this approximation is fairly small. So the question is, how do we know when <span class="math notranslate nohighlight">\(\Delta x\)</span> is small enough to not introduce significant error? Before we can answer that question, we need to say a few things about the sources of error in any computer-based calculation and how we can calculate these errors.</p>
 <p>In computations there are essentially three different sources of error we can consider:</p>
 <ul class="simple">
 <li><p><strong>Gross error</strong>: A mistake in the program itself, a bug.</p></li>
-<li><p><strong>Truncation error</strong>: Error introduced by approximating the solution to a problem, such as using a finite-difference solution rather than direct integration of an equation. You might recall this is the error we introduce by <a class="reference external" href="../day-2/fdbasics.ipynb#Taylor-series-approach%3B-accuracy">truncating the Taylor series expansion</a> of a function <span class="math notranslate nohighlight">\(f(x)\)</span>.</p></li>
-<li><p><strong>Roundoff error</strong>: Error related to the computers inability to exactly represent floating point numbers. We have seen some examples of roundoff error as well at the <a class="reference external" href="../day-2/fdbasics.ipynb#Introduction-to-finite-differences">start of the introduction to finite differences</a>.</p></li>
+<li><p><strong>Truncation error</strong>: Error introduced by approximating the solution to a problem, such as using a finite-difference solution rather than direct integration of an equation. You might recall this is the error we introduce by <a class="reference external" href="https://introgm.github.io/2020/day-2/fdbasics.html#taylor-series-approach-and-accuracy">truncating the Taylor series expansion</a> of a function <span class="math notranslate nohighlight">\(f(x)\)</span>.</p></li>
+<li><p><strong>Roundoff error</strong>: Error related to the computers inability to exactly represent floating point numbers. We have seen some examples of roundoff error as well at the <a class="reference external" href="https://introgm.github.io/2020/day-2/fdbasics.html#determining-the-computer-s-numerical-accuracy">start of the introduction to finite differences</a>.</p></li>
 </ul>
 <p>Although all three of these sources of error can appear in our programs, we mainly will focus on issues related to truncation error in our discussion in the following sections.</p>
 </div>
@@ -327,9 +329,9 @@
 <p>In order to determine whether or not we need to be concerned with errors in our estimates, we need to compare our estimate to the true values as seen above. This process is often referred to as <strong>benchmarking</strong> or <strong>stability testing</strong>. How do we do this in practice? We recommend the following procedure:</p>
 <ol class="simple">
 <li><p>Start with using an approximate solution for which a true value can be calculated. It is obviously not possible to make a comparison if you don’t know the true values.</p></li>
-<li><p>Assuming you have an equation the will allow you to calculate true values at any location within the domain of your problem, begin by calculating the estimated values and true values at the same spatial (and/or temporal) locations.</p></li>
+<li><p>Assuming you have an equation that will allow you to calculate true values at any location within the domain of your problem, begin by calculating the estimated values and true values at the same spatial (and/or temporal) locations.</p></li>
 <li><p>For each estimate and corresponding true value, calculate the percent error and store its value.</p></li>
-<li><p>Review the output in a form that makes sense to you. Possibilities include</p>
+<li><p>Review the output in a form that makes sense to you. Possibilities include:</p>
 <ul class="simple">
 <li><p>Calculating the mean percent error, or its maximum</p></li>
 <li><p>Plotting the percent error along with the estimated values</p></li>
@@ -344,18 +346,21 @@
 <h4>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h4>
 <ol>
 <li><p>Add the calculation of two analytical solutions for heat conduction to the bottom of the code. These will be used for comparison with the finite difference calculations. The analytical solutions to add are <strong>(1) steady-state advection with no heat production</strong></p>
-<div class="math notranslate nohighlight">
-\[T(x) = T_{L} \left( \frac{1 - \exp{(v_{x} x / \kappa)}}{1 - \exp{(v_{x} L / \kappa)}} \right)\]</div>
+<p>\begin{equation}
+T(x) = T_{L} \left( \frac{1 - \exp{(v_{x} x / \kappa)}}{1 - \exp{(v_{x} L / \kappa)}} \right)
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(T_{L}\)</span> is the temperature at the bottom of the model, <span class="math notranslate nohighlight">\(v_{x}\)</span> is the advection velocity, <span class="math notranslate nohighlight">\(L\)</span> is the model thickness, and <span class="math notranslate nohighlight">\(\kappa\)</span> is the thermal diffusivity (<span class="math notranslate nohighlight">\(\kappa = k / \rho C_{\mathrm{p}}\)</span>), and <strong>(2) steady-state heat conduction with heat production, but no advection</strong></p>
-<div class="math notranslate nohighlight">
-\[T(x) = \frac{x T_{L}}{L} + \frac{h^{2}_{\mathrm{r}} H}{k} \left( \left( 1 - \exp{(-x / h_{\mathrm{r}})}\right) - \left( 1 - \exp{(-L / h_{\mathrm{r}})}\right) \frac{x}{L} \right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(h_{\mathrm{r}}\)</span> is the depth at which the concentration of heat producing elements decreases by <span class="math notranslate nohighlight">\(1/e\)</span>. Since we do not include this behavior in our model, we will assume that <span class="math notranslate nohighlight">\(h_{\mathrm{r}} = 10000\)</span> km.</p>
+<p>\begin{equation}
+T(x) = \frac{x T_{L}}{L} + \frac{h^{2}<em>{\mathrm{r}} H}{k} \left( \left( 1 - \exp{(-x / h</em>{\mathrm{r}})}\right) - \left( 1 - \exp{(-L / h_{\mathrm{r}})}\right) \frac{x}{L} \right)
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(h_{\mathrm{r}}\)</span> is the depth at which the concentration of heat producing elements decreases by <span class="math notranslate nohighlight">\(1/e\)</span>. In case you do not include this behavior in your model, you will assume that <span class="math notranslate nohighlight">\(h_{\mathrm{r}} = 10000\)</span> km.</p>
 </li>
 <li><p>Implement the calculation of the analytical solutions (true values) at the end of the code just above the plotting so that the true values are calculated at the same spatial locations <span class="math notranslate nohighlight">\(x\)</span> as the finite difference calculations. You can set things up so that you calculate <code class="docutils literal notranslate"><span class="pre">Tss_adv</span></code> for the advection case and <code class="docutils literal notranslate"><span class="pre">Tss_hp</span></code> for the heat production case.</p></li>
 <li><p>Add the necessary code to be able to plot either one of the analytical solutions with the finite difference solution.</p></li>
 <li><p>Since we are comparing against steady-state solutions, we need to be sure that our model has reached a thermal steady state. We can estimate the time needed to reach steady state using the characteristic timescale for diffusion <span class="math notranslate nohighlight">\(\tau\)</span></p>
-<div class="math notranslate nohighlight">
-\[\tau = \frac{L^{2}}{\kappa}.\]</div>
+<p>\begin{equation}
+\tau = \frac{L^{2}}{\kappa}.
+\end{equation}</p>
 <p>calculate the characteristic timescale for your models using the values in the code and be sure to set <code class="docutils literal notranslate"><span class="pre">t_total</span></code> to be larger than that timescale (perhaps even twice as large to be safe).</p>
 </li>
 <li><p>Starting with <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">=</span> <span class="pre">6</span></code>), calculate the percent error in the calculated temperature for each location of <span class="math notranslate nohighlight">\(x\)</span> for the following scenarios:</p>
@@ -517,15 +522,17 @@ Calculating 10 time steps
 </div>
 <div class="section" id="stability-for-advection-problems">
 <h2>Stability for advection problems<a class="headerlink" href="#stability-for-advection-problems" title="Permalink to this headline">¶</a></h2>
-<p>We have observed that changing the spatial resolution (distance between calculation points) can affect the error in our finite difference solutions. Specifically, larger distances between points tends to increase error. We have also been <code class="xref any docutils literal notranslate"><span class="pre">introduced</span></code> to problems with the <strong>stability</strong> of our solutions. As a reminder, the stability of a solution refers to whether or not a small change in the parameters of the system results in unstable growth of errors. For problems involving time, a stable solution should either show a decrease in error with time or errors that do not change with time. An unstable solution will show growth of errors with time that do not become bounded, and often grow larger over time.</p>
+<p>We have observed that changing the spatial resolution (distance between calculation points) can affect the error in our finite difference solutions. Specifically, larger distances between points tends to increase error. We have also been <a class="reference external" href="https://introgm.github.io/2020/day-2/stability.html">introduced</a> to problems with the <strong>stability</strong> of our solutions. As a reminder, the stability of a solution refers to whether or not a small change in the parameters of the system results in unstable growth of errors. For problems involving time, a stable solution should either show a decrease in error with time or errors that do not change with time. An unstable solution will show growth of errors with time that do not become bounded, and often grow larger over time.</p>
 <p>Yesterday we dealt mainly with diffusion of thermal energy and encountered a <em>stability condition for diffusion problems</em></p>
-<div class="math notranslate nohighlight">
-\[\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{2}\]</div>
+<p>\begin{equation}
+\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{2}
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\kappa\)</span> is the thermal diffusivity, <span class="math notranslate nohighlight">\(\Delta t\)</span> is the time step, and <span class="math notranslate nohighlight">\(\Delta x\)</span> is the grid spacing.
 This condition ensures that the length scale for diffusion does not exceed the length scale of the grid spacing and that error does not grow with time. As mentioned, it is often the case that a more strict stability condition is used such as <span class="math notranslate nohighlight">\(\frac{\kappa \Delta t}{\Delta x^2} \leq \frac{1}{4}\)</span>.</p>
 <p>Like diffusion problems, advection problems also have various criteria that can be used to ensure stability of the solution and the range of parameters that result in stable behavior. For example, it is common to use the calculation of the Courant-Friedrichs-Lewy (or CFL) condition in problems that involve advection. The CFL condition states that the distance material is advected should not exceed the distance between points in the solution grid. In mathematical terms, the CFL condition is</p>
-<div class="math notranslate nohighlight">
-\[C = \frac{u \Delta t}{\Delta x} \leq C_{\mathrm{max}}\]</div>
+<p>\begin{equation}
+C = \frac{u \Delta t}{\Delta x} \leq C_{\mathrm{max}}
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> is the velocity of advection. We expect a stable solution as long as <span class="math notranslate nohighlight">\(C_{\mathrm{max}} \leq 1.0\)</span>. In fact, like the case for diffusion many people use a smaller value to ensure stability with a typical value of <span class="math notranslate nohighlight">\(C_{\mathrm{max}} \leq 0.5\)</span> to ensure a stable solution.</p>
 <div class="section" id="exercise-the-time-bomb">
 <h3>Exercise - The time bomb<a class="headerlink" href="#exercise-the-time-bomb" title="Permalink to this headline">¶</a></h3>
