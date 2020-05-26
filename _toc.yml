@@ -18,11 +18,11 @@
 - file: day-1/for-loops
 - file: day-1/conditional-statements
 
-#- header: Day 2
-#- file: day-2/fdbasics
-#- file: day-2/fdheat
-#- file: day-2/stability
-#- file: day-2/diffadv
+- header: Day 2
+- file: day-2/fdbasics
+- file: day-2/fdheat
+- file: day-2/stability
+- file: day-2/diffadv
 
 #- header: Day 3
 #- file: day-3/benchmarking
