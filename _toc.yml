@@ -40,5 +40,8 @@
 #- file: day-5/cli-tools
 #- file: day-5/project-overview
 
+- header: Exercises
+- file: exercises/classroom
+
 #- header: Technical instructions
 #- file: instructions/cluster
