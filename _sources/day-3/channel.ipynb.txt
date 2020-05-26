@@ -3,7 +3,11 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "metadata": {},
+   "metadata": {
+    "tags": [
+     "hide-cell"
+    ]
+   },
    "outputs": [],
    "source": [
     "import numpy as np\n",
@@ -15,37 +19,31 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Solution strategy for the channel flow\n",
+    "# Solution strategy for channel flow\n",
     "\n",
-    "Rearranging the discretized equation so that all unknowns are on the left hand side, on the right hand side there are only known values.\n",
+    "## Approach\n",
     "\n",
-    "$$v_{i-1} - 2v_i + v_{i+1} = \\frac{dP/dx}{\\eta}\\Delta y^2$$\n",
+    "Rearrange the discretized equation so that all unknowns are on the left-hand side, and only known values are on the right-hand side.\n",
     "\n",
-    "There is one such equation for each internal grid point. At the boundaries, boundary conditions have to be used, e.g. $v_0 = v_\\mathrm{surf}$ and $v_{\\mathrm{ny}-1} = v_\\mathrm{bott}$."
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
+    "\\begin{equation}\n",
+    "  v_{i-1} - 2v_i + v_{i+1} = \\frac{dP/dx}{\\eta}\\Delta y^2\n",
+    "\\end{equation}\n",
+    "\n",
+    "There is one such equation for each internal grid point. At the boundaries, boundary conditions have to be used. For example, $v_0 = v_\\mathrm{surf}$ and $v_{\\mathrm{ny}-1} = v_\\mathrm{bott}$.\n",
+    "\n",
     "For five grid points we thus have five equations in total:\n",
     "\n",
-    "$$\\begin{eqnarray}\n",
+    "\\begin{eqnarray}\n",
     "i=0:\\qquad\\qquad & v_0 &    &      &    &     &    &     &   &     & = & v_\\mathrm{surf} \\\\\n",
     "i=1:\\qquad\\qquad & v_0 & -2 & v_1  & +  & v_2 &    &     &   &     & = & \\frac{dP/dx}{\\eta}\\Delta y^2 \\\\\n",
     "i=2:\\qquad\\qquad &     &    & v_1  & -2 & v_2 & +  & v_3 &   &     & = & \\frac{dP/dx}{\\eta}\\Delta y^2 \\\\\n",
     "i=3:\\qquad\\qquad &     &    &      &    & v_2 & -2 & v_3 & + & v_4 & = & \\frac{dP/dx}{\\eta}\\Delta y^2 \\\\\n",
     "i=4:\\qquad\\qquad &     &    &      &    &     &    &     &   & v_4 & = & v_\\mathrm{bott} \\\\\n",
-    "\\end{eqnarray}$$"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
+    "\\end{eqnarray}\n",
+    "\n",
     "This system of equations can be written in matrix format as\n",
     "\n",
-    "$$\n",
+    "\\begin{equation}\n",
     "\\begin{pmatrix}\n",
     "1 & & & & \\\\ \n",
     "1 & -2 &  1 & & \\\\ \n",
@@ -68,33 +66,34 @@
     "\\frac{dP/dx}{\\eta}\\Delta y^2 \\\\ \n",
     "v_\\mathrm{bott} \\\\ \n",
     "\\end{pmatrix}\n",
-    "$$"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
+    "\\end{equation}\n",
+    "\n",
     "and is typically written with symbols\n",
     "\n",
-    "$$ \\mathbf{Ax}=\\mathbf{b}$$\n",
+    "\\begin{equation}\n",
+    "  \\mathbf{Ax}=\\mathbf{b}\n",
+    "\\end{equation}\n",
     "\n",
     "Python comes with a module, `scipy.linalg` that includes function `solve`, which can be used to solve this type of systems of linear equations:\n",
     "\n",
     "    from scipy.linalg import solve\n",
     "    x = solve(A, b)\n",
     "  \n",
-    "where `b` has to be a 1-D NumPy array of size `ny`, and includes the numerical values of the right hand side expressions; and `A` a 2-D NumPy array of size (`ny`,`ny`), and includes the numerical coefficients, as above. `x` will then contain the wanted velocity values. The following script utilizes this function to solve the channel flow problem.\n",
-    "\n",
-    "### Do\n",
+    "where `b` has to be a 1-D NumPy array of size `ny`, and includes the numerical values of the right hand side expressions; and `A` a 2-D NumPy array of size (`ny`,`ny`), and includes the numerical coefficients, as above. `x` will then contain the wanted velocity values. The following script utilizes this function to solve the channel flow problem."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - Exploring a channel flow\n",
     "\n",
     "- Complete the following script\n",
-    "- Once complete:\n",
+    "- Once complete, answer the following:\n",
     "    - Which direction is the flow mostly going?\n",
     "    - How can you make it go more to the left/ro the right?\n",
     "    - What happens if you decrease the viscosity? Why?\n",
-    "    - What happens if you remove (or comment out) the lines where B.C. are set?\n",
-    "    "
+    "    - What happens if you remove (or comment out) the lines where B.C. are set?"
    ]
   },
   {
@@ -195,20 +194,27 @@
    "source": [
     "## Calculating strain rates\n",
     "\n",
-    "Strain rate in 2D is defined as \n",
+    "The strain rate in 2D is defined as \n",
     "\n",
-    "$$\\underline{\\underline{\\dot\\epsilon}} = \\begin{pmatrix}\n",
-    "\\frac{\\partial v_x}{\\partial x} & \\frac{\\partial v_x}{\\partial y} \\\\\n",
-    "\\frac{\\partial v_y}{\\partial x} & \\frac{\\partial v_y}{\\partial y} \\\\\n",
-    "\\end{pmatrix}$$\n",
+    "\\begin{equation}\n",
+    "  \\underline{\\underline{\\dot\\epsilon}} = \\begin{pmatrix}\n",
+    "  \\frac{\\partial v_x}{\\partial x} & \\frac{\\partial v_x}{\\partial y} \\\\\n",
+    "  \\frac{\\partial v_y}{\\partial x} & \\frac{\\partial v_y}{\\partial y} \\\\\n",
+    "  \\end{pmatrix}\n",
+    "\\end{equation}\n",
     "\n",
-    "In our case the only relevant component is the shear strain rate $\\dot\\epsilon_{xy} = \\frac{\\partial v_x}{\\partial y}$ (why?).\n",
-    "\n",
-    "### Do\n",
+    "In our case the only relevant component is the shear strain rate $\\dot\\epsilon_{xy} = \\frac{\\partial v_x}{\\partial y}$ . Why?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - Finite difference strain rates\n",
     " \n",
-    " - Discretize the shear strain rate expression\n",
-    " - Complete the script below so that it will loop over all the grid points, calculate the shear strain, and store it in the array `e`\n",
-    " - How does the resulting plot look like? Note that the _shear stress_ is defined as $\\sigma_{xy} = \\eta\\dot\\epsilon_{xy}$. Where is the shear stress smallest?"
+    "- Discretize the shear strain rate expression\n",
+    "- Complete the script below so that it will loop over all the grid points, calculate the shear strain, and store it in the array `e`\n",
+    "- How does the resulting plot look like? Note that the *shear stress* is defined as $\\sigma_{xy} = \\eta\\dot\\epsilon_{xy}$. Where is the shear stress smallest?"
    ]
   },
   {
@@ -252,26 +258,30 @@
     "\n",
     "Like in the case of heat equation, the FD formulation for velocity field may have different boundary conditions:\n",
     "\n",
-    " 1. No-slip:\n",
-    "     - Velocity parallel to the surface is fixed at zero\n",
-    "     - $v_x = 0$\n",
-    " 2. Free-slip: \n",
-    "     - Shear stress at the surface is zero\n",
-    "     - $0 = \\sigma_{xy} = \\eta\\dot\\epsilon_{xy} = \\eta\\frac{\\partial v_x}{\\partial y} \\Rightarrow \\frac{\\partial v_x}{\\partial y} = 0$\n",
-    " 3. Other:\n",
-    "     - Velocity is fixed at non-zero value\n",
-    "     - e.g. $v_x = a \\neq 0$, also incoming/outgoing flow ($v_y \\neq 0$) possible (in 2D models)\n",
+    "1. No-slip:\n",
+    "    - Velocity parallel to the surface is fixed at zero\n",
+    "    - $v_x = 0$\n",
+    "2. Free-slip: \n",
+    "    - Shear stress at the surface is zero\n",
+    "    - $0 = \\sigma_{xy} = \\eta\\dot\\epsilon_{xy} = \\eta\\frac{\\partial v_x}{\\partial y} \\Rightarrow \\frac{\\partial v_x}{\\partial y} = 0$\n",
+    "3. Other:\n",
+    "    - Velocity is fixed at non-zero value\n",
+    "    - For example, $v_x = a \\neq 0$, also incoming/outgoing flow ($v_y \\neq 0$) possible (in 2D models)\n",
     " \n",
+    "We used cases 1 and 3 previously."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Exercise - Exploring channel flow boundary conditions\n",
     " \n",
-    " We used cases 1 and 3 previously.\n",
-    " \n",
-    " ### Do\n",
-    " \n",
-    " - Discretize the free-slip boundary condition $\\frac{\\partial v_x}{\\partial y} = 0$\n",
-    " - If you want to apply this at the upper surface (i.e. at $x=x_0$), how would your system of equations change? How would the coefficients in the matrix $A$ change?\n",
-    " - Modify your script for the channel flow model, and change the upper surface velocity boundary condition from $v_x=0$ to a free-slip B.C.\n",
-    "     - How does the resulting velocity plot change?\n",
-    "     - How does the plot for shear strain rate change?"
+    "- Discretize the free-slip boundary condition $\\frac{\\partial v_x}{\\partial y} = 0$\n",
+    "- If you want to apply this at the upper surface (i.e. at $x=x_0$), how would your system of equations change? How would the coefficients in the matrix $A$ change?\n",
+    "- Modify your script for the channel flow model, and change the upper surface velocity boundary condition from $v_x=0$ to a free-slip boundary condition\n",
+    "    - How does the resulting velocity plot change?\n",
+    "    - How does the plot for shear strain rate change?"
    ]
   }
  ],

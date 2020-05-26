@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Solution strategy for the channel flow</title>
+    <title>Solution strategy for channel flow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -42,8 +42,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://introgm.github.io/2020/day-3/channel.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Solution strategy for the channel flow" />
-<meta property="og:description" content="Solution strategy for the channel flow  Rearranging the discretized equation so that all unknowns are on the left hand side, on the right hand side there are on" />
+<meta property="og:title"       content="Solution strategy for channel flow" />
+<meta property="og:description" content="Solution strategy for channel flow  Approach  Rearrange the discretized equation so that all unknowns are on the left-hand side, and only known values are on th" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#do" class="nav-link">Do</a>
+            <a href="#approach" class="nav-link">Approach</a>
         </li>
     
     </ul>
@@ -232,7 +232,7 @@
         
               <div>
                 
-  <div class="cell docutils container">
+  <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -241,61 +241,65 @@
 </div>
 </div>
 </div>
-<div class="section" id="solution-strategy-for-the-channel-flow">
-<h1>Solution strategy for the channel flow<a class="headerlink" href="#solution-strategy-for-the-channel-flow" title="Permalink to this headline">¶</a></h1>
-<p>Rearranging the discretized equation so that all unknowns are on the left hand side, on the right hand side there are only known values.</p>
-<div class="math notranslate nohighlight">
-\[v_{i-1} - 2v_i + v_{i+1} = \frac{dP/dx}{\eta}\Delta y^2\]</div>
-<p>There is one such equation for each internal grid point. At the boundaries, boundary conditions have to be used, e.g. <span class="math notranslate nohighlight">\(v_0 = v_\mathrm{surf}\)</span> and <span class="math notranslate nohighlight">\(v_{\mathrm{ny}-1} = v_\mathrm{bott}\)</span>.</p>
+<div class="section" id="solution-strategy-for-channel-flow">
+<h1>Solution strategy for channel flow<a class="headerlink" href="#solution-strategy-for-channel-flow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="approach">
+<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
+<p>Rearrange the discretized equation so that all unknowns are on the left-hand side, and only known values are on the right-hand side.</p>
+<p>\begin{equation}
+v_{i-1} - 2v_i + v_{i+1} = \frac{dP/dx}{\eta}\Delta y^2
+\end{equation}</p>
+<p>There is one such equation for each internal grid point. At the boundaries, boundary conditions have to be used. For example, <span class="math notranslate nohighlight">\(v_0 = v_\mathrm{surf}\)</span> and <span class="math notranslate nohighlight">\(v_{\mathrm{ny}-1} = v_\mathrm{bott}\)</span>.</p>
 <p>For five grid points we thus have five equations in total:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{eqnarray}
-i=0:\qquad\qquad &amp; v_0 &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp;     &amp; = &amp; v_\mathrm{surf} \\
-i=1:\qquad\qquad &amp; v_0 &amp; -2 &amp; v_1  &amp; +  &amp; v_2 &amp;    &amp;     &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \\
-i=2:\qquad\qquad &amp;     &amp;    &amp; v_1  &amp; -2 &amp; v_2 &amp; +  &amp; v_3 &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \\
-i=3:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp; v_2 &amp; -2 &amp; v_3 &amp; + &amp; v_4 &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \\
-i=4:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp; v_4 &amp; = &amp; v_\mathrm{bott} \\
-\end{eqnarray}\end{split}\]</div>
+<p>\begin{eqnarray}
+i=0:\qquad\qquad &amp; v_0 &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp;     &amp; = &amp; v_\mathrm{surf} \
+i=1:\qquad\qquad &amp; v_0 &amp; -2 &amp; v_1  &amp; +  &amp; v_2 &amp;    &amp;     &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \
+i=2:\qquad\qquad &amp;     &amp;    &amp; v_1  &amp; -2 &amp; v_2 &amp; +  &amp; v_3 &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \
+i=3:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp; v_2 &amp; -2 &amp; v_3 &amp; + &amp; v_4 &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \
+i=4:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp; v_4 &amp; = &amp; v_\mathrm{bott} \
+\end{eqnarray}</p>
 <p>This system of equations can be written in matrix format as</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+</div>
+</div>
+<div class="section" id="begin-equation-begin-pmatrix-1-1-2-1-1-2-1-1-2-1-1-end-pmatrix-begin-pmatrix-v-0-v-1-v-2-v-3-v-4-end-pmatrix">
+<h1>\begin{equation}
 \begin{pmatrix}
-1 &amp; &amp; &amp; &amp; \\ 
-1 &amp; -2 &amp;  1 &amp; &amp; \\ 
- &amp; 1 &amp; -2 &amp; 1 &amp; \\ 
- &amp; &amp; 1 &amp; -2 &amp; 1 \\ 
- &amp; &amp; &amp; &amp; 1 \\ 
+1 &amp; &amp; &amp; &amp; \
+1 &amp; -2 &amp;  1 &amp; &amp; \
+&amp; 1 &amp; -2 &amp; 1 &amp; \
+&amp; &amp; 1 &amp; -2 &amp; 1 \
+&amp; &amp; &amp; &amp; 1 \
 \end{pmatrix}
 \begin{pmatrix}
-v_0 \\ 
-v_1 \\ 
-v_2 \\ 
-v_3 \\ 
-v_4 \\ 
+v_0 \
+v_1 \
+v_2 \
+v_3 \
+v_4 \
+\end{pmatrix}<a class="headerlink" href="#begin-equation-begin-pmatrix-1-1-2-1-1-2-1-1-2-1-1-end-pmatrix-begin-pmatrix-v-0-v-1-v-2-v-3-v-4-end-pmatrix" title="Permalink to this headline">¶</a></h1>
+<p>\begin{pmatrix}
+v_\mathrm{surf} \
+\frac{dP/dx}{\eta}\Delta y^2 \
+\frac{dP/dx}{\eta}\Delta y^2 \
+\frac{dP/dx}{\eta}\Delta y^2 \
+v_\mathrm{bott} \
 \end{pmatrix}
-=
-\begin{pmatrix}
-v_\mathrm{surf} \\ 
-\frac{dP/dx}{\eta}\Delta y^2 \\ 
-\frac{dP/dx}{\eta}\Delta y^2 \\ 
-\frac{dP/dx}{\eta}\Delta y^2 \\ 
-v_\mathrm{bott} \\ 
-\end{pmatrix}
-\end{split}\]</div>
+\end{equation}</p>
 <p>and is typically written with symbols</p>
-<div class="math notranslate nohighlight">
-\[ \mathbf{Ax}=\mathbf{b}\]</div>
+<p>\begin{equation}
+\mathbf{Ax}=\mathbf{b}
+\end{equation}</p>
 <p>Python comes with a module, <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> that includes function <code class="docutils literal notranslate"><span class="pre">solve</span></code>, which can be used to solve this type of systems of linear equations:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from scipy.linalg import solve
 x = solve(A, b)
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">b</span></code> has to be a 1-D NumPy array of size <code class="docutils literal notranslate"><span class="pre">ny</span></code>, and includes the numerical values of the right hand side expressions; and <code class="docutils literal notranslate"><span class="pre">A</span></code> a 2-D NumPy array of size (<code class="docutils literal notranslate"><span class="pre">ny</span></code>,<code class="docutils literal notranslate"><span class="pre">ny</span></code>), and includes the numerical coefficients, as above. <code class="docutils literal notranslate"><span class="pre">x</span></code> will then contain the wanted velocity values. The following script utilizes this function to solve the channel flow problem.</p>
-<div class="section" id="do">
-<h2>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-exploring-a-channel-flow">
+<h2>Exercise - Exploring a channel flow<a class="headerlink" href="#exercise-exploring-a-channel-flow" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Complete the following script</p></li>
-<li><p>Once complete:</p>
+<li><p>Once complete, answer the following:</p>
 <ul>
 <li><p>Which direction is the flow mostly going?</p></li>
 <li><p>How can you make it go more to the left/ro the right?</p></li>
@@ -373,18 +377,18 @@ x = solve(A, b)
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="calculating-strain-rates">
-<h1>Calculating strain rates<a class="headerlink" href="#calculating-strain-rates" title="Permalink to this headline">¶</a></h1>
-<p>Strain rate in 2D is defined as</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\underline{\underline{\dot\epsilon}} = \begin{pmatrix}
-\frac{\partial v_x}{\partial x} &amp; \frac{\partial v_x}{\partial y} \\
-\frac{\partial v_y}{\partial x} &amp; \frac{\partial v_y}{\partial y} \\
-\end{pmatrix}\end{split}\]</div>
-<p>In our case the only relevant component is the shear strain rate <span class="math notranslate nohighlight">\(\dot\epsilon_{xy} = \frac{\partial v_x}{\partial y}\)</span> (why?).</p>
-<div class="section" id="id1">
-<h2>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Calculating strain rates<a class="headerlink" href="#calculating-strain-rates" title="Permalink to this headline">¶</a></h2>
+<p>The strain rate in 2D is defined as</p>
+<p>\begin{equation}
+\underline{\underline{\dot\epsilon}} = \begin{pmatrix}
+\frac{\partial v_x}{\partial x} &amp; \frac{\partial v_x}{\partial y} \
+\frac{\partial v_y}{\partial x} &amp; \frac{\partial v_y}{\partial y} \
+\end{pmatrix}
+\end{equation}</p>
+<p>In our case the only relevant component is the shear strain rate <span class="math notranslate nohighlight">\(\dot\epsilon_{xy} = \frac{\partial v_x}{\partial y}\)</span> . Why?</p>
+<div class="section" id="exercise-finite-difference-strain-rates">
+<h3>Exercise - Finite difference strain rates<a class="headerlink" href="#exercise-finite-difference-strain-rates" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Discretize the shear strain rate expression</p></li>
 <li><p>Complete the script below so that it will loop over all the grid points, calculate the shear strain, and store it in the array <code class="docutils literal notranslate"><span class="pre">e</span></code></p></li>
@@ -417,7 +421,7 @@ x = solve(A, b)
 </div>
 </div>
 <div class="section" id="velocity-boundary-conditions">
-<h1>Velocity boundary conditions<a class="headerlink" href="#velocity-boundary-conditions" title="Permalink to this headline">¶</a></h1>
+<h2>Velocity boundary conditions<a class="headerlink" href="#velocity-boundary-conditions" title="Permalink to this headline">¶</a></h2>
 <p>Like in the case of heat equation, the FD formulation for velocity field may have different boundary conditions:</p>
 <ol class="simple">
 <li><p>No-slip:</p>
@@ -435,23 +439,24 @@ x = solve(A, b)
 <li><p>Other:</p>
 <ul class="simple">
 <li><p>Velocity is fixed at non-zero value</p></li>
-<li><p>e.g. <span class="math notranslate nohighlight">\(v_x = a \neq 0\)</span>, also incoming/outgoing flow (<span class="math notranslate nohighlight">\(v_y \neq 0\)</span>) possible (in 2D models)</p></li>
+<li><p>For example, <span class="math notranslate nohighlight">\(v_x = a \neq 0\)</span>, also incoming/outgoing flow (<span class="math notranslate nohighlight">\(v_y \neq 0\)</span>) possible (in 2D models)</p></li>
 </ul>
 </li>
 </ol>
 <p>We used cases 1 and 3 previously.</p>
-<div class="section" id="id2">
-<h2>Do<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-exploring-channel-flow-boundary-conditions">
+<h3>Exercise - Exploring channel flow boundary conditions<a class="headerlink" href="#exercise-exploring-channel-flow-boundary-conditions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Discretize the free-slip boundary condition <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial y} = 0\)</span></p></li>
 <li><p>If you want to apply this at the upper surface (i.e. at <span class="math notranslate nohighlight">\(x=x_0\)</span>), how would your system of equations change? How would the coefficients in the matrix <span class="math notranslate nohighlight">\(A\)</span> change?</p></li>
-<li><p>Modify your script for the channel flow model, and change the upper surface velocity boundary condition from <span class="math notranslate nohighlight">\(v_x=0\)</span> to a free-slip B.C.</p>
+<li><p>Modify your script for the channel flow model, and change the upper surface velocity boundary condition from <span class="math notranslate nohighlight">\(v_x=0\)</span> to a free-slip boundary condition</p>
 <ul>
 <li><p>How does the resulting velocity plot change?</p></li>
 <li><p>How does the plot for shear strain rate change?</p></li>
 </ul>
 </li>
 </ul>
+</div>
 </div>
 </div>
 
