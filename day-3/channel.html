@@ -232,7 +232,33 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#approach" class="nav-link">Approach</a>
+            <a href="#approach" class="nav-link">Approach</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-exploring-a-channel-flow" class="nav-link">Exercise - Exploring a channel flow</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#calculating-strain-rates" class="nav-link">Calculating strain rates</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-finite-difference-strain-rates" class="nav-link">Exercise - Finite difference strain rates</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#velocity-boundary-conditions" class="nav-link">Velocity boundary conditions</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-exploring-channel-flow-boundary-conditions" class="nav-link">Exercise - Exploring channel flow boundary conditions</a>
+        </li>
+    
+            </ul>
         </li>
     
     </ul>
@@ -265,38 +291,37 @@ v_{i-1} - 2v_i + v_{i+1} = \frac{dP/dx}{\eta}\Delta y^2
 \end{equation}</p>
 <p>There is one such equation for each internal grid point. At the boundaries, boundary conditions have to be used. For example, <span class="math notranslate nohighlight">\(v_0 = v_\mathrm{surf}\)</span> and <span class="math notranslate nohighlight">\(v_{\mathrm{ny}-1} = v_\mathrm{bott}\)</span>.</p>
 <p>For five grid points we thus have five equations in total:</p>
-<p>\begin{eqnarray}
-i=0:\qquad\qquad &amp; v_0 &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp;     &amp; = &amp; v_\mathrm{surf} \
-i=1:\qquad\qquad &amp; v_0 &amp; -2 &amp; v_1  &amp; +  &amp; v_2 &amp;    &amp;     &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \
-i=2:\qquad\qquad &amp;     &amp;    &amp; v_1  &amp; -2 &amp; v_2 &amp; +  &amp; v_3 &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \
-i=3:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp; v_2 &amp; -2 &amp; v_3 &amp; + &amp; v_4 &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \
-i=4:\qquad\qquad &amp;     &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp; v_4 &amp; = &amp; v_\mathrm{bott} \
-\end{eqnarray}</p>
+<p>\begin{equation}
+\begin{matrix}
+i=0:\qquad &amp; v_0 &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp;     &amp; = &amp; v_\mathrm{surf} \newline
+i=1:\qquad &amp; v_0 &amp; -2 &amp; v_1  &amp; +  &amp; v_2 &amp;    &amp;     &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \newline
+i=2:\qquad &amp;     &amp;    &amp; v_1  &amp; -2 &amp; v_2 &amp; +  &amp; v_3 &amp;   &amp;     &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \newline
+i=3:\qquad &amp;     &amp;    &amp;      &amp;    &amp; v_2 &amp; -2 &amp; v_3 &amp; + &amp; v_4 &amp; = &amp; \frac{dP/dx}{\eta}\Delta y^2 \newline
+i=4:\qquad &amp;     &amp;    &amp;      &amp;    &amp;     &amp;    &amp;     &amp;   &amp; v_4 &amp; = &amp; v_\mathrm{bott}
+\end{matrix}
+\end{equation}</p>
 <p>This system of equations can be written in matrix format as</p>
-</div>
-</div>
-<div class="section" id="begin-equation-begin-pmatrix-1-1-2-1-1-2-1-1-2-1-1-end-pmatrix-begin-pmatrix-v-0-v-1-v-2-v-3-v-4-end-pmatrix">
-<h1>\begin{equation}
+<p>\begin{equation}
 \begin{pmatrix}
-1 &amp; &amp; &amp; &amp; \
-1 &amp; -2 &amp;  1 &amp; &amp; \
-&amp; 1 &amp; -2 &amp; 1 &amp; \
-&amp; &amp; 1 &amp; -2 &amp; 1 \
-&amp; &amp; &amp; &amp; 1 \
+1 &amp;    &amp;    &amp;    &amp;   \newline
+1 &amp; -2 &amp;  1 &amp;    &amp;   \newline
+&amp;  1 &amp; -2 &amp;  1 &amp;   \newline
+&amp;    &amp;  1 &amp; -2 &amp; 1 \newline
+&amp;    &amp;    &amp;    &amp; 1
 \end{pmatrix}
 \begin{pmatrix}
-v_0 \
-v_1 \
-v_2 \
-v_3 \
-v_4 \
-\end{pmatrix}<a class="headerlink" href="#begin-equation-begin-pmatrix-1-1-2-1-1-2-1-1-2-1-1-end-pmatrix-begin-pmatrix-v-0-v-1-v-2-v-3-v-4-end-pmatrix" title="Permalink to this headline">¶</a></h1>
-<p>\begin{pmatrix}
-v_\mathrm{surf} \
-\frac{dP/dx}{\eta}\Delta y^2 \
-\frac{dP/dx}{\eta}\Delta y^2 \
-\frac{dP/dx}{\eta}\Delta y^2 \
-v_\mathrm{bott} \
+v_0 \newline
+v_1 \newline
+v_2 \newline
+v_3 \newline
+v_4
+\end{pmatrix} =
+\begin{pmatrix}
+v_\mathrm{surf} \newline
+\frac{dP/dx}{\eta}\Delta y^2 \newline
+\frac{dP/dx}{\eta}\Delta y^2 \newline
+\frac{dP/dx}{\eta}\Delta y^2 \newline
+v_\mathrm{bott}
 \end{pmatrix}
 \end{equation}</p>
 <p>and is typically written with symbols</p>
@@ -304,13 +329,13 @@ v_\mathrm{bott} \
 \mathbf{Ax}=\mathbf{b}
 \end{equation}</p>
 <p>Python comes with a module, <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> that includes function <code class="docutils literal notranslate"><span class="pre">solve</span></code>, which can be used to solve this type of systems of linear equations:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from scipy.linalg import solve
-x = solve(A, b)
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">b</span></code> has to be a 1-D NumPy array of size <code class="docutils literal notranslate"><span class="pre">ny</span></code>, and includes the numerical values of the right hand side expressions; and <code class="docutils literal notranslate"><span class="pre">A</span></code> a 2-D NumPy array of size (<code class="docutils literal notranslate"><span class="pre">ny</span></code>,<code class="docutils literal notranslate"><span class="pre">ny</span></code>), and includes the numerical coefficients, as above. <code class="docutils literal notranslate"><span class="pre">x</span></code> will then contain the wanted velocity values. The following script utilizes this function to solve the channel flow problem.</p>
 <div class="section" id="exercise-exploring-a-channel-flow">
-<h2>Exercise - Exploring a channel flow<a class="headerlink" href="#exercise-exploring-a-channel-flow" title="Permalink to this headline">¶</a></h2>
+<h3>Exercise - Exploring a channel flow<a class="headerlink" href="#exercise-exploring-a-channel-flow" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Complete the following script</p></li>
 <li><p>Once complete, answer the following:</p>
@@ -391,13 +416,14 @@ x = solve(A, b)
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="calculating-strain-rates">
 <h2>Calculating strain rates<a class="headerlink" href="#calculating-strain-rates" title="Permalink to this headline">¶</a></h2>
 <p>The strain rate in 2D is defined as</p>
 <p>\begin{equation}
 \underline{\underline{\dot\epsilon}} = \begin{pmatrix}
-\frac{\partial v_x}{\partial x} &amp; \frac{\partial v_x}{\partial y} \
-\frac{\partial v_y}{\partial x} &amp; \frac{\partial v_y}{\partial y} \
+\frac{\partial v_x}{\partial x} &amp; \frac{\partial v_x}{\partial y} \newline
+\frac{\partial v_y}{\partial x} &amp; \frac{\partial v_y}{\partial y} \newline
 \end{pmatrix}
 \end{equation}</p>
 <p>In our case the only relevant component is the shear strain rate <span class="math notranslate nohighlight">\(\dot\epsilon_{xy} = \frac{\partial v_x}{\partial y}\)</span> . Why?</p>
