@@ -359,15 +359,21 @@
 <div class="section" id="tasks">
 <h4>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h4>
 <ol>
-<li><p>Add the calculation of two analytical solutions for heat conduction to the bottom of the code. These will be used for comparison with the finite difference calculations. The analytical solutions to add are <strong>(1) steady-state advection with no heat production</strong></p>
+<li><p>Add the calculation of two analytical solutions for heat conduction to the bottom of the code. These will be used for comparison with the finite difference calculations. The analytical solutions to add are:</p>
+<ol>
+<li><p>Steady-state advection with no heat production</p>
 <p>\begin{equation}
 T(x) = T_{L} \left( \frac{1 - \exp{(v_{x} x / \kappa)}}{1 - \exp{(v_{x} L / \kappa)}} \right)
 \end{equation}</p>
-<p>where <span class="math notranslate nohighlight">\(T_{L}\)</span> is the temperature at the bottom of the model, <span class="math notranslate nohighlight">\(v_{x}\)</span> is the advection velocity, <span class="math notranslate nohighlight">\(L\)</span> is the model thickness, and <span class="math notranslate nohighlight">\(\kappa\)</span> is the thermal diffusivity (<span class="math notranslate nohighlight">\(\kappa = k / \rho C_{\mathrm{p}}\)</span>), and <strong>(2) steady-state heat conduction with heat production, but no advection</strong></p>
+<p>where <span class="math notranslate nohighlight">\(T_{L}\)</span> is the temperature at the bottom of the model, <span class="math notranslate nohighlight">\(v_{x}\)</span> is the advection velocity, <span class="math notranslate nohighlight">\(L\)</span> is the model thickness, and <span class="math notranslate nohighlight">\(\kappa\)</span> is the thermal diffusivity (<span class="math notranslate nohighlight">\(\kappa = k / \rho C_{\mathrm{p}}\)</span>)</p>
+</li>
+<li><p>Steady-state heat conduction with heat production, but no advection</p>
 <p>\begin{equation}
 T(x) = \frac{x T_{L}}{L} + \frac{h^{2}<em>{\mathrm{r}} H}{k} \left( \left( 1 - \exp{(-x / h</em>{\mathrm{r}})}\right) - \left( 1 - \exp{(-L / h_{\mathrm{r}})}\right) \frac{x}{L} \right)
 \end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(h_{\mathrm{r}}\)</span> is the depth at which the concentration of heat producing elements decreases by <span class="math notranslate nohighlight">\(1/e\)</span>. In case you do not include this behavior in your model, you will assume that <span class="math notranslate nohighlight">\(h_{\mathrm{r}} = 10000\)</span> km.</p>
+</li>
+</ol>
 </li>
 <li><p>Implement the calculation of the analytical solutions (true values) at the end of the code just above the plotting so that the true values are calculated at the same spatial locations <span class="math notranslate nohighlight">\(x\)</span> as the finite difference calculations. You can set things up so that you calculate <code class="docutils literal notranslate"><span class="pre">Tss_adv</span></code> for the advection case and <code class="docutils literal notranslate"><span class="pre">Tss_hp</span></code> for the heat production case.</p></li>
 <li><p>Add the necessary code to be able to plot either one of the analytical solutions with the finite difference solution.</p></li>
