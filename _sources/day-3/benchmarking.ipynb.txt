@@ -100,14 +100,14 @@
     "    \n",
     "2. Implement the calculation of the analytical solutions (true values) at the end of the code just above the plotting so that the true values are calculated at the same spatial locations $x$ as the finite difference calculations. You can set things up so that you calculate `Tss_adv` for the advection case and `Tss_hp` for the heat production case.\n",
     "3. Add the necessary code to be able to plot either one of the analytical solutions with the finite difference solution.\n",
-    "4. Since we are comparing against steady-state solutions, we need to be sure that our model has reached a thermal steady state. We can estimate the time needed to reach steady state using the characteristic timescale for diffusion $\\tau$\n",
+    "4. Since we are comparing against steady-state solutions, we need to be sure that our model has reached a thermal steady state. We can estimate the time needed to reach a conductive steady state using the characteristic timescale for diffusion $\\tau$\n",
     "\n",
     "    \\begin{equation}\n",
     "      \\tau = \\frac{L^{2}}{\\kappa}.\n",
     "    \\end{equation}\n",
     "\n",
     "    calculate the characteristic timescale for your models using the values in the code and be sure to set `t_total` to be larger than that timescale (perhaps even twice as large to be safe).\n",
-    "5. Starting with `nx = 6`), calculate the percent error in the calculated temperature for each location of $x$ for the following scenarios:\n",
+    "5. Starting with `nx = 6`, calculate the percent error in the calculated temperature for each location of $x$ for the following scenarios:\n",
     "\n",
     "    - Steady advection-diffusion with no heat production (`vx = 1.0`, `H = 0.0`)\n",
     "    - Steady heat diffusion and production with no advection (`vx = 0.0`, `H = 1.0`)\n",
@@ -117,13 +117,14 @@
     "\n",
     "#### Questions\n",
     "\n",
-    "- If you vary the values for `nx`, approximately how many points are required for the percent error to be less than 0.05%?\n",
+    "- If you vary the values for `nx`, approximately how many points are required for the percent error to be less than 0.05% for each scenario?\n",
     "- Does the percent error continue to decrease as you increase `nx`, or does it a appear to reach a minimum at some point?\n",
+    "- Do any other things change unexpectedly as you increase or decrease `nx`?\n",
     "\n",
     "#### Notes\n",
     "\n",
     "- Although it is possible to perform step 5 directly in NumPy and without a for loop, you are advised to use a for loop for calculating the percent error.\n",
-    "- You may want to skip over calculating the percent error for the first temperature point since the true value at the surface is equal to zero, and calculating percent error at the location will result in division by zero."
+    "- You should skip over calculating the percent error for the first temperature and last points since the true values are defined by the boundary conditions."
    ]
   },
   {

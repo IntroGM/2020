@@ -357,13 +357,13 @@ T(x) = \frac{x T_{L}}{L} + \frac{h^{2}<em>{\mathrm{r}} H}{k} \left( \left( 1 - \
 </li>
 <li><p>Implement the calculation of the analytical solutions (true values) at the end of the code just above the plotting so that the true values are calculated at the same spatial locations <span class="math notranslate nohighlight">\(x\)</span> as the finite difference calculations. You can set things up so that you calculate <code class="docutils literal notranslate"><span class="pre">Tss_adv</span></code> for the advection case and <code class="docutils literal notranslate"><span class="pre">Tss_hp</span></code> for the heat production case.</p></li>
 <li><p>Add the necessary code to be able to plot either one of the analytical solutions with the finite difference solution.</p></li>
-<li><p>Since we are comparing against steady-state solutions, we need to be sure that our model has reached a thermal steady state. We can estimate the time needed to reach steady state using the characteristic timescale for diffusion <span class="math notranslate nohighlight">\(\tau\)</span></p>
+<li><p>Since we are comparing against steady-state solutions, we need to be sure that our model has reached a thermal steady state. We can estimate the time needed to reach a conductive steady state using the characteristic timescale for diffusion <span class="math notranslate nohighlight">\(\tau\)</span></p>
 <p>\begin{equation}
 \tau = \frac{L^{2}}{\kappa}.
 \end{equation}</p>
 <p>calculate the characteristic timescale for your models using the values in the code and be sure to set <code class="docutils literal notranslate"><span class="pre">t_total</span></code> to be larger than that timescale (perhaps even twice as large to be safe).</p>
 </li>
-<li><p>Starting with <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">=</span> <span class="pre">6</span></code>), calculate the percent error in the calculated temperature for each location of <span class="math notranslate nohighlight">\(x\)</span> for the following scenarios:</p>
+<li><p>Starting with <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">=</span> <span class="pre">6</span></code>, calculate the percent error in the calculated temperature for each location of <span class="math notranslate nohighlight">\(x\)</span> for the following scenarios:</p>
 <ul class="simple">
 <li><p>Steady advection-diffusion with no heat production (<code class="docutils literal notranslate"><span class="pre">vx</span> <span class="pre">=</span> <span class="pre">1.0</span></code>, <code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">=</span> <span class="pre">0.0</span></code>)</p></li>
 <li><p>Steady heat diffusion and production with no advection (<code class="docutils literal notranslate"><span class="pre">vx</span> <span class="pre">=</span> <span class="pre">0.0</span></code>, <code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">=</span> <span class="pre">1.0</span></code>)</p></li>
@@ -376,15 +376,16 @@ T(x) = \frac{x T_{L}}{L} + \frac{h^{2}<em>{\mathrm{r}} H}{k} \left( \left( 1 - \
 <div class="section" id="questions">
 <h4>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li><p>If you vary the values for <code class="docutils literal notranslate"><span class="pre">nx</span></code>, approximately how many points are required for the percent error to be less than 0.05%?</p></li>
+<li><p>If you vary the values for <code class="docutils literal notranslate"><span class="pre">nx</span></code>, approximately how many points are required for the percent error to be less than 0.05% for each scenario?</p></li>
 <li><p>Does the percent error continue to decrease as you increase <code class="docutils literal notranslate"><span class="pre">nx</span></code>, or does it a appear to reach a minimum at some point?</p></li>
+<li><p>Do any other things change unexpectedly as you increase or decrease <code class="docutils literal notranslate"><span class="pre">nx</span></code>?</p></li>
 </ul>
 </div>
 <div class="section" id="notes">
 <h4>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Although it is possible to perform step 5 directly in NumPy and without a for loop, you are advised to use a for loop for calculating the percent error.</p></li>
-<li><p>You may want to skip over calculating the percent error for the first temperature point since the true value at the surface is equal to zero, and calculating percent error at the location will result in division by zero.</p></li>
+<li><p>You should skip over calculating the percent error for the first temperature and last points since the true values are defined by the boundary conditions.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
