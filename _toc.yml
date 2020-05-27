@@ -24,10 +24,10 @@
 - file: day-2/stability
 - file: day-2/diffadv
 
-#- header: Day 3
-#- file: day-3/benchmarking
-#- file: day-3/stokes
-#- file: day-3/channel
+- header: Day 3
+- file: day-3/benchmarking
+- file: day-3/stokes
+- file: day-3/channel
 
 #- header: Day 4
 #- file: day-4/clusters
