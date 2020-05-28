@@ -109,14 +109,14 @@
     "\n",
     "1. Login to the cluster using instructions at https://introgm.github.io/2020/instructions/cluster.html\n",
     "2. Type\n",
-    "    ```bash\n",
+    "```bash\n",
     "$ cd mpi\n",
     "$ srun -n 64 python mpi.py\n",
-    "    ```\n",
+    "```\n",
     "3. To see and edit the Python code\n",
-    "    ```bash\n",
+    "```bash\n",
     "$ nano mpi.py\n",
-    "    ``` "
+    "```"
    ]
   },
   {

@@ -412,19 +412,20 @@
 <div class="section" id="performance-of-parallel-programs">
 <h2>Performance of parallel programs<a class="headerlink" href="#performance-of-parallel-programs" title="Permalink to this headline">¶</a></h2>
 <p>We will test the effect of running a code in parallel, using the <em>geo-hpcc</em> cluster.</p>
-<ol>
+<ol class="simple">
 <li><p>Login to the cluster using instructions at https://introgm.github.io/2020/instructions/cluster.html</p></li>
-<li><p>Type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+<li><p>Type</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> mpi
+$ srun -n <span class="m">64</span> python mpi.py
 </pre></div>
 </div>
-</li>
+<ol class="simple">
+<li><p>To see and edit the Python code</p></li>
 </ol>
-<p>$ cd mpi
-$ srun -n 64 python mpi.py
-<code class="docutils literal notranslate"><span class="pre">3.</span> <span class="pre">To</span> <span class="pre">see</span> <span class="pre">and</span> <span class="pre">edit</span> <span class="pre">the</span> <span class="pre">Python</span> <span class="pre">code</span>&#160;&#160;&#160; </code>bash
-$ nano mpi.py
-```</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nano mpi.py
+</pre></div>
+</div>
 <div class="section" id="exercise-timing-parallel-performance">
 <h3>Exercise - Timing parallel performance<a class="headerlink" href="#exercise-timing-parallel-performance" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
