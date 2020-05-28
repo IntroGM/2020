@@ -19,3 +19,8 @@ Please note that we provide assignment feedback only for students enrolled in th
 
 - [Create your copy using GitHub Classroom](https://classroom.github.com/a/thg87aJU)
 - [View the public version of the notebooks](https://github.com/IntroGM-2020/day-3-exercises)
+
+## Day 4
+
+- [Create your copy using GitHub Classroom](https://classroom.github.com/a/bP8nrQPt)
+- [View the public version of the notebooks](https://github.com/IntroGM-2020/day-4-exercises)
