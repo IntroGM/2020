@@ -34,6 +34,8 @@
     <link rel="canonical" href="https://introgm.github.io/2020/day-4/putting-it-together.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Marker-in-cell technique" href="marker-in-cell.html" />
+    <link rel="prev" title="Cluster computing" href="clusters.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -151,10 +153,34 @@
     <a href="../day-3/channel.html">Solution strategy for channel flow</a>
   </li>
 <li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="clusters.html">Cluster computing</a>
+  </li>
+  <li class="active">
+    <a href="">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
 <p class="margin-caption">Exercises</p>
 </li>
   <li class="">
     <a href="../exercises/classroom.html">Exercise notebooks in GitHub Classroom</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using the geo-hpcc cluster</a>
   </li>
 </ul>
 </nav>
@@ -262,11 +288,10 @@
 <li><p>Numerical methods</p></li>
 <li><p>Benchmarking numerical solutions</p></li>
 </ul>
-<p>Now we turn to how these different topics are related to one another in the design of a modern 3D thermomechanical numerical geodynamic model.
-As you will see, there are a number of different factors we must consider in the model design, and the order in which we perform various actions is important.</p>
+<p>Now we turn to how these different topics are related to one another in the design of a modern 3D thermomechanical numerical geodynamic model. As you will see, there are a number of different factors we must consider in the model design, and the order in which we perform various actions is important.</p>
 <div class="section" id="processes-to-consider">
 <h2>Processes to consider<a class="headerlink" href="#processes-to-consider" title="Permalink to this headline">¶</a></h2>
-<p>The essential dynamics of a geodynamic model comprise (1) deformation in the model owing to the applied boundary conditions, pressures in the fluid, and buoyancy, and (2) the transfer of heat by various processes strongly linked to the material flow field. We have already seen parts of many of these processes, but now we need consider the details of each and how they relate. We can see some key processes and their components below.</p>
+<p>The essential dynamics of a geodynamic model comprise (1) deformation in the model as a result of the applied boundary conditions, pressures in the fluid, and buoyancy, and (2) the transfer of heat by various processes strongly linked to the material flow field. We have already seen parts of many of these processes, but now we need consider the details of each and how they relate. We can see some key processes and their components below.</p>
 <ul class="simple">
 <li><p>Heat transfer in 3D</p>
 <ul>
@@ -297,9 +322,7 @@ As you will see, there are a number of different factors we must consider in the
 </div>
 <div class="section" id="interactions-between-processes-materials">
 <h2>Interactions between processes/materials<a class="headerlink" href="#interactions-between-processes-materials" title="Permalink to this headline">¶</a></h2>
-<p>How might various processes we consider above interact with one another?
-This is an important consideration because we need to know in which order we should handle the different processes.
-In the Earth, materials move and transfer heat simultaneously, but in our model we will solve the Stokes flow and heat transfer equations separately.</p>
+<p>How might various processes we consider above interact with one another? This is an important consideration because we need to know in which order we should handle the different processes. In the Earth, materials move and transfer heat simultaneously, but in our model we will solve the Stokes flow and heat transfer equations separately.</p>
 <ul class="simple">
 <li><p>Stokes flow solution will affect advection in the heat transfer calculations</p></li>
 <li><p>Temperature will affect viscosity of model materials, influencing in turn how the material deforms</p></li>
@@ -308,12 +331,10 @@ In the Earth, materials move and transfer heat simultaneously, but in our model 
 </div>
 <div class="section" id="general-structure-of-a-thermomechanical-code">
 <h2>General structure of a thermomechanical code<a class="headerlink" href="#general-structure-of-a-thermomechanical-code" title="Permalink to this headline">¶</a></h2>
-<p>With the list of processes and their interactions given above, how should we design our numerical modelling code?
-In what order should we do the different steps?</p>
+<p>With the list of processes and their interactions given above, how should we design our numerical modelling code? In what order should we do the different steps?</p>
 <p><img alt="Figure 1" src="../_images/2D-flow-chart-Gerya.png" /></p>
 <p><strong>Figure 1</strong>. An example of a flow chart for the steps needed to simulate geodynamic processes in 2D from Gerya (2010).</p>
-<p>Above we see an example of the order in which various processes and numerical procedures should be executed.
-Notably, we calculate the velocities for Stokes flow first, temperature after that (using the Stokes flow velocities), and move the markers after the new temperature values have been interpolated onto them.</p>
+<p>Above we see an example of the order in which various processes and numerical procedures should be executed. Notably, we calculate the velocities for Stokes flow first, temperature after that (using the Stokes flow velocities), and move the markers after the new temperature values have been interpolated onto them.</p>
 </div>
 </div>
 
@@ -344,6 +365,8 @@ Notably, we calculate the velocities for Stokes flow first, temperature after th
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="clusters.html" title="previous page">Cluster computing</a>
+    <a class='right-next' id="next-link" href="marker-in-cell.html" title="next page">Marker-in-cell technique</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

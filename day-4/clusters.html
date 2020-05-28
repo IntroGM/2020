@@ -34,6 +34,8 @@
     <link rel="canonical" href="https://introgm.github.io/2020/day-4/clusters.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Putting it all together" href="putting-it-together.html" />
+    <link rel="prev" title="Solution strategy for channel flow" href="../day-3/channel.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -43,7 +45,7 @@
 <meta property="og:url"         content="https://introgm.github.io/2020/day-4/clusters.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Cluster computing" />
-<meta property="og:description" content="Cluster computing  Performance of geodynamic models  For example, typical 2D thermomechanical geodynamic model:  Dimensions 1000 km x 1000 km  Resolution 1 km  " />
+<meta property="og:description" content="Cluster computing  Performance of geodynamic models  Memory hierarchy  Memory hierarchy of modern PC (https://allthingsvlsi.wordpress.com)  Let’s consider a typ" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -151,10 +153,34 @@
     <a href="../day-3/channel.html">Solution strategy for channel flow</a>
   </li>
 <li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="active">
+    <a href="">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
 <p class="margin-caption">Exercises</p>
 </li>
   <li class="">
     <a href="../exercises/classroom.html">Exercise notebooks in GitHub Classroom</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using the geo-hpcc cluster</a>
   </li>
 </ul>
 </nav>
@@ -233,19 +259,31 @@
             <a href="#performance-of-geodynamic-models" class="nav-link">Performance of geodynamic models</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#do" class="nav-link">Do</a>
+            <a href="#exercise-how-heavy-is-a-3d-model" class="nav-link">Exercise - How heavy is a 3D model?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#improving-model-performance" class="nav-link">Improving model performance</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#modern-computer-architecture" class="nav-link">Modern computer architecture</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#the-geo-hpcc-computer-cluster" class="nav-link">The geo-hpcc computer cluster</a>
         </li>
     
             </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#performance-of-parallel-programs" class="nav-link">Performance of parallel programs</a>
+            <a href="#performance-of-parallel-programs" class="nav-link">Performance of parallel programs</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-timing-parallel-performance" class="nav-link">Exercise - Timing parallel performance</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#id1" class="nav-link">Do</a><ul class="nav section-nav flex-column">
-                
         <li class="nav-item toc-entry toc-h3">
             <a href="#parallel-performance-results" class="nav-link">Parallel performance results</a>
         </li>
@@ -268,65 +306,83 @@
 <h1>Cluster computing<a class="headerlink" href="#cluster-computing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="performance-of-geodynamic-models">
 <h2>Performance of geodynamic models<a class="headerlink" href="#performance-of-geodynamic-models" title="Permalink to this headline">¶</a></h2>
-<p>For example, typical 2D thermomechanical geodynamic model:</p>
+<p><img alt="Memory hierarchy" src="../_images/memory-hierarchy.jpg" /></p>
+<p><em>Memory hierarchy of modern PC (https://allthingsvlsi.wordpress.com)</em></p>
+<p>Let’s consider a typical 2D thermomechanical geodynamic model:</p>
 <ul class="simple">
-<li><p>Dimensions 1000 km x 1000 km</p></li>
-<li><p>Resolution 1 km</p>
+<li><p>Dimensions: 1000 km x 1000 km</p></li>
+<li><p>Resolution: 1 km</p>
 <ul>
-<li><p><strong>1 000 000 grid points</strong></p></li>
-<li><p>Max. time step (diffusion limit) 16 kyrs</p></li>
+<li><p>Grid points: <strong>1 000 000</strong></p></li>
+<li><p>Maximum time step (diffusion limit): 16 kyrs</p></li>
 </ul>
 </li>
-<li><p>Four unknowns (<span class="math notranslate nohighlight">\(v_x\)</span>, <span class="math notranslate nohighlight">\(v_y\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(T\)</span>)</p></li>
+<li><p>Four unknowns: <span class="math notranslate nohighlight">\(v_x\)</span>, <span class="math notranslate nohighlight">\(v_y\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(T\)</span></p>
+<ul>
 <li><p>Four equations per grid point</p></li>
-<li><p>Discretized versions of the equations: About 20 operations (+-*/) per equation</p>
-<ul>
-<li><p><strong>80 000 000 operations (80 MFLOPS =</strong> <span class="math notranslate nohighlight">\(80\times10^6\)</span> <strong>FLOPS) per step</strong></p></li>
 </ul>
 </li>
-<li><p>Modern PC processors can do about 10-100 GFLOPS (GFLOP = <span class="math notranslate nohighlight">\(10^9\)</span> FLOPS)</p>
+<li><p>Discretized versions of the equations:</p>
 <ul>
-<li><p><em>Processor</em> could do 1000 steps per second</p></li>
-<li><p>E.g. 50 Myrs / 16 kyrs/step = 3200 steps</p></li>
-<li><p><strong>Model run time 3.2 secs</strong></p></li>
+<li><p>About 20 operations (+ - * /) per equation</p></li>
+<li><p>Operations per step: <strong>80 000 000</strong></p></li>
 </ul>
 </li>
-<li><p>BUT: Memory access time (random) approx. 50 ns</p>
+<li><p>Modern PC processors can do about 10-100 GFLOPS (1 GFLOP = <span class="math notranslate nohighlight">\(10^9\)</span> floating-point operations per second)</p>
+<ul>
+<li><p>The <em>processor</em> could do 1000 steps per second</p></li>
+<li><p>For example, 50 Myrs / 16 kyrs per step = 3200 steps</p></li>
+<li><p>Model run time: <strong>3.2 secs</strong></p></li>
+</ul>
+</li>
+<li><p><strong>BUT</strong>: Memory access time (random): approx. 50 ns</p>
 <ul>
 <li><p>Each operation needs to fetch at least one number from memory</p></li>
-<li><p>Worst case: random location. <span class="math notranslate nohighlight">\(80\times10^6\times50\times10^{-9}~s=4.0~s\)</span> per step</p></li>
-<li><p><strong>Total runtime</strong> (“<strong>wall clock time</strong>”) <span class="math notranslate nohighlight">\(\approx 4~\mathrm{s/step}\times3200~\mathrm{steps}=3.5~\mathrm{hours}\)</span></p></li>
+<li><p>Worst case: Random location:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(80\times10^6\times50\times10^{-9}~s=4.0~s\)</span> per step</p></li>
+</ul>
+</li>
+<li><p><strong>Total runtime</strong> (“<strong>wall clock time</strong>”): <span class="math notranslate nohighlight">\(\approx 4~\mathrm{s/step}\times3200~\mathrm{steps}=3.5~\mathrm{hours}\)</span></p></li>
 </ul>
 </li>
 <li><p>Also, a lot of other “book keeping” during the model calculations</p></li>
 </ul>
-<div class="section" id="do">
-<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-how-heavy-is-a-3d-model">
+<h3>Exercise - How heavy is a 3D model?<a class="headerlink" href="#exercise-how-heavy-is-a-3d-model" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Make a similar runtime estimation for a 3D model with same resolution</p></li>
 </ul>
-<p><img alt="Memory hierarchy" src="../_images/memory-hierarchy.jpg" /></p>
-<p><em>Memory hierarchy of modern PC (https://allthingsvlsi.wordpress.com)</em></p>
-<p>The cure: Split the job among multiple processors.</p>
+</div>
+<div class="section" id="improving-model-performance">
+<h3>Improving model performance<a class="headerlink" href="#improving-model-performance" title="Permalink to this headline">¶</a></h3>
+<p>The cure: Split the job onto multiple processors.</p>
 <ul class="simple">
-<li><p>Each will have less operations to do</p>
+<li><p>Each will have fewer operations to do</p>
 <ul>
 <li><p><em>Partitioning</em> of the job:</p>
 <ul>
-<li><p>Each processors will handle its own grid points, or</p></li>
-<li><p>Each processors will handle itw own part in solving the coefficient matrix</p></li>
+<li><p>Each processor will handle its own grid points, or</p></li>
+<li><p>Each processor will handle its own part in solving the coefficient matrix</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>Each will have smaller memory region to worry about (can store numbers closer to the processing unit)</p></li>
+<li><p>Each will have a smaller memory region to worry about (can store numbers closer to the processing unit)</p></li>
 </ul>
+</div>
+<div class="section" id="modern-computer-architecture">
+<h3>Modern computer architecture<a class="headerlink" href="#modern-computer-architecture" title="Permalink to this headline">¶</a></h3>
 <p><img alt="Processor architecture" src="../_images/arch1.jpg" /></p>
 <p><em>Processor architecture of a 4-core processor (http://sips.inesc-id.pt/~nfvr/msc_theses/msc10g/)</em></p>
 <p>Modern PCs already use multiple <em>cores</em> (CPUs within one physical processor).</p>
 <ul class="simple">
 <li><p>No speedup if the program/code used does not support multiple cores!</p></li>
-<li><p>Limited (currently) to about 16 cores, typically 2-4</p></li>
+<li><p>Limited (currently) to about 16 cores, typically 2-4</p>
+<ul>
+<li><p>Some CPUs with larger numbers of cores (up to 72) exist, but are expensive</p></li>
+</ul>
+</li>
 <li><p>Some PC hardware allows two physical processors</p></li>
 </ul>
 <p>More cores can be used by interconnecting multiple physical computers (<em>nodes</em>)</p>
@@ -336,16 +392,18 @@
 <li><p>Faster is better (&gt;10 Gb/s)</p></li>
 </ul>
 </li>
-<li><p>Needs a protocol for CPUs/nodes to discuss with each other in order
-to distribute (partition) the work</p>
+<li><p>Needs a protocol for CPUs/nodes to discuss with each other in order to distribute (partition) the work</p>
 <ul>
 <li><p>One of the most common: MPI (Message Passing Interface)</p></li>
 </ul>
 </li>
 </ul>
-<p><img alt="" src="../_images/nodesNetwork.gif" /></p>
+<p><img alt="Architecture of a computing cluster" src="../_images/nodesNetwork.gif" /></p>
 <p><em>Architecture of a computing cluster</em></p>
-<img src="img/IMG_1903.jpg" width="30%"/><p><strong>geo-hpcc</strong> cluster</p>
+</div>
+<div class="section" id="the-geo-hpcc-computer-cluster">
+<h3>The <strong>geo-hpcc</strong> computer cluster<a class="headerlink" href="#the-geo-hpcc-computer-cluster" title="Permalink to this headline">¶</a></h3>
+<img src="img/IMG_1903.jpg" width="30%"/>
 <ul class="simple">
 <li><p>35 nodes, each with 2 processors, each with 8 cores = 560 cores</p></li>
 </ul>
@@ -354,31 +412,34 @@ to distribute (partition) the work</p>
 <div class="section" id="performance-of-parallel-programs">
 <h2>Performance of parallel programs<a class="headerlink" href="#performance-of-parallel-programs" title="Permalink to this headline">¶</a></h2>
 <p>We will test the effect of running a code in parallel, using the <em>geo-hpcc</em> cluster.</p>
-<ol class="simple">
-<li><p>Login to the cluster using instructions at https://introgm.github.io/2018/instructions/cluster.html</p></li>
-<li><p>Type</p></li>
+<ol>
+<li><p>Login to the cluster using instructions at https://introgm.github.io/2020/instructions/cluster.html</p></li>
+<li><p>Type</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd mpi
+<p>$ cd mpi
 $ srun -n 64 python mpi.py
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>To see and edit the Python code</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ nano mpi.py
-</pre></div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>Do<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<code class="docutils literal notranslate"><span class="pre">3.</span> <span class="pre">To</span> <span class="pre">see</span> <span class="pre">and</span> <span class="pre">edit</span> <span class="pre">the</span> <span class="pre">Python</span> <span class="pre">code</span>&#160;&#160;&#160; </code>bash
+$ nano mpi.py
+```</p>
+<div class="section" id="exercise-timing-parallel-performance">
+<h3>Exercise - Timing parallel performance<a class="headerlink" href="#exercise-timing-parallel-performance" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Run the <code class="docutils literal notranslate"><span class="pre">mpi.py</span></code> script with different number of cores (modify the number after <code class="docutils literal notranslate"><span class="pre">-n</span></code>, try values between 1-256 cores). Keep record of core count and time elapsed. Use Excel/LibreOffice/Python to plot number of processors versus elapsed time. What kind of plot would you expect to see? What do you actually see?</p></li>
-<li><p>Try plotting 2-base logarithm of time vs 2-base logarithm of number of cores used.</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">mpi.py</span></code> script with different number of cores (modify the number after <code class="docutils literal notranslate"><span class="pre">-n</span></code>, try values between 1-400 cores). Keep record of the core count and time elapsed. We’ll compile our results and plot them as a group.</p>
+<ul>
+<li><p>What kind of relationship would you expect to see?</p></li>
+<li><p>What do you actually see?</p></li>
+</ul>
+</li>
 <li><p>Try commands <code class="docutils literal notranslate"><span class="pre">squeue</span></code> and <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> to see the job queue and the status of different nodes</p></li>
 </ul>
+</div>
 <div class="section" id="parallel-performance-results">
 <h3>Parallel performance results<a class="headerlink" href="#parallel-performance-results" title="Permalink to this headline">¶</a></h3>
-<p>You can find the results of the parallel performance exercise in the <code class="xref any docutils literal notranslate"><span class="pre">exercise</span> <span class="pre">summary</span> <span class="pre">notebook</span></code>.</p>
+<p>You can find the results of the parallel performance exercise in the <a class="reference external" href="https://introgm.github.io/2020/day-4/parallel-performance.html">exercise summary notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -410,6 +471,8 @@ $ srun -n 64 python mpi.py
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="../day-3/channel.html" title="previous page">Solution strategy for channel flow</a>
+    <a class='right-next' id="next-link" href="putting-it-together.html" title="next page">Putting it all together</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Using geo-hpcc cluster</title>
+    <title>Using the geo-hpcc cluster</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -34,6 +34,7 @@
     <link rel="canonical" href="https://introgm.github.io/2020/instructions/cluster.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Exercise notebooks in GitHub Classroom" href="../exercises/classroom.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -42,8 +43,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://introgm.github.io/2020/instructions/cluster.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Using geo-hpcc cluster" />
-<meta property="og:description" content="Using geo-hpcc cluster  Connecting from Windows  To access the command line:  Open PuTTY  Host name: dh2-seismo1203.seismo.helsinki.fi  Click Open  Type in the " />
+<meta property="og:title"       content="Using the geo-hpcc cluster" />
+<meta property="og:description" content="Using the geo-hpcc cluster  Suggested software  Windows  PuTTY (for connecting and using geo-hpcc)  WinSCP (for copying files from geo-hpcc)  ParaView (for data" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -151,10 +152,34 @@
     <a href="../day-3/channel.html">Solution strategy for channel flow</a>
   </li>
 <li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="../day-4/clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
 <p class="margin-caption">Exercises</p>
 </li>
   <li class="">
     <a href="../exercises/classroom.html">Exercise notebooks in GitHub Classroom</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="active">
+    <a href="">Using the geo-hpcc cluster</a>
   </li>
 </ul>
 </nav>
@@ -218,11 +243,59 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#connecting-from-windows" class="nav-link">Connecting from Windows</a>
+            <a href="#suggested-software" class="nav-link">Suggested software</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#windows" class="nav-link">Windows</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#mac-linux" class="nav-link">Mac/Linux</a>
+        </li>
+    
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#connecting-from-linux" class="nav-link">Connecting from Linux</a>
+            <a href="#user-accounts" class="nav-link">User accounts</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#geo-hpcc" class="nav-link">geo-hpcc</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#sculpin" class="nav-link">sculpin</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#connecting-from-windows" class="nav-link">Connecting from Windows</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#command-line-access" class="nav-link">Command line access</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#file-access" class="nav-link">File access</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#connecting-from-mac-linux" class="nav-link">Connecting from Mac/Linux</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">Command line access</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">File access</a>
+        </li>
+    
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -240,43 +313,86 @@
         
               <div>
                 
-  <div class="section" id="using-geo-hpcc-cluster">
-<h1>Using geo-hpcc cluster<a class="headerlink" href="#using-geo-hpcc-cluster" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="using-the-geo-hpcc-cluster">
+<h1>Using the geo-hpcc cluster<a class="headerlink" href="#using-the-geo-hpcc-cluster" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="suggested-software">
+<h2>Suggested software<a class="headerlink" href="#suggested-software" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.putty.org/">PuTTY</a> (for connecting and using geo-hpcc)</p></li>
+<li><p><a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a> (for copying files from geo-hpcc)</p></li>
+<li><p><a class="reference external" href="https://www.paraview.org/download/">ParaView</a> (for data visualization)</p></li>
+</ul>
+</div>
+<div class="section" id="mac-linux">
+<h3>Mac/Linux<a class="headerlink" href="#mac-linux" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.paraview.org/download/">ParaView</a> (for data visualization)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="user-accounts">
+<h2>User accounts<a class="headerlink" href="#user-accounts" title="Permalink to this headline">¶</a></h2>
+<p>Accounts have been created for you on geo-hpcc and sculpin, the gateway maching you need to connect through if you are trying to access the cluster from outside the Institute of Seismology. Some basic information about the machines, including how to change your password, can be found below.</p>
+<div class="section" id="geo-hpcc">
+<h3>geo-hpcc<a class="headerlink" href="#geo-hpcc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Host: geo-hpfe.seismo.helsinki.fi (geo-hpfe is a frontend virtual machine)</p></li>
+<li><p>To change your password you can log in to geo-hpfe and type <code class="docutils literal notranslate"><span class="pre">yppasswd</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="sculpin">
+<h3>sculpin<a class="headerlink" href="#sculpin" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Host: sculpin.seismo.helsinki.fi</p></li>
+<li><p>To change your password you can log in to sculpin and type <code class="docutils literal notranslate"><span class="pre">passwd</span></code>.</p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="connecting-from-windows">
 <h2>Connecting from Windows<a class="headerlink" href="#connecting-from-windows" title="Permalink to this headline">¶</a></h2>
-<p>To access the command line:</p>
+<div class="section" id="command-line-access">
+<h3>Command line access<a class="headerlink" href="#command-line-access" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Open PuTTY</p></li>
-<li><p><em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">dh2-seismo1203.seismo.helsinki.fi</span></code></p></li>
+<li><p><em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">sculpin.seismo.helsinki.fi</span></code></p></li>
 <li><p>Click <em>Open</em></p></li>
-<li><p>Type in the given username (<code class="docutils literal notranslate"><span class="pre">proxyuser</span></code>) and password</p></li>
-<li><p>Give command <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">clusteruser&#64;geo-hpfe.seismo.helsinki.fi</span></code>, where <code class="docutils literal notranslate"><span class="pre">clusteruser</span></code> is the provided username</p></li>
+<li><p>Type in your username and password</p></li>
+<li><p>Type the command <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;geo-hpfe.seismo.helsinki.fi</span></code>, where <code class="docutils literal notranslate"><span class="pre">username</span></code> is the your username</p></li>
 </ol>
-<p>To access the files:</p>
+</div>
+<div class="section" id="file-access">
+<h3>File access<a class="headerlink" href="#file-access" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Open WinSCP</p></li>
-<li><p>Click <em>New Site</em>, fill in <em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">geo-hpfe.seismo.helsinki.fi</span></code>, <em>User name</em> (<code class="docutils literal notranslate"><span class="pre">clusteruser</span></code>) and <em>Password</em> will be provided.</p></li>
+<li><p>Click <em>New Site</em>, fill in <em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">geo-hpfe.seismo.helsinki.fi</span></code>, <em>User name</em> and <em>Password</em>.</p></li>
 <li><p>Click <em>Advanced…</em></p></li>
 <li><p>Choose <em>Connection</em>, <em>Tunnel</em>, and check <em>Connect through SSH tunnel</em></p></li>
-<li><p>Fill in values: <em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">dh2-seismo1203.seismo.helsinki.fi</span></code>, <em>User name</em> (<code class="docutils literal notranslate"><span class="pre">proxyuser</span></code>) and <em>Password</em></p></li>
+<li><p>Fill in values: <em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">sculpin.seismo.helsinki.fi</span></code>, <em>User name</em> and <em>Password</em></p></li>
 <li><p>Click <em>OK</em></p></li>
 <li><p>Click <em>Save</em></p></li>
 <li><p>Click <em>Login</em></p></li>
 </ol>
-<p>WinSCP session will be saved, so that next time you can just double-click the hostname on the left, and the connection will be opened.</p>
+<p>The WinSCP session will be saved, so that next time you can just double-click the hostname on the left, and the connection will be opened.</p>
 </div>
-<div class="section" id="connecting-from-linux">
-<h2>Connecting from Linux<a class="headerlink" href="#connecting-from-linux" title="Permalink to this headline">¶</a></h2>
-<p>To access the command line:</p>
+</div>
+<div class="section" id="connecting-from-mac-linux">
+<h2>Connecting from Mac/Linux<a class="headerlink" href="#connecting-from-mac-linux" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Command line access<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">proxyuser&#64;dh2-seismo1203.seismo.helsinki.fi</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">clusteruser&#64;geo-hpfe.seismo.helsinki.fi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;sculpin.seismo.helsinki.fi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;geo-hpfe.seismo.helsinki.fi</span></code></p></li>
 </ol>
-<p>Note, usernames need to be replaced with the provided individual usernames.</p>
-<p>To copy files from DOUAR output to the current directory on loca machine:</p>
+<p>Note, the usernames need to be replaced with the your username.</p>
+</div>
+<div class="section" id="id2">
+<h3>File access<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">-oProxyCommand=&quot;ssh</span> <span class="pre">-W</span> <span class="pre">%h:%p</span> <span class="pre">proxyuser&#64;dh2-seismo1203.seismo.helsinki.fi&quot;</span> <span class="pre">clusteruser&#64;geo-hpfe.seismo.helsinki.fi:/globalscratch/clusteruser/douar/modelname/OUT/*.vtk</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">-oProxyCommand=&quot;ssh</span> <span class="pre">-W</span> <span class="pre">%h:%p</span> <span class="pre">username&#64;sculpin.seismo.helsinki.fi&quot;</span> <span class="pre">username&#64;geo-hpfe.seismo.helsinki.fi:/globalscratch/username/douar/modelname/OUT/*.vtk</span> <span class="pre">.</span></code></p></li>
 </ol>
+</div>
 </div>
 <div class="section" id="running-douar-models">
 <h2>Running DOUAR models<a class="headerlink" href="#running-douar-models" title="Permalink to this headline">¶</a></h2>
@@ -286,7 +402,7 @@
 <li><p><em>Monitor</em> the job status: <code class="docutils literal notranslate"><span class="pre">squeue</span></code></p></li>
 <li><p><em>Post-process</em> the output:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/globalscratch/clusteruser/douar/rift_20180514100500/OUT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/globalscratch/username/douar/rift_20180514100500/OUT</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/bin/process_outbin.sh</span></code></p></li>
 <li><p>Note that the directory name of the output is formed from the model name (<code class="docutils literal notranslate"><span class="pre">rift</span></code>) and the date and time of the job submission</p></li>
 </ul>
@@ -324,6 +440,7 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="../exercises/classroom.html" title="previous page">Exercise notebooks in GitHub Classroom</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

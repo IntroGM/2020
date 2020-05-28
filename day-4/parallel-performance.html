@@ -151,10 +151,34 @@
     <a href="../day-3/channel.html">Solution strategy for channel flow</a>
   </li>
 <li class="navbar-special">
+<p class="margin-caption">Day 4</p>
+</li>
+  <li class="">
+    <a href="clusters.html">Cluster computing</a>
+  </li>
+  <li class="">
+    <a href="putting-it-together.html">Putting it all together</a>
+  </li>
+  <li class="">
+    <a href="marker-in-cell.html">Marker-in-cell technique</a>
+  </li>
+  <li class="">
+    <a href="numerical-diffusion.html">Numerical diffusion</a>
+  </li>
+  <li class="">
+    <a href="intro-to-douar.html">Introduction to DOUAR</a>
+  </li>
+<li class="navbar-special">
 <p class="margin-caption">Exercises</p>
 </li>
   <li class="">
     <a href="../exercises/classroom.html">Exercise notebooks in GitHub Classroom</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Technical instructions</p>
+</li>
+  <li class="">
+    <a href="../instructions/cluster.html">Using the geo-hpcc cluster</a>
   </li>
 </ul>
 </nav>
@@ -252,74 +276,100 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lars</span>
-<span class="n">nprocL</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
-<span class="n">tsecL</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.253</span><span class="p">,</span> <span class="mf">1.566</span><span class="p">,</span> <span class="mf">2.224</span><span class="p">,</span> <span class="mf">3.567</span><span class="p">,</span> <span class="mf">6.411</span><span class="p">,</span> <span class="mf">1.071</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dave</span>
+<span class="n">nprocDW</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tsecDW</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ville</span>
-<span class="n">nprocV</span> <span class="o">=</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">tsecV</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.972</span><span class="p">,</span> <span class="mf">1.249</span><span class="p">,</span> <span class="mf">1.569</span><span class="p">,</span> <span class="mf">2.260</span><span class="p">,</span> <span class="mf">3.633</span><span class="p">,</span> <span class="mf">6.221</span><span class="p">,</span> <span class="mf">11.036</span><span class="p">,</span> <span class="mf">19.732</span><span class="p">,</span> <span class="mf">47.045</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Leevi</span>
+<span class="n">nprocLT</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tsecLT</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Isabel</span>
-<span class="n">nprocI</span> <span class="o">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
-<span class="n">tsecI</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.001</span><span class="p">,</span> <span class="mf">2.248</span><span class="p">,</span> <span class="mf">1.590</span><span class="p">,</span> <span class="mf">1.589</span><span class="p">,</span> <span class="mf">1.606</span><span class="p">,</span> <span class="mf">1.142</span><span class="p">,</span> <span class="mf">1.211</span><span class="p">,</span> <span class="mf">1.287</span><span class="p">,</span> <span class="mf">1.083</span><span class="p">,</span> <span class="mf">1.075</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Letizia</span>
+<span class="n">nprocLC</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tsecLC</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aleksi</span>
-<span class="n">nprocA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>
-<span class="n">tsecA</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.762</span><span class="p">,</span> <span class="mf">6.265</span><span class="p">,</span> <span class="mf">3.550</span><span class="p">,</span> <span class="mf">2.229</span><span class="p">,</span> <span class="mf">1.563</span><span class="p">,</span> <span class="mf">1.266</span><span class="p">,</span> <span class="mf">0.951</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tommi</span>
+<span class="n">nprocTV</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tsecTV</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tuija</span>
+<span class="n">nprocTL</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tsecTL</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Yijun</span>
+<span class="n">nprocYW</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tsecYW</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to NumPy arrays</span>
-<span class="n">nprocL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocL</span><span class="p">)</span>
-<span class="n">tsecL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecL</span><span class="p">)</span>
-<span class="n">nprocV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocV</span><span class="p">)</span>
-<span class="n">tsecV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecV</span><span class="p">)</span>
-<span class="n">nprocI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocI</span><span class="p">)</span>
-<span class="n">tsecI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecI</span><span class="p">)</span>
-<span class="n">nprocA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocA</span><span class="p">)</span>
-<span class="n">tsecA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecA</span><span class="p">)</span>
+<span class="n">nprocDW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocDW</span><span class="p">)</span>
+<span class="n">tsecDW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecDW</span><span class="p">)</span>
+<span class="n">nprocLT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocLT</span><span class="p">)</span>
+<span class="n">tsecLT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecLT</span><span class="p">)</span>
+<span class="n">nprocLC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocLC</span><span class="p">)</span>
+<span class="n">tsecLC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecLC</span><span class="p">)</span>
+<span class="n">nprocTV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocTV</span><span class="p">)</span>
+<span class="n">tsecTV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecTV</span><span class="p">)</span>
+<span class="n">nprocTL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocTL</span><span class="p">)</span>
+<span class="n">tsecTL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecTL</span><span class="p">)</span>
+<span class="n">nprocYW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nprocYW</span><span class="p">)</span>
+<span class="n">tsecYW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tsecYW</span><span class="p">)</span>
 
 <span class="c1"># Plot data</span>
 <span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocL</span><span class="p">,</span> <span class="n">tsecL</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 1&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocV</span><span class="p">,</span> <span class="n">tsecV</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 2&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocI</span><span class="p">,</span> <span class="n">tsecI</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 3&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocA</span><span class="p">,</span> <span class="n">tsecA</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 4&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocDW</span><span class="p">,</span> <span class="n">tsecDW</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 1&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocLT</span><span class="p">,</span> <span class="n">tsecLT</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 2&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocLC</span><span class="p">,</span> <span class="n">tsecLC</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 3&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocTV</span><span class="p">,</span> <span class="n">tsecTV</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 4&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocTL</span><span class="p">,</span> <span class="n">tsecTL</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 5&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nprocYW</span><span class="p">,</span> <span class="n">tsecYW</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 6&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of cores&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Calculation time [s]&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Raw parallel performance&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="c1"># Find bounds for reference parallel performance line</span>
-<span class="n">minx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nprocL</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocV</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocI</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocA</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-<span class="n">miny</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">tsecL</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecV</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecI</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecA</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-<span class="n">maxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tsecL</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecV</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecI</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecA</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">minx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nprocDW</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocLT</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocLC</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocTV</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocTL</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocYW</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="n">miny</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">tsecDW</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecLT</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecLC</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecTV</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecTL</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecYW</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="n">maxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tsecDW</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecLT</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecLC</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecTV</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecTL</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecYW</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 <span class="n">maxx</span> <span class="o">=</span> <span class="n">minx</span> <span class="o">+</span> <span class="p">(</span><span class="n">maxy</span> <span class="o">-</span> <span class="n">miny</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">minx</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">maxx</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">maxy</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">miny</span><span class="p">)],</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Perfect parallelization&#39;</span><span class="p">)</span>
 
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocL</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecL</span><span class="p">),</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 1&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocV</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecV</span><span class="p">),</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 2&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocI</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecI</span><span class="p">),</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 3&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocA</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecA</span><span class="p">),</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 4&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocDW</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecDW</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 1&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocLT</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecLT</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 2&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocLC</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecLC</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 3&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocTV</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecTV</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 4&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocTL</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecTL</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 5&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nprocYW</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tsecYW</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User 6&#39;</span><span class="p">)</span>
 
 <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;log$_</span><span class="si">{2}</span><span class="s1">$(Number of cores)&#39;</span><span class="p">)</span>
@@ -330,10 +380,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa2a37bd750&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">33</span><span class="n">b032ebaa09</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> 
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Find bounds for reference parallel performance line</span>
+<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">minx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nprocDW</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocLT</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocLC</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocTV</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocTL</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nprocYW</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="n">miny</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">tsecDW</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecLT</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecLC</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecTV</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecTL</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tsecYW</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="n">maxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tsecDW</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecLT</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecLC</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecTV</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecTL</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">tsecYW</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/numpy/core/_methods.py</span> in <span class="ni">_amin</span><span class="nt">(a, axis, out, keepdims, initial, where)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="k">def</span> <span class="nf">_amin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>           <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">34</span>     <span class="k">return</span> <span class="n">umr_minimum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> 
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">def</span> <span class="nf">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+
+<span class="ne">ValueError</span>: zero-size array to reduction operation minimum which has no identity
 </pre></div>
 </div>
-<img alt="../_images/parallel-performance_6_1.png" src="../_images/parallel-performance_6_1.png" />
+<img alt="../_images/parallel-performance_8_1.png" src="../_images/parallel-performance_8_1.png" />
 </div>
 </div>
 </div>
