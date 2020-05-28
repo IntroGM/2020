@@ -16,21 +16,21 @@
 
 Accounts have been created for you on geo-hpcc and sculpin, the gateway maching you need to connect through if you are trying to access the cluster from outside the Institute of Seismology. Some basic information about the machines, including how to change your password, can be found below.
 
-### geo-hpcc
-
-- Host: geo-hpfe.seismo.helsinki.fi (geo-hpfe is a frontend virtual machine)
-- To change your password you can log in to geo-hpfe and type `yppasswd`.
-
 ### sculpin
 
-- Host: sculpin.seismo.helsinki.fi
+- Host: `sculpin.seismo.helsinki.fi`
 - To change your password you can log in to sculpin and type `passwd`.
+
+### geo-hpcc
+
+- Host: `geo-hpfe.seismo.helsinki.fi` (geo-hpfe is a frontend virtual machine)
+- To change your password you can log in to geo-hpfe and type `yppasswd`.
 
 ## Connecting from Windows
 
 ### Command line access
 
-1. Open PuTTY
+1. Open **PuTTY**
 2. *Host name*: `sculpin.seismo.helsinki.fi`
 3. Click *Open*
 4. Type in your username and password
