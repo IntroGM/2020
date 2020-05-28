@@ -29,12 +29,12 @@
 - file: day-3/stokes
 - file: day-3/channel
 
-#- header: Day 4
-#- file: day-4/clusters
-#- file: day-4/putting-it-together
-#- file: day-4/marker-in-cell
-#- file: day-4/numerical-diffusion
-#- file: day-4/intro-to-douar
+- header: Day 4
+- file: day-4/clusters
+- file: day-4/putting-it-together
+- file: day-4/marker-in-cell
+- file: day-4/numerical-diffusion
+- file: day-4/intro-to-douar
 
 #- header: Day 5
 #- file: day-5/cli-tools
@@ -43,5 +43,5 @@
 - header: Exercises
 - file: exercises/classroom
 
-#- header: Technical instructions
-#- file: instructions/cluster
+- header: Technical instructions
+- file: instructions/cluster
