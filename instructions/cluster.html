@@ -170,6 +170,12 @@
     <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
   </li>
 <li class="navbar-special">
+<p class="margin-caption">Day 5</p>
+</li>
+  <li class="">
+    <a href="../day-5/project-overview.html">Project overview</a>
+  </li>
+<li class="navbar-special">
 <p class="margin-caption">Exercises</p>
 </li>
   <li class="">
@@ -278,7 +284,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#file-access" class="nav-link">File access</a>
+            <a href="#file-transfers-access" class="nav-link">File transfers/access</a>
         </li>
     
             </ul>
@@ -292,14 +298,32 @@
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#id2" class="nav-link">File access</a>
+            <a href="#id2" class="nav-link">File transfers/access</a>
         </li>
     
             </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#running-douar-models" class="nav-link">Running DOUAR models</a>
+            <a href="#navigating-the-filesystem" class="nav-link">Navigating the filesystem</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#running-douar-models" class="nav-link">Running DOUAR models</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#editing-and-running-a-new-job" class="nav-link">Editing and running a new job</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#monitoring-job-status-cancelling-a-job" class="nav-link">Monitoring job status/cancelling a job</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#postprocessing-job-output" class="nav-link">Postprocessing job output</a>
         </li>
     
     </ul>
@@ -359,11 +383,11 @@
 <li><p><em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">sculpin.seismo.helsinki.fi</span></code></p></li>
 <li><p>Click <em>Open</em></p></li>
 <li><p>Type in your username and password</p></li>
-<li><p>Type the command <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;geo-hpfe.seismo.helsinki.fi</span></code>, where <code class="docutils literal notranslate"><span class="pre">username</span></code> is the your username</p></li>
+<li><p>Type the command <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">USERNAME&#64;geo-hpfe.seismo.helsinki.fi</span></code>, where <code class="docutils literal notranslate"><span class="pre">USERNAME</span></code> is the your username</p></li>
 </ol>
 </div>
-<div class="section" id="file-access">
-<h3>File access<a class="headerlink" href="#file-access" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="file-transfers-access">
+<h3>File transfers/access<a class="headerlink" href="#file-transfers-access" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Open WinSCP</p></li>
 <li><p>Click <em>New Site</em>, fill in <em>Host name</em>: <code class="docutils literal notranslate"><span class="pre">geo-hpfe.seismo.helsinki.fi</span></code>, <em>User name</em> and <em>Password</em>.</p></li>
@@ -382,17 +406,39 @@
 <div class="section" id="id1">
 <h3>Command line access<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;sculpin.seismo.helsinki.fi</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;geo-hpfe.seismo.helsinki.fi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">USERNAME&#64;sculpin.seismo.helsinki.fi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">USERNAME&#64;geo-hpfe.seismo.helsinki.fi</span></code></p></li>
 </ol>
-<p>Note, the usernames need to be replaced with the your username.</p>
+<p>Note, <code class="docutils literal notranslate"><span class="pre">USERNAME</span></code> should be replaced with your username.</p>
 </div>
 <div class="section" id="id2">
-<h3>File access<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>File transfers/access<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">-oProxyCommand=&quot;ssh</span> <span class="pre">-W</span> <span class="pre">%h:%p</span> <span class="pre">username&#64;sculpin.seismo.helsinki.fi&quot;</span> <span class="pre">username&#64;geo-hpfe.seismo.helsinki.fi:/globalscratch/username/douar/modelname/OUT/*.vtk</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">-oProxyCommand=&quot;ssh</span> <span class="pre">-W</span> <span class="pre">%h:%p</span> <span class="pre">USERNAME&#64;sculpin.seismo.helsinki.fi&quot;</span> <span class="pre">USERNAME&#64;geo-hpfe.seismo.helsinki.fi:/globalscratch/USERNAME/douar/modelname/OUT/*.vtk</span> <span class="pre">.</span></code></p></li>
 </ol>
 </div>
+</div>
+<div class="section" id="navigating-the-filesystem">
+<h2>Navigating the filesystem<a class="headerlink" href="#navigating-the-filesystem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">less</span> <span class="pre">FILENAME</span></code>: Show the contents of a text file</p>
+<ul>
+<li><p>Scroll up and down in file with arrow keys or page-up, page-down</p></li>
+<li><p>Exit by pressing <code class="docutils literal notranslate"><span class="pre">q</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">DIRECTORY</span></code>: List the contents of a directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DIRECTORY</span></code>: Change into directory <code class="docutils literal notranslate"><span class="pre">DIRECTORY</span></code></p>
+<ul>
+<li><p><em>Note</em>: Typing <code class="docutils literal notranslate"><span class="pre">cd</span></code> with no directory name given will change to your home directory</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">FILENAME</span> <span class="pre">DESTINATION</span></code>: Copy a file from <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code> to <code class="docutils literal notranslate"><span class="pre">DESTINATION</span></code></p>
+<ul>
+<li><p><em>Note</em>: To copy a directory you must include the <code class="docutils literal notranslate"><span class="pre">-r</span></code> flag. For example, <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">DIRECTORY</span> <span class="pre">DESTINATION</span></code></p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="running-douar-models">
 <h2>Running DOUAR models<a class="headerlink" href="#running-douar-models" title="Permalink to this headline">¶</a></h2>
@@ -410,6 +456,48 @@
 <li><p>Copy <em>VTK files</em> to your local machine (see instructions above) to be opened in ParaView</p></li>
 </ol>
 <p>You can <em>cancel</em> your job with <code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">jobid</span></code> where jobid is the numerical ID of the job, and can be found using <code class="docutils literal notranslate"><span class="pre">squeue</span></code></p>
+<div class="section" id="editing-and-running-a-new-job">
+<h3>Editing and running a new job<a class="headerlink" href="#editing-and-running-a-new-job" title="Permalink to this headline">¶</a></h3>
+<p>To run a new simulation with DOUAR you should do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
+<span class="nb">cd</span> douar/inputs
+cp OLDMODEL.txt NEWMODEL.txt
+nano NEWMODEL.txt
+</pre></div>
+</div>
+<p><em>(edit parameters and save)</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/bin/submitdouar.sh -i ~/douar/inputs/NEWMODEL.txt -n <span class="m">32</span>
+</pre></div>
+</div>
+<p>The number of processor cores to use (given after the <code class="docutils literal notranslate"><span class="pre">-n</span></code> flag) should be no more than 64 to ensure other jobs are not queued waiting for available resources.</p>
+</div>
+<div class="section" id="monitoring-job-status-cancelling-a-job">
+<h3>Monitoring job status/cancelling a job<a class="headerlink" href="#monitoring-job-status-cancelling-a-job" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">squeue</span></code>: Show a list of models running on the geo-hpcc cluster</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">JOB_ID</span></code>: Cancel a job running on the cluster</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="postprocessing-job-output">
+<h2>Postprocessing job output<a class="headerlink" href="#postprocessing-job-output" title="Permalink to this headline">¶</a></h2>
+<p>To create the <code class="docutils literal notranslate"><span class="pre">VTK</span></code> files for visualization in <strong>ParaView</strong>, you can do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /globalscratch/USERNAME/douar/NEWMODEL_yymmddhhmmss/OUT
+~/bin/process_outbin.sh -n NUM
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">NUM</span></code> is the time increment between output VTK files (i.e., output written every <code class="docutils literal notranslate"><span class="pre">NUM</span></code>-th time step). For example, <code class="docutils literal notranslate"><span class="pre">~/bin/process_outbin.sh</span> <span class="pre">-n</span> <span class="pre">5</span></code> would produce output for every 5th DOUAR time step.</p>
+<p><em>(optional)</em> Create a compressed file containing the output files</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar czvf FILENAME.tar.gz *.vtk
+</pre></div>
+</div>
+<p><em>(tranfer</em> <code class="docutils literal notranslate"><span class="pre">.vtk</span></code> <em>files using WinSCP or scp - see above)</em></p>
+<p><em>(optional)</em> Extract files from compressed archive</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xzvf FILENAME.tar.gz
+</pre></div>
+</div>
+<p>or extract using your computer’s operating system tools (i.e., right-click on file in file browser and extract).</p>
+<p><em>(Visualize data in ParaView)</em></p>
 </div>
 </div>
 
