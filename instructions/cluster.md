@@ -34,9 +34,9 @@ Accounts have been created for you on geo-hpcc and sculpin, the gateway maching 
 2. *Host name*: `sculpin.seismo.helsinki.fi`
 3. Click *Open*
 4. Type in your username and password
-5. Type the command `ssh username@geo-hpfe.seismo.helsinki.fi`, where `username` is the your username
+5. Type the command `ssh USERNAME@geo-hpfe.seismo.helsinki.fi`, where `USERNAME` is the your username
 
-### File access
+### File transfers/access
 
 1. Open WinSCP
 2. Click *New Site*, fill in *Host name*: `geo-hpfe.seismo.helsinki.fi`, *User name* and *Password*.
@@ -53,14 +53,25 @@ The WinSCP session will be saved, so that next time you can just double-click th
 
 ### Command line access
 
-1. `ssh username@sculpin.seismo.helsinki.fi`
-2. `ssh username@geo-hpfe.seismo.helsinki.fi`
+1. `ssh USERNAME@sculpin.seismo.helsinki.fi`
+2. `ssh USERNAME@geo-hpfe.seismo.helsinki.fi`
 
-Note, the usernames need to be replaced with the your username.
+Note, `USERNAME` should be replaced with your username.
 
-### File access
+### File transfers/access
 
-1. `scp -oProxyCommand="ssh -W %h:%p username@sculpin.seismo.helsinki.fi" username@geo-hpfe.seismo.helsinki.fi:/globalscratch/username/douar/modelname/OUT/*.vtk .`
+1. `scp -oProxyCommand="ssh -W %h:%p USERNAME@sculpin.seismo.helsinki.fi" USERNAME@geo-hpfe.seismo.helsinki.fi:/globalscratch/USERNAME/douar/modelname/OUT/*.vtk .`
+
+## Navigating the filesystem
+
+- `less FILENAME`: Show the contents of a text file
+    - Scroll up and down in file with arrow keys or page-up, page-down
+    - Exit by pressing `q`
+- `ls DIRECTORY`: List the contents of a directory
+- `cd DIRECTORY`: Change into directory `DIRECTORY`
+    - *Note*: Typing `cd` with no directory name given will change to your home directory
+- `cp FILENAME DESTINATION`: Copy a file from `FILENAME` to `DESTINATION`
+    - *Note*: To copy a directory you must include the `-r` flag. For example, `cp -r DIRECTORY DESTINATION`
 
 ## Running DOUAR models
 
@@ -76,3 +87,50 @@ Note, the usernames need to be replaced with the your username.
 5. Copy *VTK files* to your local machine (see instructions above) to be opened in ParaView
 
 You can *cancel* your job with `scancel jobid` where jobid is the numerical ID of the job, and can be found using `squeue`
+
+### Editing and running a new job
+
+To run a new simulation with DOUAR you should do the following:
+```bash
+cd
+cd douar/inputs
+cp OLDMODEL.txt NEWMODEL.txt
+nano NEWMODEL.txt
+```
+*(edit parameters and save)*
+```bash
+~/bin/submitdouar.sh -i ~/douar/inputs/NEWMODEL.txt -n 32
+```
+The number of processor cores to use (given after the `-n` flag) should be no more than 64 to ensure other jobs are not queued waiting for available resources.
+
+### Monitoring job status/cancelling a job
+
+- `squeue`: Show a list of models running on the geo-hpcc cluster
+- `scancel JOB_ID`: Cancel a job running on the cluster
+
+## Postprocessing job output
+
+To create the `VTK` files for visualization in **ParaView**, you can do the following:
+
+```bash
+cd /globalscratch/USERNAME/douar/NEWMODEL_yymmddhhmmss/OUT
+~/bin/process_outbin.sh -n NUM
+```
+where `NUM` is the time increment between output VTK files (i.e., output written every `NUM`-th time step). For example, `~/bin/process_outbin.sh -n 5` would produce output for every 5th DOUAR time step.
+
+*(optional)* Create a compressed file containing the output files
+
+```bash
+tar czvf FILENAME.tar.gz *.vtk
+```
+
+*(tranfer* `.vtk` *files using WinSCP or scp - see above)*
+
+*(optional)* Extract files from compressed archive
+
+```bash
+tar xzvf FILENAME.tar.gz
+```
+or extract using your computer's operating system tools (i.e., right-click on file in file browser and extract).
+
+*(Visualize data in ParaView)*
