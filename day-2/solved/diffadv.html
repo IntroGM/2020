@@ -172,6 +172,9 @@
 <p class="margin-caption">Day 5</p>
 </li>
   <li class="">
+    <a href="../../day-5/douar-notes.html">DOUAR notes</a>
+  </li>
+  <li class="">
     <a href="../../day-5/project-overview.html">Project overview</a>
   </li>
 <li class="navbar-special">
@@ -356,7 +359,7 @@ T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delt
 <span class="n">rho</span> <span class="o">=</span> <span class="mi">2900</span>   <span class="c1"># kg m^-3</span>
 <span class="n">Cp</span> <span class="o">=</span> <span class="mi">900</span>     <span class="c1"># J kg^-1 K^-1</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mf">2.5</span>      <span class="c1"># W m^-1 K^-1</span>
-<span class="n">H</span> <span class="o">=</span> <span class="mf">0.0</span>      <span class="c1"># W m^-3</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mf">1e-6</span>      <span class="c1"># W m^-3</span>
 <span class="n">vx</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mf">365.25</span><span class="p">)</span>     <span class="c1"># m s^-1</span>
 
 <span class="c1"># Set geometry and dimensions</span>
@@ -369,7 +372,7 @@ T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delt
 <span class="n">sillbott</span> <span class="o">=</span> <span class="mf">10e3</span>  <span class="c1"># m</span>
 
 <span class="c1"># Set total time and time step</span>
-<span class="n">t_total</span> <span class="o">=</span> <span class="mf">0.1e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
+<span class="n">t_total</span> <span class="o">=</span> <span class="mf">1.e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">1e4</span> <span class="o">*</span> <span class="n">yr2sec</span>                 <span class="c1"># s</span>
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t_total</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>  <span class="c1"># -</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating&quot;</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="s2">&quot;time steps&quot;</span><span class="p">)</span>
@@ -395,8 +398,8 @@ T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delt
 
 <span class="c1"># Plot initial temperature field</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#plt.legend()</span>
+<span class="c1">#plt.show()</span>
 
 <span class="c1"># Start the loop over time steps</span>
 <span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
@@ -424,11 +427,10 @@ T_i^{q+1} = \left(\frac{k}{\rho C_p} \frac{T_{i+1}^q - 2T_i^q + T_{i-1}^q}{\Delt
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>dx is 1206.896551724138 m
-Calculating 10 time steps
+Calculating 100 time steps
 </pre></div>
 </div>
 <img alt="../../_images/diffadv_3_1.png" src="../../_images/diffadv_3_1.png" />
-<img alt="../../_images/diffadv_3_2.png" src="../../_images/diffadv_3_2.png" />
 </div>
 </div>
 </div>
@@ -471,6 +473,12 @@ Calculating 10 time steps
           By David Whipp and Lars Kaislaniemi<br/>
         
             &copy; Copyright 2020.<br/>
+          <div class="extra_footer">
+            <div>
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+
+          </div>
       </p>
     </div>
   </footer>

@@ -1,6 +1,6 @@
 # Exercise notebooks in GitHub Classroom
 
-Below are links to create your own copies of the daily notebooks for completing the exercises. Clicking the link will allow you to make your copy on [GitHub.com](https://www.github.com).
+Below are links to create your own copies of the daily notebooks for completing the exercises. Clicking the link will allow you to make your copy on [GitHub.com](https://www.github.com). For those taking the course for credit, the final version of your exercises should be submitted via GitHub Classroom **no later than June 12, 2020**.
 
 ```{note}
 You will need an account on [GitHub.com](https://www.github.com) to use GitHub Classroom.

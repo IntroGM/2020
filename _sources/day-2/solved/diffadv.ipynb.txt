@@ -78,7 +78,7 @@
     "rho = 2900   # kg m^-3\n",
     "Cp = 900     # J kg^-1 K^-1\n",
     "k = 2.5      # W m^-1 K^-1\n",
-    "H = 0.0      # W m^-3\n",
+    "H = 1e-6      # W m^-3\n",
     "vx = 0.0/(60*60*24*365.25)     # m s^-1\n",
     "\n",
     "# Set geometry and dimensions\n",
@@ -91,7 +91,7 @@
     "sillbott = 10e3  # m\n",
     "\n",
     "# Set total time and time step\n",
-    "t_total = 0.1e6 * yr2sec          # s\n",
+    "t_total = 1.e6 * yr2sec          # s\n",
     "dt = 1e4 * yr2sec                 # s\n",
     "nt = int(np.floor(t_total / dt))  # -\n",
     "print(\"Calculating\", nt, \"time steps\")\n",
@@ -117,8 +117,8 @@
     "\n",
     "# Plot initial temperature field\n",
     "plt.plot(Tprev, -x, '.-', label='T initial')\n",
-    "plt.legend()\n",
-    "plt.show()\n",
+    "#plt.legend()\n",
+    "#plt.show()\n",
     "\n",
     "# Start the loop over time steps\n",
     "curtime = 0\n",
@@ -142,6 +142,13 @@
     "plt.legend()\n",
     "plt.show()"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {

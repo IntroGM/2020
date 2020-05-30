@@ -172,6 +172,9 @@
 <p class="margin-caption">Day 5</p>
 </li>
   <li class="">
+    <a href="../../day-5/douar-notes.html">DOUAR notes</a>
+  </li>
+  <li class="">
     <a href="../../day-5/project-overview.html">Project overview</a>
   </li>
 <li class="navbar-special">
@@ -431,6 +434,11 @@
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t_total</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>  <span class="c1"># -</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating&quot;</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="s2">&quot;time steps&quot;</span><span class="p">)</span>
 
+<span class="c1"># Check for a stable solution</span>
+<span class="n">stable</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">stable</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WARNING: Unstable solution expected!&#39;</span><span class="p">)</span>
+
 <span class="c1"># Set boundary temperature values and intrusion temperature</span>
 <span class="n">Tsurf</span> <span class="o">=</span> <span class="mf">0.0</span>        <span class="c1"># deg C</span>
 <span class="n">Tmoho</span> <span class="o">=</span> <span class="mf">600.0</span>      <span class="c1"># deg C</span>
@@ -453,7 +461,7 @@
 <span class="c1"># Plot initial temperature field</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#plt.show()</span>
 
 <span class="c1"># Start the loop over time steps</span>
 <span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
@@ -485,7 +493,6 @@ Calculating 10 time steps
 </pre></div>
 </div>
 <img alt="../../_images/fdheat_6_1.png" src="../../_images/fdheat_6_1.png" />
-<img alt="../../_images/fdheat_6_2.png" src="../../_images/fdheat_6_2.png" />
 </div>
 </div>
 </div>
@@ -528,6 +535,12 @@ Calculating 10 time steps
           By David Whipp and Lars Kaislaniemi<br/>
         
             &copy; Copyright 2020.<br/>
+          <div class="extra_footer">
+            <div>
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+
+          </div>
       </p>
     </div>
   </footer>

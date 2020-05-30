@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>General info</title>
+    <title>DOUAR notes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -31,21 +31,21 @@
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script async="async" src="../_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="canonical" href="https://introgm.github.io/2020/course-info/general-info.html" />
+    <link rel="canonical" href="https://introgm.github.io/2020/day-5/douar-notes.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Learning goals" href="learning-goals.html" />
-    <link rel="prev" title="Introduction to Geodynamic Modelling" href="../welcome.html" />
+    <link rel="next" title="Project overview" href="project-overview.html" />
+    <link rel="prev" title="Introduction to DOUAR" href="../day-4/intro-to-douar.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://introgm.github.io/2020/course-info/general-info.html" />
+<meta property="og:url"         content="https://introgm.github.io/2020/day-5/douar-notes.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="General info" />
-<meta property="og:description" content="General info  Course meetings  9:00-16:00, May 25-29 on Zoom  Zoom meeting attendance is mandatory and any absences must be cleared by the instructor prior to t" />
+<meta property="og:title"       content="DOUAR notes" />
+<meta property="og:description" content="DOUAR notes  Plasticity in DOUAR  DOUAR solves for Stokes flow, which means all materials need to have a viscosity. Thus, in order to have frictional plastic be" />
 <meta property="og:image"       content="https://introgm.github.io/2020/_static/introgm-logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -80,23 +80,23 @@
 <li class="navbar-special">
 <p class="margin-caption">General info</p>
 </li>
-  <li class="active">
-    <a href="">General info</a>
+  <li class="">
+    <a href="../course-info/general-info.html">General info</a>
   </li>
   <li class="">
-    <a href="learning-goals.html">Learning goals</a>
+    <a href="../course-info/learning-goals.html">Learning goals</a>
   </li>
   <li class="">
-    <a href="grading.html">Grading</a>
+    <a href="../course-info/grading.html">Grading</a>
   </li>
   <li class="">
-    <a href="resources.html">Resources</a>
+    <a href="../course-info/resources.html">Resources</a>
   </li>
   <li class="">
-    <a href="licensing.html">License and terms of usage</a>
+    <a href="../course-info/licensing.html">License and terms of usage</a>
   </li>
   <li class="">
-    <a href="previous-years.html">Past versions of this course</a>
+    <a href="../course-info/previous-years.html">Past versions of this course</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 1</p>
@@ -173,11 +173,11 @@
 <li class="navbar-special">
 <p class="margin-caption">Day 5</p>
 </li>
-  <li class="">
-    <a href="../day-5/douar-notes.html">DOUAR notes</a>
+  <li class="active">
+    <a href="">DOUAR notes</a>
   </li>
   <li class="">
-    <a href="../day-5/project-overview.html">Project overview</a>
+    <a href="project-overview.html">Project overview</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Exercises</p>
@@ -228,7 +228,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/course-info/general-info.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="../_sources/day-5/douar-notes.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -253,23 +253,13 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#course-meetings" class="nav-link">Course meetings</a>
+            <a href="#plasticity-in-douar" class="nav-link">Plasticity in DOUAR</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#viscosity-of-a-plastic-element" class="nav-link">Viscosity of a plastic element</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#instructor" class="nav-link">Instructor</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#course-website" class="nav-link">Course website</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#course-completion-methods" class="nav-link">Course completion methods</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#suggested-background-studies" class="nav-link">Suggested background studies</a>
+            </ul>
         </li>
     
     </ul>
@@ -283,48 +273,28 @@
         
               <div>
                 
-  <div class="section" id="general-info">
-<h1>General info<a class="headerlink" href="#general-info" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="course-meetings">
-<h2>Course meetings<a class="headerlink" href="#course-meetings" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>9:00-16:00, May 25-29 on Zoom</p></li>
-</ul>
-<p>Zoom meeting attendance is mandatory and any absences must be cleared by the instructor prior to the start of class that day.</p>
+  <div class="section" id="douar-notes">
+<h1>DOUAR notes<a class="headerlink" href="#douar-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plasticity-in-douar">
+<h2>Plasticity in DOUAR<a class="headerlink" href="#plasticity-in-douar" title="Permalink to this headline">¶</a></h2>
+<p>DOUAR solves for Stokes flow, which means all materials need to have a viscosity. Thus, in order to have frictional plastic behavior of a material, the material needs a viscosity that makes it behave as if it was on plastic yield.</p>
+<div class="section" id="viscosity-of-a-plastic-element">
+<h3>Viscosity of a plastic element<a class="headerlink" href="#viscosity-of-a-plastic-element" title="Permalink to this headline">¶</a></h3>
+<p>Perfectly plastic materials undergo no deformation at stresses below their yield stress <span class="math notranslate nohighlight">\(\sigma_{\mathrm{y}}\)</span>, but and experience infinite deformation once the yield stress is reached. To simulate plastic behavior in a viscous fluid, the code must identify elements that are at the plastic yield stress and then find a viscosity that will ensure the stress in the element is equal to the yield stress.</p>
+<p>In DOUAR, the elemental stress is calculated as</p>
+<p>\begin{equation}
+\sigma = 2 \eta_{\mathrm{mat}} \dot{\varepsilon}
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(\eta_{\mathrm{mat}}\)</span> is the assigned material viscosity and <span class="math notranslate nohighlight">\(\dot{\varepsilon}\)</span> is the strain rate in the element. In cases where the calculated elemental stress is below the yield stress, the assigned viscosity in the element will be used as the viscosity for that velocity iteration. In cases where the calculated stress exceeds exceeds the yield stress for the material, the viscosity must be recalculated such that the stress in the element is equal to the yield stress. This is done by solving for the effective viscosity <span class="math notranslate nohighlight">\(\eta_{\mathrm{eff}}\)</span> that would satisfy this condition:</p>
+<p>\begin{equation}
+\eta_{\mathrm{eff}} = \frac{\sigma_{\mathrm{y}}}{2 \dot{\varepsilon}}
+\end{equation}</p>
+<p>So, to summarize mathematically, we can say the viscosity <span class="math notranslate nohighlight">\(\eta\)</span> used for an element with plasticity will be</p>
+<p>\begin{cases}
+\eta = \eta_{\mathrm{eff}},&amp; \text{if } \sigma \ge \sigma_{\mathrm{y}} \newline
+\eta = \eta_{\mathrm{mat}},&amp; \text{otherwise}
+\end{cases}</p>
 </div>
-<div class="section" id="instructor">
-<h2>Instructor<a class="headerlink" href="#instructor" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>David Whipp</p>
-<ul>
-<li><p>Office: C417, Exactum</p></li>
-<li><p>Email: <em>firstname.lastname&#64;helsinki.fi</em></p></li>
-<li><p>Phone: +358 (0)2 941 51617</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="course-website">
-<h2>Course website<a class="headerlink" href="#course-website" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://introgm.github.io">https://introgm.github.io</a></p>
-</div>
-<div class="section" id="course-completion-methods">
-<h2>Course completion methods<a class="headerlink" href="#course-completion-methods" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Computer programming exercises</p></li>
-<li><p>(Online) attendance of at least 80% of course lectures/exercises</p></li>
-<li><p>Optional research project/paper</p></li>
-</ul>
-</div>
-<div class="section" id="suggested-background-studies">
-<h2>Suggested background studies<a class="headerlink" href="#suggested-background-studies" title="Permalink to this headline">¶</a></h2>
-<p>Students taking this course should have</p>
-<ul class="simple">
-<li><p>Basic knowledge of geodynamic processes in the lithosphere (stress and strain, elasticity, viscous flow, plasticity, heat transfer, etc.)</p></li>
-<li><p>Familiarity with basic computer programming concepts (loops, conditional statements, etc.)</p></li>
-<li><p>General understanding of calculus (derivatives, integrals, etc.)</p></li>
-</ul>
-<p>It is not required, but you will also benefit from having some knowledge of programming in Python.</p>
 </div>
 </div>
 
@@ -341,7 +311,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "course-info"
+            path: "day-5"
         }
     }
     </script>
@@ -355,8 +325,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../welcome.html" title="previous page">Introduction to Geodynamic Modelling</a>
-    <a class='right-next' id="next-link" href="learning-goals.html" title="next page">Learning goals</a>
+    <a class='left-prev' id="prev-link" href="../day-4/intro-to-douar.html" title="previous page">Introduction to DOUAR</a>
+    <a class='right-next' id="next-link" href="project-overview.html" title="next page">Project overview</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -7,42 +7,40 @@
     <meta charset="utf-8" />
     <title>Testing your code and benchmarking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/mystnb.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="../../_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="canonical" href="https://introgm.github.io/2020/day-3/benchmarking.html" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FD for Stokes equation" href="stokes.html" />
-    <link rel="prev" title="Heat advection and diffusion" href="../day-2/diffadv.html" />
+    <link rel="canonical" href="https://introgm.github.io/2020/day-3/solved/benchmarking.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://introgm.github.io/2020/day-3/benchmarking.html" />
+<meta property="og:url"         content="https://introgm.github.io/2020/day-3/solved/benchmarking.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Testing your code and benchmarking" />
 <meta property="og:description" content="Testing your code and benchmarking  As we have seen yesterday, it is possible to use the finite difference method to solve equations, and if we use a sufficient" />
@@ -61,15 +59,15 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
+<a class="navbar-brand text-wrap" href="../../index.html">
   
-  <img src="../_static/introgm-logo.png" class="logo" alt="logo">
+  <img src="../../_static/introgm-logo.png" class="logo" alt="logo">
   
   
 </a>
 </div>
 
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
@@ -81,115 +79,115 @@
 <p class="margin-caption">General info</p>
 </li>
   <li class="">
-    <a href="../course-info/general-info.html">General info</a>
+    <a href="../../course-info/general-info.html">General info</a>
   </li>
   <li class="">
-    <a href="../course-info/learning-goals.html">Learning goals</a>
+    <a href="../../course-info/learning-goals.html">Learning goals</a>
   </li>
   <li class="">
-    <a href="../course-info/grading.html">Grading</a>
+    <a href="../../course-info/grading.html">Grading</a>
   </li>
   <li class="">
-    <a href="../course-info/resources.html">Resources</a>
+    <a href="../../course-info/resources.html">Resources</a>
   </li>
   <li class="">
-    <a href="../course-info/licensing.html">License and terms of usage</a>
+    <a href="../../course-info/licensing.html">License and terms of usage</a>
   </li>
   <li class="">
-    <a href="../course-info/previous-years.html">Past versions of this course</a>
+    <a href="../../course-info/previous-years.html">Past versions of this course</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 1</p>
 </li>
   <li class="">
-    <a href="../day-1/course-overview.html">Course overview</a>
+    <a href="../../day-1/course-overview.html">Course overview</a>
   </li>
   <li class="">
-    <a href="../day-1/physical-processes.html">Processes and concepts</a>
+    <a href="../../day-1/physical-processes.html">Processes and concepts</a>
   </li>
   <li class="">
-    <a href="../day-1/solving-equations.html">Solving equations</a>
+    <a href="../../day-1/solving-equations.html">Solving equations</a>
   </li>
   <li class="">
-    <a href="../day-1/python-basics.html">Basic elements of Python</a>
+    <a href="../../day-1/python-basics.html">Basic elements of Python</a>
   </li>
   <li class="">
-    <a href="../day-1/functions.html">Functions</a>
+    <a href="../../day-1/functions.html">Functions</a>
   </li>
   <li class="">
-    <a href="../day-1/numpy.html">Introduction to NumPy</a>
+    <a href="../../day-1/numpy.html">Introduction to NumPy</a>
   </li>
   <li class="">
-    <a href="../day-1/for-loops.html">for loops</a>
+    <a href="../../day-1/for-loops.html">for loops</a>
   </li>
   <li class="">
-    <a href="../day-1/conditional-statements.html">Conditional statements</a>
+    <a href="../../day-1/conditional-statements.html">Conditional statements</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 2</p>
 </li>
   <li class="">
-    <a href="../day-2/fdbasics.html">Introduction to finite differences</a>
+    <a href="../../day-2/fdbasics.html">Introduction to finite differences</a>
   </li>
   <li class="">
-    <a href="../day-2/fdheat.html">Finite differences for the heat equation</a>
+    <a href="../../day-2/fdheat.html">Finite differences for the heat equation</a>
   </li>
   <li class="">
-    <a href="../day-2/stability.html">Stability of the heat equation FD approximation</a>
+    <a href="../../day-2/stability.html">Stability of the heat equation FD approximation</a>
   </li>
   <li class="">
-    <a href="../day-2/diffadv.html">Heat advection and diffusion</a>
+    <a href="../../day-2/diffadv.html">Heat advection and diffusion</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 3</p>
 </li>
-  <li class="active">
-    <a href="">Testing your code and benchmarking</a>
+  <li class="">
+    <a href="../benchmarking.html">Testing your code and benchmarking</a>
   </li>
   <li class="">
-    <a href="stokes.html">FD for Stokes equation</a>
+    <a href="../stokes.html">FD for Stokes equation</a>
   </li>
   <li class="">
-    <a href="channel.html">Solution strategy for channel flow</a>
+    <a href="../channel.html">Solution strategy for channel flow</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 4</p>
 </li>
   <li class="">
-    <a href="../day-4/clusters.html">Cluster computing</a>
+    <a href="../../day-4/clusters.html">Cluster computing</a>
   </li>
   <li class="">
-    <a href="../day-4/putting-it-together.html">Putting it all together</a>
+    <a href="../../day-4/putting-it-together.html">Putting it all together</a>
   </li>
   <li class="">
-    <a href="../day-4/marker-in-cell.html">Marker-in-cell technique</a>
+    <a href="../../day-4/marker-in-cell.html">Marker-in-cell technique</a>
   </li>
   <li class="">
-    <a href="../day-4/numerical-diffusion.html">Numerical diffusion</a>
+    <a href="../../day-4/numerical-diffusion.html">Numerical diffusion</a>
   </li>
   <li class="">
-    <a href="../day-4/intro-to-douar.html">Introduction to DOUAR</a>
+    <a href="../../day-4/intro-to-douar.html">Introduction to DOUAR</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Day 5</p>
 </li>
   <li class="">
-    <a href="../day-5/douar-notes.html">DOUAR notes</a>
+    <a href="../../day-5/douar-notes.html">DOUAR notes</a>
   </li>
   <li class="">
-    <a href="../day-5/project-overview.html">Project overview</a>
+    <a href="../../day-5/project-overview.html">Project overview</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Exercises</p>
 </li>
   <li class="">
-    <a href="../exercises/classroom.html">Exercise notebooks in GitHub Classroom</a>
+    <a href="../../exercises/classroom.html">Exercise notebooks in GitHub Classroom</a>
   </li>
 <li class="navbar-special">
 <p class="margin-caption">Technical instructions</p>
 </li>
   <li class="">
-    <a href="../instructions/cluster.html">Using the geo-hpcc cluster</a>
+    <a href="../../instructions/cluster.html">Using the geo-hpcc cluster</a>
   </li>
 </ul>
 </nav>
@@ -228,7 +226,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/day-3/benchmarking.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <a class="dropdown-buttons" href="../../_sources/day-3/solved/benchmarking.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -247,7 +245,7 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
             <div class="dropdown-buttons">
                 
-                <a class="binder-button" href="https://mybinder.org/v2/gh/IntroGM/2020/master?urlpath=lab/tree/day-3/benchmarking.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                <a class="binder-button" href="https://mybinder.org/v2/gh/IntroGM/2020/master?urlpath=lab/tree/day-3/solved/benchmarking.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
                 
                 
                 <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
@@ -402,7 +400,7 @@ T(x) = T_{L} \left( \frac{1 - \exp{(v_{x} x / \kappa)}}{1 - \exp{(v_{x} L / \kap
 </li>
 <li><p>Steady-state heat conduction with heat production, but no advection</p>
 <p>\begin{equation}
-T(x) = \frac{x T_{L}}{L} + \frac{h_{\mathrm{r}}^{2} H}{k} \left( \left( 1 - \exp{(-x / h_{\mathrm{r}})}\right) - \left( 1 - \exp{(-L / h_{\mathrm{r}})}\right) \frac{x}{L} \right)
+T(x) = \frac{x T_{L}}{L} + \frac{h^{2}<em>{\mathrm{r}} H}{k} \left( \left( 1 - \exp{(-x / h</em>{\mathrm{r}})}\right) - \left( 1 - \exp{(-L / h_{\mathrm{r}})}\right) \frac{x}{L} \right)
 \end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(h_{\mathrm{r}}\)</span> is the depth at which the concentration of heat producing elements decreases by <span class="math notranslate nohighlight">\(1/e\)</span>. In case you do not include this behavior in your model, you will assume that <span class="math notranslate nohighlight">\(h_{\mathrm{r}} = 10000\)</span> km.</p>
 </li>
@@ -454,10 +452,11 @@ T(x) = \frac{x T_{L}}{L} + \frac{h_{\mathrm{r}}^{2} H}{k} \left( \left( 1 - \exp
 <span class="n">H</span> <span class="o">=</span> <span class="mf">1.0</span>      <span class="c1"># uW m^-3</span>
 <span class="n">vx</span> <span class="o">=</span> <span class="mf">0.0</span>     <span class="c1"># mm/a</span>
 <span class="n">hr</span> <span class="o">=</span> <span class="mi">10000</span>   <span class="c1"># km</span>
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">)</span>  <span class="c1"># m^2 / s</span>
 
 <span class="c1"># Set geometry and dimensions</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">35e3</span>         <span class="c1"># m</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">6</span>           <span class="c1"># -</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">30</span>          <span class="c1"># -</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># m</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dx is&quot;</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
 
@@ -471,7 +470,7 @@ T(x) = \frac{x T_{L}}{L} + \frac{h_{\mathrm{r}}^{2} H}{k} \left( \left( 1 - \exp
 <span class="n">hr</span> <span class="o">=</span> <span class="n">hr</span> <span class="o">*</span> <span class="mi">1000</span>                    <span class="c1"># km -&gt; m</span>
 
 <span class="c1"># Set total time and time step</span>
-<span class="n">t_total</span> <span class="o">=</span> <span class="mf">0.1e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
+<span class="n">t_total</span> <span class="o">=</span> <span class="mf">40e6</span> <span class="o">*</span> <span class="n">yr2sec</span>          <span class="c1"># s</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">1e4</span> <span class="o">*</span> <span class="n">yr2sec</span>                 <span class="c1"># s</span>
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t_total</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>  <span class="c1"># -</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating&quot;</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="s2">&quot;time steps&quot;</span><span class="p">)</span>
@@ -498,7 +497,7 @@ T(x) = \frac{x T_{L}}{L} + \frac{h_{\mathrm{r}}^{2} H}{k} \left( \left( 1 - \exp
 <span class="c1"># Plot initial temperature field</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#plt.show()</span>
 
 <span class="c1"># Start the loop over time steps</span>
 <span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
@@ -511,32 +510,66 @@ T(x) = \frac{x T_{L}}{L} + \frac{h_{\mathrm{r}}^{2} H}{k} \left( \left( 1 - \exp
     
     <span class="c1"># internal grid points</span>
     <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
+        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">kappa</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
         
     <span class="c1"># copy Tnew to Tprev</span>
     <span class="n">Tprev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Tnew</span><span class="p">[:]</span>
 
 <span class="c1"># Calculate analytical solution(s)</span>
 <span class="c1"># 1. Steady-state advection, no heat production</span>
-<span class="c1">#Tss_adv = </span>
+<span class="n">Tss_adv</span> <span class="o">=</span> <span class="n">Tmoho</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">vx</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">kappa</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">vx</span> <span class="o">*</span> <span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="n">kappa</span><span class="p">)))</span>
 
 <span class="c1"># 2. Steady-state conduction with heat production, no advection</span>
-<span class="c1">#Tss_hp = </span>
+<span class="n">Tss_hp</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">Tmoho</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span> <span class="o">+</span> <span class="p">((</span><span class="n">hr</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">H</span><span class="p">)</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span> <span class="n">hr</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">L</span> <span class="o">/</span> <span class="n">hr</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">))</span>
 
 <span class="c1"># Plot the final temperature field</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tnew</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T final&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot analytical solutions as needed</span>
+<span class="c1"># Heat production, no advection</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">vx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">H</span> <span class="o">&lt;=</span> <span class="mf">1e-10</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tss_adv</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T_analytical&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">H</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">vx</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-10</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tss_hp</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T_analytical&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">vx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">H</span> <span class="o">&lt;=</span> <span class="mf">1e-10</span><span class="p">):</span>
+    <span class="n">pct_error</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tss_adv</span> <span class="o">-</span> <span class="n">Tprev</span><span class="p">)</span> <span class="o">/</span> <span class="n">Tss_adv</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Advection percent error: </span><span class="si">{0:.4f}</span><span class="s1">% (max), </span><span class="si">{1:.4f}</span><span class="s1">% (min)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">pct_error</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pct_error</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">H</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">vx</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-10</span><span class="p">):</span>
+    <span class="n">pct_error</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tss_hp</span> <span class="o">-</span> <span class="n">Tprev</span><span class="p">)</span> <span class="o">/</span> <span class="n">Tss_hp</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Heat production percent error: </span><span class="si">{0:.4f}</span><span class="s1">% (max), </span><span class="si">{1:.4f}</span><span class="s1">% (min)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">pct_error</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pct_error</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+    
+<span class="c1"># Stability assessment</span>
+<span class="n">cond_stab</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">cond_ref</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">adv_stab</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">vx</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span>
+<span class="n">adv_ref</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conduction stablility: </span><span class="si">{0}</span><span class="s2"> (</span><span class="si">{1:.4f}</span><span class="s2"> &lt;= </span><span class="si">{2:.1f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cond_stab</span> <span class="o">&lt;=</span> <span class="n">cond_ref</span><span class="p">,</span> <span class="n">cond_stab</span><span class="p">,</span> <span class="n">cond_ref</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Advection stablility: </span><span class="si">{0}</span><span class="s2"> (</span><span class="si">{1:.4f}</span><span class="s2"> &lt;= </span><span class="si">{2:.1f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adv_stab</span> <span class="o">&lt;=</span> <span class="n">adv_ref</span><span class="p">,</span> <span class="n">adv_stab</span><span class="p">,</span> <span class="n">adv_ref</span><span class="p">))</span>    
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>dx is 7000.0 m
-Calculating 10 time steps
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>dx is 1206.896551724138 m
+Calculating 4000 time steps
 </pre></div>
 </div>
-<img alt="../_images/benchmarking_5_1.png" src="../_images/benchmarking_5_1.png" />
-<img alt="../_images/benchmarking_5_2.png" src="../_images/benchmarking_5_2.png" />
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/ipykernel_launcher.py:78: RuntimeWarning: invalid value encountered in true_divide
+</pre>
+</div>
+<img alt="../../_images/benchmarking_5_21.png" src="../../_images/benchmarking_5_21.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Heat production percent error: 0.0332% (max), 0.0060% (min)
+Conduction stablility: True (0.2075 &lt;= 0.5)
+Advection stablility: True (0.0000 &lt;= 1.0)
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/ipykernel_launcher.py:99: RuntimeWarning: invalid value encountered in true_divide
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -655,7 +688,7 @@ C = \frac{u \Delta t}{\Delta x} \leq C_{\mathrm{max}}
 <span class="c1"># Plot initial temperature field</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tprev</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T initial&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#plt.show()</span>
 
 <span class="c1"># Start the loop over time steps</span>
 <span class="n">curtime</span> <span class="o">=</span> <span class="mi">0</span>
@@ -668,7 +701,7 @@ C = \frac{u \Delta t}{\Delta x} \leq C_{\mathrm{max}}
     
     <span class="c1"># internal grid points</span>
     <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
+        <span class="n">Tnew</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">vx</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">H</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">Tprev</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
         
     <span class="c1"># copy Tnew to Tprev</span>
     <span class="n">Tprev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Tnew</span><span class="p">[:]</span>
@@ -677,6 +710,14 @@ C = \frac{u \Delta t}{\Delta x} \leq C_{\mathrm{max}}
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tnew</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T final&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Stability assessment</span>
+<span class="n">cond_stab</span> <span class="o">=</span> <span class="p">((</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">Cp</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">cond_ref</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">adv_stab</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">vx</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span>
+<span class="n">adv_ref</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conduction stablility: </span><span class="si">{0}</span><span class="s2"> (</span><span class="si">{1:.4f}</span><span class="s2"> &lt;= </span><span class="si">{2:.1f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cond_stab</span> <span class="o">&lt;=</span> <span class="n">cond_ref</span><span class="p">,</span> <span class="n">cond_stab</span><span class="p">,</span> <span class="n">cond_ref</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Advection stablility: </span><span class="si">{0}</span><span class="s2"> (</span><span class="si">{1:.4f}</span><span class="s2"> &lt;= </span><span class="si">{2:.1f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adv_stab</span> <span class="o">&lt;=</span> <span class="n">adv_ref</span><span class="p">,</span> <span class="n">adv_stab</span><span class="p">,</span> <span class="n">adv_ref</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -685,8 +726,11 @@ C = \frac{u \Delta t}{\Delta x} \leq C_{\mathrm{max}}
 Calculating 1000 time steps
 </pre></div>
 </div>
-<img alt="../_images/benchmarking_9_1.png" src="../_images/benchmarking_9_1.png" />
-<img alt="../_images/benchmarking_9_2.png" src="../_images/benchmarking_9_2.png" />
+<img alt="../../_images/benchmarking_9_11.png" src="../../_images/benchmarking_9_11.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Conduction stablility: True (0.2075 &lt;= 0.5)
+Advection stablility: True (0.0083 &lt;= 1.0)
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -707,7 +751,7 @@ Calculating 1000 time steps
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "day-3"
+            path: "day-3/solved"
         }
     }
     </script>
@@ -721,8 +765,6 @@ Calculating 1000 time steps
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../day-2/diffadv.html" title="previous page">Heat advection and diffusion</a>
-    <a class='right-next' id="next-link" href="stokes.html" title="next page">FD for Stokes equation</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -747,7 +789,7 @@ Calculating 1000 time steps
       </div>
     </div>
 
-    <script src="../_static/js/index.js"></script>
+    <script src="../../_static/js/index.js"></script>
     
     <!-- Google Analytics -->
     <script>
